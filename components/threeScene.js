@@ -1,5 +1,10 @@
 import React, { useEffect } from 'react';
 import * as THREE from 'three';
+// import { TrackballControls } from 'three/examples/jsm/controls/TrackballControls.js';
+// import { CSS3DRenderer } from 'three/examples/jsm/renderers/CSS3DRenderer.js';
+import { OrbitControls } from '../lib/OrbitControls.js';
+import { CSS3DRenderer, CSS3DObject } from '../lib/CSS3DRenderer';
+import { TrackballControls } from '../lib/TrackballControls';
 
 const ThreeScene = (props) => {
 
