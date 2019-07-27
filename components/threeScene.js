@@ -78,7 +78,7 @@ const ThreeScene = (props) => {
     const width = mounted.clientWidth
     const height = mounted.clientHeight
     //ADD SCENE
-    scene = new THREE.Scene()
+    scene = new THREE.Scene();
     //ADD CAMERA
     camera = new THREE.PerspectiveCamera(
       75,
@@ -88,38 +88,38 @@ const ThreeScene = (props) => {
     )
     camera.position.z = 4
     //ADD RENDERER
-    renderer = new THREE.WebGLRenderer({ antialias: true })
-    renderer.setClearColor('#000000')
-    renderer.setSize(width, height)
-    mounted.appendChild(renderer.domElement)
+    renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setClearColor('#000000');
+    renderer.setSize(width, height);
+    mounted.appendChild(renderer.domElement);
     //ADD CUBE
-    const geometry = new THREE.BoxGeometry(1, 1, 1)
-    const material = new THREE.MeshBasicMaterial({ color: '#433F81' })
-    cube = new THREE.Mesh(geometry, material)
+    const geometry = new THREE.BoxGeometry(1, 1, 1);
+    const material = new THREE.MeshBasicMaterial({ color: '#433F81' });
+    cube = new THREE.Mesh(geometry, material);
     scene.add(cube)
-    start()
+    start();
     return () => {
-      stop()
-      mounted.removeChild(renderer.domElement)
+      stop();
+      mounted.removeChild(renderer.domElement);
     }
   }, [])
 
   const start = () => {
     if (!frameId) {
-      frameId = requestAnimationFrame(animate)
+      frameId = requestAnimationFrame(animate);
     }
   }
   const stop = () => {
-    cancelAnimationFrame(frameId)
+    cancelAnimationFrame(frameId);
   }
   const animate = () => {
-    cube.rotation.x += 0.01
-    cube.rotation.y += 0.01
-    renderScene()
-    frameId = window.requestAnimationFrame(animate)
+    cube.rotation.x += 0.01;
+    cube.rotation.y += 0.01;
+    renderScene();
+    frameId = window.requestAnimationFrame(animate);
   }
   const renderScene = () => {
-    renderer.render(scene, camera)
+    renderer.render(scene, camera);
   }
 
     return (
@@ -129,4 +129,4 @@ const ThreeScene = (props) => {
       />
     )
 }
-export default ThreeScene
+export default ThreeScene;
