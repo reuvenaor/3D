@@ -16,15 +16,19 @@ class MyDocument extends Document {
                 <body>
                     <Main />
                     <NextScript />
-
                 </body>
                 <style global jsx>{`
- 
+                    * {
+                        align-content: center;
+                        box-sizing: border-box;
+                    }
                     body {
                         width: 100vw;
-                        height: 100vh;
+                        height: 900vh;
                         margin: 0;
                         padding: 0;
+                        left: 0;
+                        top: 0;
                     }
                     `}</style>
             </Html>

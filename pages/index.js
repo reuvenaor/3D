@@ -18,19 +18,19 @@ function Index() {
       <Head>
         <title>Reuven 3D</title>
       </Head>
-      <body>
-        <ThreeScene />
-      </body>
+      <ThreeScene />
+
 
       <style jsx>{`
         main {
-          // align-content: center;
-          // box-sizing: border-box;
-          width: 100vw;
-          height: 100vh;
+          align-content: center;
+          left: 0;
+          top: 0;
+          width: '100%';
+          height: '100%';
           margin: 0;
           padding: 0;
-          // display: grid;
+          display: grid;
           // font-family: 'SF Pro Text', 'SF Pro Icons', 'Helvetica Neue',
           //  'Helvetica', 'Arial', sans-serif;
           // hyphens: auto;

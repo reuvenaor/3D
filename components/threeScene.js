@@ -25,7 +25,7 @@ const ThreeScene = (props) => {
     var div = document.createElement('div');
     div.style.width = '480px';
     div.style.height = '360px';
-    div.style.backgroundColor = '#000';
+    //div.style.backgroundColor = '#000';
     var iframe = document.createElement('iframe');
     iframe.style.width = '480px';
     iframe.style.height = '360px';
@@ -38,11 +38,20 @@ const ThreeScene = (props) => {
     return object;
   };
 
-
   useEffect(() => {
+    createAnim();
+    animate();
+    return () => {
+      stop();
+      document.removeChild(renderer.domElement);
+      //blocker.removeChild(renderer.domElement);
+    }
+  }, [])
 
+  function createAnim() {
     camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 1, 5000);
-    camera.position.set(500, 350, 750);
+    camera.position.set(500, 350, 1000);
+    camera.isPerspectiveCamera = true;   // ADDED
     scene = new THREE.Scene();
     renderer = new CSS3DRenderer();
     renderer.setSize(window.innerWidth, window.innerHeight);
@@ -55,58 +64,27 @@ const ThreeScene = (props) => {
     group.add(new Element('3gVqpuPLNUs', - 240, 0, 0, - Math.PI / 2));
     scene.add(group);
     controls = new TrackballControls(camera, renderer.domElement);
-    controls.rotateSpeed = 4;
+    controls.rotateSpeed = 1;
+    controls.noZoom = true;          // ADDED
+    controls.noRotate = true;         // ADDED
+    //controls.staticMoving = true;   // ADDED
     window.addEventListener('resize', onWindowResize, false);
 
-    blocker.style.display = 'none';
-    controls.addEventListener('start', function () {
-      blocker.style.display = '';
-    });
-    controls.addEventListener('end', function () {
-      blocker.style.display = 'none';
-    });
-    animate();
-    return () => {
-      stop();
-      document.removeChild(renderer.domElement);
-      blocker.removeChild(renderer.domElement);
-    }
-
-    ///////////// BEFORE //////////////////
-    // const width = mounted.clientWidth
-    // const height = mounted.clientHeight
-    // //ADD SCENE
-    // scene = new THREE.Scene();
-    // //ADD CAMERA
-    // camera = new THREE.PerspectiveCamera(
-    //   75,
-    //   width / height,
-    //   0.1,
-    //   1000
-    // )
-    // camera.position.z = 4
-    // //ADD RENDERER
-    // renderer = new THREE.WebGLRenderer({ antialias: true });
-    // renderer.setClearColor('#000000');
-    // renderer.setSize(width, height);
-    // mounted.appendChild(renderer.domElement);
-    // //ADD CUBE
-    // const geometry = new THREE.BoxGeometry(1, 1, 1);
-    // const material = new THREE.MeshBasicMaterial({ color: '#433F81' });
-    // cube = new THREE.Mesh(geometry, material);
-    // scene.add(cube)
-    // start();
-    // return () => {
-    // stop();
-    // mounted.removeChild(renderer.domElement);
-    // }
-  }, [])
+    // blocker.style.display = 'none';
+    // controls.addEventListener('start', function () {
+    //   blocker.style.display = '';
+    // });
+    // controls.addEventListener('end', function () {
+    //   blocker.style.display = 'none';
+    // });
+  }
 
   function onWindowResize() {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
   }
+
   function animate() {
     if (container) {
       requestAnimationFrame(animate);
@@ -116,45 +94,22 @@ const ThreeScene = (props) => {
   }
   function stop() {
     cancelAnimationFrame(container);
-    cancelAnimationFrame(blocker);
+    //cancelAnimationFrame(blocker);
   }
-
-
-  ///////////// BEFORE //////////////////
-  // const start = () => {
-  //   if (!frameId) {
-  //     frameId = requestAnimationFrame(animate);
-  //   }
-  // }
-  // const stop = () => {
-  //   cancelAnimationFrame(frameId);
-  // }
-  // const animate = () => {
-  //   cube.rotation.x += 0.01;
-  //   cube.rotation.y += 0.01;
-  //   renderScene();
-  //   frameId = window.requestAnimationFrame(animate);
-  // }
-  // const renderScene = () => {
-  //   renderer.render(scene, camera);
-  // }
 
   console.log('renderrrrrrrrrrrrrr');
   return (
-    ///////////// BEFORE //////////////////
-    // <div
-    //   style={{ width: '100%', height: '100%'}}
-    //   ref={(mount) => { mounted = mount }}
-    // />
-    <div style={{ width: '100%', height: '100%' }}>
+    <div
+      style={{ width: '100%', height: '100%', position: 'fixed', background: 'black'}}
+    >
       <div
-        style={{ width: '100%', height: '100%', background: 'black'}}
+        style={{ width: '100%', height: '100%'}}
         ref={(ref) => { container = ref }}
       ></div>
-      <div
+      {/* <div
         style={{ width: '100%', height: '100%' }}
         ref={(ref) => { blocker = ref }}
-      ></div>
+      ></div> */}
     </div>
 
   )
