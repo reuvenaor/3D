@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import Head from 'next/head';
 import ThreeScene from '../components/threeScene';
 
 function Index() {
@@ -14,19 +13,16 @@ function Index() {
     // getDate();
   }, []);
   return (
-    <main>  
-      <Head>
-        <title>Next.js + Node API</title>
-      </Head>
+    <main>
       <ThreeScene/>
       <style jsx>{`
         main {
           // align-content: center;
           // box-sizing: border-box;
-          width: 98vw;
-          height: 98vh;
-          // margin: 0;
-          // padding: 0;
+          width: 100vw;
+          height: 100vh;
+          margin: 0;
+          padding: 0;
           // display: grid;
           // font-family: 'SF Pro Text', 'SF Pro Icons', 'Helvetica Neue',
           //  'Helvetica', 'Arial', sans-serif;

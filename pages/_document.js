@@ -10,6 +10,7 @@ class MyDocument extends Document {
         return (
             <Html>
                 <Head>
+                    <title>Reuven 3D</title>
                     <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
                     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"></meta>
                 </Head>
@@ -28,9 +29,9 @@ class MyDocument extends Document {
                     }
                     `}</style>
             </Html>
-            
+
         );
-        
+
     }
 }
 
