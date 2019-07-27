@@ -15,6 +15,7 @@ function Index() {
     <main>
       <Head>
         <title>Next.js + Node API</title>
+        <script src="js/three.js"></script>
       </Head>
       <h1>Next.js + Node.js API</h1>
       <p>
