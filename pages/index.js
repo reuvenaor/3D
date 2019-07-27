@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import ThreeScene from '../components/threeScene';
+import Head from 'next/head';
 
 function Index() {
 
@@ -14,7 +15,13 @@ function Index() {
   }, []);
   return (
     <main>
-      <ThreeScene/>
+      <Head>
+        <title>Reuven 3D</title>
+      </Head>
+      <body>
+        <ThreeScene />
+      </body>
+
       <style jsx>{`
         main {
           // align-content: center;
@@ -34,6 +41,10 @@ function Index() {
           // min-height: 90%;
           // padding: 72px 0;
           // text-align: center;
+        }
+        body {
+          width: '100%';
+          height: '100%';
         }
         p {
           font-size: 16px;
