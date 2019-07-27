@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 import Head from 'next/head';
+import ThreeScene from '../components/threeScene';
 
 function Index() {
   const [date, setDate] = useState([]);
+
   useEffect(() => {
     async function getDate() {
       const res = await fetch('/api/date');
@@ -13,19 +15,19 @@ function Index() {
   }, []);
   return (
     <main>
+      {/* <script src="js/three.js"></script> */}
       <Head>
         <title>Next.js + Node API</title>
-        <script src="js/three.js"></script>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        {/* <script src="js/three.js"></script> */}
       </Head>
-      <h1>Next.js + Node.js API</h1>
+      <ThreeScene/>
       <p>
         <a href="/pages/api/date.js">
           <code>api/date.js</code> for the Date API with Node.js
         </a>
         .
       </p>
-      <br />
-      <h2>The date according to Node.js is:</h2>
       <p>{date ? date.date : 'Loading date...'}</p>
       <style jsx>{`
         main {
@@ -61,6 +63,7 @@ function Index() {
         a:hover {
           border-bottom: 1px solid #0076ff;
         }
+        canvas { width: 100%; height: 100% }
         code,
         pre {
           color: #d400ff;
