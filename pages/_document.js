@@ -23,7 +23,7 @@ class MyDocument extends Document {
                         box-sizing: border-box;
                     }
                     body {
-                        width: 100vw;
+                        width: 98vw;
                         height: 900vh;
                         margin: 0;
                         padding: 0;

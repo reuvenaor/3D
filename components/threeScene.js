@@ -6,7 +6,22 @@ import { OrbitControls } from '../lib/OrbitControls.js';
 import { CSS3DRenderer, CSS3DObject } from '../lib/CSS3DRenderer';
 import { TrackballControls } from '../lib/TrackballControls';
 
-
+const Element = function (id, x, y, z, ry) {
+  var div = document.createElement('div');
+  div.style.width = '480px';
+  div.style.height = '360px';
+  //div.style.backgroundColor = '#000';
+  var iframe = document.createElement('iframe');
+  iframe.style.width = '480px';
+  iframe.style.height = '360px';
+  iframe.style.border = '0px';
+  iframe.src = ['https://www.youtube.com/embed/', id, '?rel=0'].join('');
+  div.appendChild(iframe);
+  var object = new CSS3DObject(div);
+  object.position.set(x, y, z);
+  object.rotation.y = ry;
+  return object;
+};
 
 const ThreeScene = (props) => {
 
@@ -20,33 +35,42 @@ const ThreeScene = (props) => {
   let container = null;
   let blocker = null;
   let controls = null;
+  let group = null;
 
-  const Element = function (id, x, y, z, ry) {
-    var div = document.createElement('div');
-    div.style.width = '480px';
-    div.style.height = '360px';
-    //div.style.backgroundColor = '#000';
-    var iframe = document.createElement('iframe');
-    iframe.style.width = '480px';
-    iframe.style.height = '360px';
-    iframe.style.border = '0px';
-    iframe.src = ['https://www.youtube.com/embed/', id, '?rel=0'].join('');
-    div.appendChild(iframe);
-    var object = new CSS3DObject(div);
-    object.position.set(x, y, z);
-    object.rotation.y = ry;
-    return object;
-  };
+ 
 
   useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
     createAnim();
     animate();
     return () => {
       stop();
       document.removeChild(renderer.domElement);
+      window.removeEventListener('scroll', handleScroll);
       //blocker.removeChild(renderer.domElement);
     }
   }, [])
+
+  function handleScroll(e) {
+    //const h = window.pageYOffset - (window.screen.availHeight + window.screen.height);
+    const h = window.pageYOffset;
+    console.log(h);
+    if (h <= 240) {
+      group.children[0].position.x = `-${h}`;
+      group.children[1].position.y = `-${h}`;
+      group.children[2].position.x = `${h}`;
+      group.children[3].position.y = `${h}`;
+      camera.position.set(h, 350, 1000)
+    } else {
+      //camera.position.set(h, h + 110, h + 760)
+      //camera.position.set(h, 350, 100)
+      camera.position.setX(h * 3.14)
+    }
+    // group.children.position.x = '22px';
+    // scene.add(group);
+    // animate()
+  };
+
 
   function createAnim() {
     camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 1, 5000);
@@ -57,18 +81,19 @@ const ThreeScene = (props) => {
     renderer.setSize(window.innerWidth, window.innerHeight);
 
     container.appendChild(renderer.domElement);
-    var group = new THREE.Group();
+    group = new THREE.Group();
     group.add(new Element('xoW477XDiY4', 0, 0, 240, 0));
     group.add(new Element('OBcilRnQPA4', 240, 0, 0, Math.PI / 2));
     group.add(new Element('rQJc49WdhNo', 0, 0, - 240, Math.PI));
     group.add(new Element('3gVqpuPLNUs', - 240, 0, 0, - Math.PI / 2));
     scene.add(group);
+    console.log('group',group);
     controls = new TrackballControls(camera, renderer.domElement);
-    controls.rotateSpeed = 1;
+    // controls.rotateSpeed = 1;
     controls.noZoom = true;          // ADDED
     controls.noRotate = true;         // ADDED
     //controls.staticMoving = true;   // ADDED
-    window.addEventListener('resize', onWindowResize, false);
+    //window.addEventListener('resize', onWindowResize, false);
 
     // blocker.style.display = 'none';
     // controls.addEventListener('start', function () {
@@ -79,11 +104,13 @@ const ThreeScene = (props) => {
     // });
   }
 
-  function onWindowResize() {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-  }
+
+
+  // function onWindowResize() {
+  //   camera.aspect = window.innerWidth / window.innerHeight;
+  //   camera.updateProjectionMatrix();
+  //   renderer.setSize(window.innerWidth, window.innerHeight);
+  // }
 
   function animate() {
     if (container) {
