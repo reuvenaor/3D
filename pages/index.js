@@ -26,7 +26,6 @@ function Index() {
         >
           ZEIT Now
         </a>
-        !
       </h2>
       <p>
         <a
