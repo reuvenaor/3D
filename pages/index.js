@@ -17,16 +17,16 @@ function Index() {
     <main>  
       <Head>
         <title>Next.js + Node API</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-        <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"></meta>
       </Head>
       <ThreeScene/>
       <style jsx>{`
         main {
           // align-content: center;
           // box-sizing: border-box;
-          width: 100vw;
-          height: 100vh;
+          width: 98vw;
+          height: 98vh;
+          // margin: 0;
+          // padding: 0;
           // display: grid;
           // font-family: 'SF Pro Text', 'SF Pro Icons', 'Helvetica Neue',
           //  'Helvetica', 'Arial', sans-serif;
