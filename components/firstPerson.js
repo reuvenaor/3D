@@ -53,9 +53,9 @@ const firstPerson = (props) => {
     function handleOrientation(event) {
         if (event) {
             let absolute = event.absolute;
-            let alpha = event.alpha;
-            let beta = event.beta;
-            let gamma = event.gamma + 200;
+            let alpha = event.alpha * 10;
+            let beta = event.beta * 10;
+            let gamma = event.gamma * 10 + 200;
             //alert('alpha',alpha);
             //setAlphaZ(alpha);
             if (controls) {
@@ -78,7 +78,7 @@ const firstPerson = (props) => {
         clock = new THREE.Clock();
         controls = new FirstPersonControls(camera);
         controls.movementSpeed = 2000;
-        controls.lookSpeed = 0.1;
+        controls.lookSpeed = 0.2;
         scene = new THREE.Scene();
         scene.background = new THREE.Color(0xaaccff);
         scene.fog = new THREE.FogExp2(0xaaccff, 0.0006);
