@@ -78,7 +78,7 @@ const firstPerson = (props) => {
         clock = new THREE.Clock();
         controls = new FirstPersonControls(camera);
         controls.movementSpeed = 2000;
-        controls.lookSpeed = 0.2;
+        controls.lookSpeed = 0.1;
         scene = new THREE.Scene();
         scene.background = new THREE.Color(0xaaccff);
         scene.fog = new THREE.FogExp2(0xaaccff, 0.0006);
