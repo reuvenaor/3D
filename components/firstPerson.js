@@ -25,6 +25,7 @@ const firstPerson = (props) => {
     let texture = null;
     let delta = null;
     let time = null;
+    let lookDirection = null;
 
 
     useEffect(() => {
@@ -43,7 +44,7 @@ const firstPerson = (props) => {
         var gamma    = event.gamma;
         //alert('alpha',alpha);
         //setAlphaZ(alpha);
-        camera.position.z = alpha;
+        lookDirection.set(beta,gamma,alpha);
       }
 
     function onWindowResize() {
@@ -54,6 +55,8 @@ const firstPerson = (props) => {
     }
 
     function init() {
+        lookDirection = new THREE.Vector3();
+        console.log(lookDirection);
         camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 20000);
         camera.position.y = 200;
         clock = new THREE.Clock();
