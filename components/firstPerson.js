@@ -32,8 +32,8 @@ const firstPerson = (props) => {
         init();
         window.addEventListener('resize', onWindowResize, false);
         window.addEventListener("deviceorientation", handleOrientation, true);
-        window.addEventListener('touchstart',  handleTouchStart, false);
-        window.addEventListener('touchend',  handleTouchEnd, false)
+        window.addEventListener('touchstart', handleTouchStart, false);
+        window.addEventListener('touchend', handleTouchEnd, false)
         animate();
         console.log(camera);
         console.log(controls);
@@ -51,14 +51,17 @@ const firstPerson = (props) => {
     }
 
     function handleOrientation(event) {
-        let absolute = event.absolute;
-        let alpha = event.alpha;
-        let beta = event.beta || 400;
-        let gamma = event.gamma + 200;
-        //alert('alpha',alpha);
-        //setAlphaZ(alpha);
-        if (controls) {
-            controls.lookAt(beta, 200, alpha);
+        if (event) {
+            let absolute = event.absolute;
+            let alpha = event.alpha;
+            let beta = event.beta;
+            let gamma = event.gamma + 200;
+            //alert('alpha',alpha);
+            //setAlphaZ(alpha);
+            if (controls) {
+                controls.lookAt(beta, gamma, alpha);
+
+            }
         }
     }
 
@@ -75,7 +78,7 @@ const firstPerson = (props) => {
         clock = new THREE.Clock();
         controls = new FirstPersonControls(camera);
         controls.movementSpeed = 2000;
-        controls.lookSpeed = 0.3;
+        controls.lookSpeed = 0.1;
         scene = new THREE.Scene();
         scene.background = new THREE.Color(0xaaccff);
         scene.fog = new THREE.FogExp2(0xaaccff, 0.0006);
@@ -95,7 +98,7 @@ const firstPerson = (props) => {
         material = new THREE.MeshBasicMaterial({ color: 0x0044dd, map: texture });
         mesh = new THREE.Mesh(geometry, material);
         scene.add(mesh);
-        
+
         renderer = new THREE.WebGLRenderer({ antialias: true });
         renderer.setPixelRatio(window.devicePixelRatio);
         renderer.setSize(window.innerWidth, window.innerHeight);
@@ -128,12 +131,12 @@ const firstPerson = (props) => {
         renderer.render(scene, camera);
     }
 
-    
+
     //handleTouch();
 
     return (
         <div style={{ width: '100%', height: '100%' }}
-            ref={(ref) => { wraper = ref }} 
+            ref={(ref) => { wraper = ref }}
         >
             <div
                 style={{ width: '100%', height: '100%' }}
