@@ -25,7 +25,6 @@ const firstPerson = (props) => {
     let texture = null;
     let delta = null;
     let time = null;
-    let lookDirection = null;
 
 
     useEffect(() => {
@@ -40,14 +39,12 @@ const firstPerson = (props) => {
 
     function handleOrientation(event) {
         var absolute = event.absolute;
-        var alpha    = event.alpha;
-        var beta     = event.beta;
-        var gamma    = event.gamma;
+        var alpha    = event.alpha * 2;
+        var beta     = event.beta * 2;
+        var gamma    = event.gamma * 2 + 200;
         //alert('alpha',alpha);
         //setAlphaZ(alpha);
-        console.log(lookDirection);
-        if(lookDirection) {
-            //lookDirection.set(beta,gamma,alpha);
+        if(camera) {
             camera.position.set(beta,gamma,alpha);
             console.log(camera);
         }
@@ -61,7 +58,6 @@ const firstPerson = (props) => {
     }
 
     function init() {
-        lookDirection = new THREE.Vector3();
         camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 20000);
         camera.position.y = 200;
         clock = new THREE.Clock();
