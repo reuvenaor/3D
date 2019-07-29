@@ -47,8 +47,9 @@ const firstPerson = (props) => {
         //setAlphaZ(alpha);
         console.log(lookDirection);
         if(lookDirection) {
-            lookDirection.set(beta,gamma,alpha);
-            alert(beta);
+            //lookDirection.set(beta,gamma,alpha);
+            camera.position.set(beta,gamma,alpha);
+            console.log(camera);
         }
       }
 
