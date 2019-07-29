@@ -53,13 +53,13 @@ const firstPerson = (props) => {
     function handleOrientation(event) {
         if (event) {
             let absolute = event.absolute;
-            let alpha = event.alpha * 10;
+            //  let alpha = event.alpha * 10;
             let beta = event.beta * 10;
-            let gamma = event.gamma * 10 + 200;
+            let gamma = event.gamma * 3 + 100;
             //alert('alpha',alpha);
             //setAlphaZ(alpha);
             if (controls) {
-                controls.lookAt(beta, gamma, alpha);
+                controls.lookAt(beta, gamma, 0);
 
             }
         }
