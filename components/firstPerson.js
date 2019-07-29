@@ -42,7 +42,7 @@ const firstPerson = (props) => {
         var beta     = event.beta;
         var gamma    = event.gamma;
         //alert('alpha',alpha);
-        setAlphaZ(alpha);
+        //setAlphaZ(alpha);
         camera.position.z = alpha;
       }
 
