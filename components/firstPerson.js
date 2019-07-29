@@ -45,8 +45,10 @@ const firstPerson = (props) => {
         var gamma    = event.gamma;
         //alert('alpha',alpha);
         //setAlphaZ(alpha);
+        console.log(lookDirection);
         if(lookDirection) {
             lookDirection.set(beta,gamma,alpha);
+            alert(beta);
         }
       }
 
