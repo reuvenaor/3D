@@ -29,8 +29,9 @@ const firstPerson = (props) => {
 
 
     useEffect(() => {
-        window.addEventListener("deviceorientation", handleOrientation, true);
         init();
+        window.addEventListener('resize', onWindowResize, false);
+        window.addEventListener("deviceorientation", handleOrientation, true);
         animate();
         return () => {
 
@@ -56,7 +57,6 @@ const firstPerson = (props) => {
 
     function init() {
         lookDirection = new THREE.Vector3();
-        console.log(lookDirection);
         camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 20000);
         camera.position.y = 200;
         clock = new THREE.Clock();
@@ -87,7 +87,6 @@ const firstPerson = (props) => {
         stats = new Stats();
         con.appendChild(stats.dom);
         //document.body.appendChild(renderer.domElement);
-        window.addEventListener('resize', onWindowResize, false);
     }
 
     function animate() {
