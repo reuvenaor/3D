@@ -27,12 +27,22 @@ const firstPerson = (props) => {
 
 
     useEffect(() => {
+        window.addEventListener("deviceorientation", handleOrientation, true);
         init();
         animate();
         return () => {
 
         }
     }, [])
+
+    function handleOrientation(event) {
+        var absolute = event.absolute;
+        var alpha    = event.alpha;
+        var beta     = event.beta;
+        var gamma    = event.gamma;
+        alert('alpha',alpha);
+        // Do stuff with the new orientation data
+      }
 
     function onWindowResize() {
         camera.aspect = window.innerWidth / window.innerHeight;
