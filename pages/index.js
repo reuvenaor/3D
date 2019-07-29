@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import ThreeScene from '../components/threeScene';
 import Head from 'next/head';
+import FirstPerson from '../components/firstPerson';
 
 function Index() {
 
@@ -18,7 +19,8 @@ function Index() {
       <Head>
         <title>Reuven 3D</title>
       </Head>
-      <ThreeScene />
+      {/* <ThreeScene /> */}
+      <FirstPerson/>
 
 
       <style jsx>{`

@@ -24,7 +24,7 @@ class MyDocument extends Document {
                     }
                     body {
                         width: 98vw;
-                        height: 900vh;
+                        height: 100vh;
                         margin: 0;
                         padding: 0;
                         left: 0;
