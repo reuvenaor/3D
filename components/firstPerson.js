@@ -39,14 +39,13 @@ const firstPerson = (props) => {
 
     function handleOrientation(event) {
         var absolute = event.absolute;
-        var alpha    = event.alpha * 2;
-        var beta     = event.beta * 2;
-        var gamma    = event.gamma * 2 + 200;
+        var alpha    = event.alpha * 10;
+        var beta     = event.beta * 10;
+        var gamma    = event.gamma * 10 + 200;
         //alert('alpha',alpha);
         //setAlphaZ(alpha);
         if(camera) {
             camera.position.set(beta,gamma,alpha);
-            console.log(camera);
         }
       }
 
