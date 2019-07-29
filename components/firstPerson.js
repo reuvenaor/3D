@@ -8,6 +8,7 @@ import { FirstPersonControls } from '../lib/FirstPersonControls';
 
 const firstPerson = (props) => {
 
+    const [alphaZ, setAlphaZ] = useState(); 
     let camera = null;
     let controls = null;;
     let scene = null;;
@@ -40,8 +41,9 @@ const firstPerson = (props) => {
         var alpha    = event.alpha;
         var beta     = event.beta;
         var gamma    = event.gamma;
-        alert('alpha',alpha);
-        // Do stuff with the new orientation data
+        //alert('alpha',alpha);
+        setAlphaZ(alpha);
+        camera.position.z = alpha;
       }
 
     function onWindowResize() {
