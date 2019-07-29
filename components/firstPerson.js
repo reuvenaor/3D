@@ -32,7 +32,8 @@ const firstPerson = (props) => {
         init();
         window.addEventListener('resize', onWindowResize, false);
         window.addEventListener("deviceorientation", handleOrientation, true);
-        window.addEventListener('touchstart',  handleTouch, false)
+        window.addEventListener('touchstart',  handleTouchStart, false);
+        window.addEventListener('touchend',  handleTouchEnd, false)
         animate();
         console.log(camera);
         console.log(controls);
@@ -41,10 +42,12 @@ const firstPerson = (props) => {
         }
     }, []);
 
-    function handleTouch(event) {
-        alert(event);
-        //controls.object.position.set(),
+    function handleTouchStart(event) {
         controls.moveForward = true;
+    }
+
+    function handleTouchEnd(event) {
+        controls.moveForward = false;
     }
 
     function handleOrientation(event) {
@@ -72,7 +75,7 @@ const firstPerson = (props) => {
         clock = new THREE.Clock();
         controls = new FirstPersonControls(camera);
         controls.movementSpeed = 2000;
-        controls.lookSpeed = 1;
+        controls.lookSpeed = 0.3;
         scene = new THREE.Scene();
         scene.background = new THREE.Color(0xaaccff);
         scene.fog = new THREE.FogExp2(0xaaccff, 0.0006);
