@@ -8,7 +8,7 @@ import { FirstPersonControls } from '../lib/FirstPersonControls';
 
 const firstPerson = (props) => {
 
-    const [alphaZ, setAlphaZ] = useState(); 
+    //const [alphaZ, setAlphaZ] = useState();
     let camera = null;
     let controls = null;;
     let scene = null;;
@@ -25,29 +25,39 @@ const firstPerson = (props) => {
     let texture = null;
     let delta = null;
     let time = null;
+    let wraper = null;
 
 
     useEffect(() => {
         init();
         window.addEventListener('resize', onWindowResize, false);
         window.addEventListener("deviceorientation", handleOrientation, true);
+        window.addEventListener('touchstart',  handleTouch, false)
         animate();
+        console.log(camera);
+        console.log(controls);
         return () => {
 
         }
-    }, [])
+    }, []);
+
+    function handleTouch(event) {
+        alert(event);
+        //controls.object.position.set(),
+        controls.moveForward = true;
+    }
 
     function handleOrientation(event) {
-        var absolute = event.absolute;
-        var alpha    = event.alpha * 10;
-        var beta     = event.beta * 10;
-        var gamma    = event.gamma * 10 + 200;
+        let absolute = event.absolute;
+        let alpha = event.alpha;
+        let beta = event.beta || 400;
+        let gamma = event.gamma + 200;
         //alert('alpha',alpha);
         //setAlphaZ(alpha);
-        if(camera) {
-            camera.position.set(beta,gamma,alpha);
+        if (controls) {
+            controls.lookAt(beta, 200, alpha);
         }
-      }
+    }
 
     function onWindowResize() {
         camera.aspect = window.innerWidth / window.innerHeight;
@@ -62,16 +72,18 @@ const firstPerson = (props) => {
         clock = new THREE.Clock();
         controls = new FirstPersonControls(camera);
         controls.movementSpeed = 2000;
-        controls.lookSpeed = 0.2;
+        controls.lookSpeed = 1;
         scene = new THREE.Scene();
         scene.background = new THREE.Color(0xaaccff);
         scene.fog = new THREE.FogExp2(0xaaccff, 0.0006);
+        //WAVES VIEW
         geometry = new THREE.PlaneBufferGeometry(20000, 20000, worldWidth - 1, worldDepth - 1);
         geometry.rotateX(- Math.PI / 2);
+        // WAVES MOVES AND TEXTURE
         position = geometry.attributes.position;
         position.dynamic = true;
         for (let i = 0; i < position.count; i++) {
-            let y =  Math.sin(i / 2);
+            let y = Math.sin(i / 2);
             position.setY(i, y);
         }
         texture = new THREE.TextureLoader().load('https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/water.jpg'); // .setPath('../lib/water.jpg')
@@ -80,13 +92,13 @@ const firstPerson = (props) => {
         material = new THREE.MeshBasicMaterial({ color: 0x0044dd, map: texture });
         mesh = new THREE.Mesh(geometry, material);
         scene.add(mesh);
+        
         renderer = new THREE.WebGLRenderer({ antialias: true });
         renderer.setPixelRatio(window.devicePixelRatio);
         renderer.setSize(window.innerWidth, window.innerHeight);
-        con.appendChild(renderer.domElement);
         stats = new Stats();
         con.appendChild(stats.dom);
-        //document.body.appendChild(renderer.domElement);
+        con.appendChild(renderer.domElement);
     }
 
     function animate() {
@@ -113,13 +125,18 @@ const firstPerson = (props) => {
         renderer.render(scene, camera);
     }
 
-    console.log('renderrrrrrrrrrrrrr');
+    
+    //handleTouch();
 
     return (
+        <div style={{ width: '100%', height: '100%' }}
+            ref={(ref) => { wraper = ref }} 
+        >
             <div
                 style={{ width: '100%', height: '100%' }}
                 ref={(ref) => { con = ref }}
             ></div>
+        </div>
     )
 
 
