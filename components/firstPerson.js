@@ -8,7 +8,7 @@ import { FirstPersonControls } from '../lib/FirstPersonControls';
 
 const firstPerson = (props) => {
 
-    //const [alphaZ, setAlphaZ] = useState();
+    const [win, setWindow] = useState();
     let camera = null;
     let controls = null;;
     let scene = null;;
@@ -29,6 +29,7 @@ const firstPerson = (props) => {
 
 
     useEffect(() => {
+        setWindow(window);
         init();
         window.addEventListener('resize', onWindowResize, false);
         window.addEventListener("deviceorientation", handleOrientation, true);
@@ -43,6 +44,7 @@ const firstPerson = (props) => {
     }, []);
 
     function handleTouchStart(event) {
+        //setAlphaZ('alpha');
         controls.moveForward = true;
     }
 
@@ -53,14 +55,14 @@ const firstPerson = (props) => {
     function handleOrientation(event) {
         if (event) {
             let absolute = event.absolute;
-            //  let alpha = event.alpha * 10;
-            let beta = event.beta * 10;
+            let alpha = event.alpha;
+            let beta = event.beta * 3;
             let gamma = event.gamma * 3 + 100;
             //alert('alpha',alpha);
-            //setAlphaZ(alpha);
-            if (controls) {
-                controls.lookAt(beta, gamma, 0);
 
+            if (controls) {
+                controls.lookAt(beta, gamma, alpha);
+                //camera.position.set(beta, gamma, 0)
             }
         }
     }
@@ -102,6 +104,9 @@ const firstPerson = (props) => {
         renderer = new THREE.WebGLRenderer({ antialias: true });
         renderer.setPixelRatio(window.devicePixelRatio);
         renderer.setSize(window.innerWidth, window.innerHeight);
+
+        console.log(window.innerWidth);
+        
         stats = new Stats();
         con.appendChild(stats.dom);
         con.appendChild(renderer.domElement);
@@ -134,10 +139,29 @@ const firstPerson = (props) => {
 
     //handleTouch();
 
+    console.log('win',win);
     return (
-        <div style={{ width: '100%', height: '100%' }}
+        <div style={{ 
+            width: '100%', 
+            height: '100%',
+            // display: 'flex',
+            // alignItems: 'center',
+            // justifyContent: 'center'
+        }}
+            //alphaZ={alphaZ}
             ref={(ref) => { wraper = ref }}
         >
+            <div style={{
+                position: 'absolute',
+                width: 100,
+                height: 50,
+                background: 'green',
+                alignSelf: 'center',
+                // top: win.innerHeight * 0.8,
+                // left: win.innerWidth * 0.5
+            }}>
+
+            </div>
             <div
                 style={{ width: '100%', height: '100%' }}
                 ref={(ref) => { con = ref }}
