@@ -164,7 +164,7 @@ const firstPerson = (props) => {
                 position: 'absolute',
                 width: 100,
                 height: 100,
-                top: win.innerHeight * 0.8,
+                top: win.innerHeight * 0.6,
                 left: win.innerWidth * 0.5
             }}>
                 <p >gamma: {gammatxt}</p> 
