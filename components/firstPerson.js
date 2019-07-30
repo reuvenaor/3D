@@ -58,18 +58,15 @@ const firstPerson = (props) => {
     function handleOrientation(event) {
         if (event) {
             let absolute = event.absolute;
-            let alpha = event.alpha;
+            let alpha = event.alpha > 180 ? event.alpha : 180;
             let beta = event.beta;
-            let gamma = event.gamma + 100;
-            //alert('alpha',alpha);
-            if (alpha && beta && gamma) {
+            let gamma = event.gamma + 200;
+            if (alpha && beta && gamma && controls) {
                 setGamma(gamma);
                 setAlpha(alpha);
                 setBeta(beta);
-                if (controls) {
-                    controls.lookAt(beta, gamma, alpha);
-                    //camera.position.set(beta, gamma, 0)
-                }
+                controls.lookAt(beta, gamma, alpha);
+                //camera.position.set(beta, gamma, 0)
             }
 
 
@@ -167,10 +164,10 @@ const firstPerson = (props) => {
                 top: win.innerHeight * 0.6,
                 left: win.innerWidth * 0.5
             }}>
-                <p >gamma: {gammatxt}</p> 
-                <p >alpha: {alphatxt}</p> 
-                <p >beta: {betatxt}</p> 
-            </div>: null}
+                <p >gamma: {gammatxt}</p>
+                <p >alpha: {alphatxt}</p>
+                <p >beta: {betatxt}</p>
+            </div> : null}
             <div style={{
                 position: 'absolute',
                 width: 100,
