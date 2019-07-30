@@ -58,15 +58,15 @@ const firstPerson = (props) => {
     function handleOrientation(event) {
         if (event) {
             let absolute = event.absolute;
-            let alpha = event.alpha / 2; // > 180 ? event.alpha : 180;
+            let alpha = event.alpha; // > 180 ? event.alpha : 180;
             let beta = event.beta;
             let gamma = event.gamma + 200;
             if (alpha && beta && gamma && controls) {
                 setGamma(gamma);
                 setAlpha(alpha);
                 setBeta(beta);
-                controls.lookAt(beta, gamma, 0);
-                //camera.position.set(beta, gamma, 0)
+                //controls.lookAt(beta, gamma, 0);
+                camera.position.set(beta, gamma, -100)
             }
 
 
