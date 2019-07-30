@@ -65,7 +65,7 @@ const firstPerson = (props) => {
                 setGamma(gamma);
                 setAlpha(alpha);
                 setBeta(beta);
-                controls.lookAt(beta, gamma, alpha);
+                controls.lookAt(beta, gamma, 0);
                 //camera.position.set(beta, gamma, 0)
             }
 
