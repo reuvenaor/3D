@@ -11,6 +11,7 @@ const firstPerson = (props) => {
     const [win, setWindow] = useState(null);
     const [gammatxt, setGamma] = useState(0)
     const [alphatxt, setAlpha] = useState(0);
+    const [betatxt, setBeta] = useState(0);
     let camera = null;
     let controls = null;;
     let scene = null;;
@@ -58,18 +59,20 @@ const firstPerson = (props) => {
         if (event) {
             let absolute = event.absolute;
             let alpha = event.alpha;
-            let beta = event.beta * 3;
-            let gamma = event.gamma * 3 + 100;
+            let beta = event.beta;
+            let gamma = event.gamma + 100;
             //alert('alpha',alpha);
-            if( alpha && beta && gamma) {
+            if (alpha && beta && gamma) {
                 setGamma(gamma);
                 setAlpha(alpha);
+                setBeta(beta);
+                if (controls) {
+                    controls.lookAt(beta, gamma, alpha);
+                    //camera.position.set(beta, gamma, 0)
+                }
             }
 
-            if (controls) {
-                controls.lookAt(beta, gamma, alpha);
-                //camera.position.set(beta, gamma, 0)
-            }
+
         }
     }
 
@@ -157,22 +160,17 @@ const firstPerson = (props) => {
             //alphaZ={alphaZ}
             ref={(ref) => { wraper = ref }}
         >
-            {win && gammatxt ?
-                <p style={{
-                    position: 'absolute',
-                    width: 100,
-                    height: 20,
-                    top: win.innerHeight * 0.8,
-                    left: win.innerWidth * 0.5
-                }}>gamma: {gammatxt}</p> : null}
-            {win && gammatxt ?
-                <p style={{
-                    position: 'absolute',
-                    width: 100,
-                    height: 20,
-                    top: win.innerHeight * 0.7,
-                    left: win.innerWidth * 0.5
-                }}>alpha: {alphatxt}</p> : null}
+            {win && gammatxt ? <div style={{
+                position: 'absolute',
+                width: 100,
+                height: 100,
+                top: win.innerHeight * 0.8,
+                left: win.innerWidth * 0.5
+            }}>
+                <p >gamma: {gammatxt}</p> 
+                <p >alpha: {alphatxt}</p> 
+                <p >beta: {betatxt}</p> 
+            </div>: null}
             <div style={{
                 position: 'absolute',
                 width: 100,
