@@ -8,7 +8,8 @@ import { FirstPersonControls } from '../lib/FirstPersonControls';
 
 const firstPerson = (props) => {
 
-    const [win, setWindow] = useState();
+    const [win, setWindow] = useState(null);
+    const [gammatxt, setGamma] = useState(0)
     let camera = null;
     let controls = null;;
     let scene = null;;
@@ -59,7 +60,7 @@ const firstPerson = (props) => {
             let beta = event.beta * 3;
             let gamma = event.gamma * 3 + 100;
             //alert('alpha',alpha);
-
+            setGamma(gamma);
             if (controls) {
                 controls.lookAt(beta, gamma, alpha);
                 //camera.position.set(beta, gamma, 0)
@@ -106,7 +107,7 @@ const firstPerson = (props) => {
         renderer.setSize(window.innerWidth, window.innerHeight);
 
         console.log(window.innerWidth);
-        
+
         stats = new Stats();
         con.appendChild(stats.dom);
         con.appendChild(renderer.domElement);
@@ -139,10 +140,10 @@ const firstPerson = (props) => {
 
     //handleTouch();
 
-    console.log('win',win);
+    console.log('win', win);
     return (
-        <div style={{ 
-            width: '100%', 
+        <div style={{
+            width: '100%',
             height: '100%',
             // display: 'flex',
             // alignItems: 'center',
@@ -151,6 +152,14 @@ const firstPerson = (props) => {
             //alphaZ={alphaZ}
             ref={(ref) => { wraper = ref }}
         >
+            {win && gammatxt ?
+            <p style={{
+                position: 'absolute',
+                width: 100,
+                height: 20,
+                top: win.innerHeight * 0.8,
+                left: win.innerWidth * 0.5
+            }}>gamma: {gammatxt}</p> : null }
             <div style={{
                 position: 'absolute',
                 width: 100,
