@@ -12,6 +12,7 @@ const firstPerson = (props) => {
     const [gammatxt, setGamma] = useState(0)
     const [alphatxt, setAlpha] = useState(0);
     const [betatxt, setBeta] = useState(0);
+    const [contoler, setControler] = useState(null);
     let camera = null;
     let controls = null;;
     let scene = null;;
@@ -29,6 +30,10 @@ const firstPerson = (props) => {
     let delta = null;
     let time = null;
     let wraper = null;
+    let btnForward = null;
+    let btnLeft = null;
+    let btnRight = null;
+
 
 
     useEffect(() => {
@@ -36,8 +41,11 @@ const firstPerson = (props) => {
         init();
         window.addEventListener('resize', onWindowResize, false);
         window.addEventListener("deviceorientation", handleOrientation, true);
-        window.addEventListener('touchstart', handleTouchStart, false);
-        window.addEventListener('touchend', handleTouchEnd, false)
+        // if (contoler) {
+        //     btnForward.addEventListener('touchstart', handleTouchStart, true);
+        //     btnForward.addEventListener('touchend', handleTouchEnd, true)
+        // }
+
         animate();
         console.log(camera);
         console.log(controls);
@@ -46,29 +54,59 @@ const firstPerson = (props) => {
         }
     }, []);
 
-    function handleTouchStart(event) {
-        //setAlphaZ('alpha');
-        controls.moveForward = true;
-    }
-
-    function handleTouchEnd(event) {
-        controls.moveForward = false;
-    }
-
     function handleOrientation(event) {
         if (event) {
             let absolute = event.absolute;
             let alpha = event.alpha; // > 180 ? event.alpha : 180;
             let beta = event.beta;
             let gamma = event.gamma + 200;
+            console.log('contoler',controls);
             if (alpha && beta && gamma && controls) {
+                controls.activeLook = true;
                 setGamma(gamma);
                 setAlpha(alpha);
                 setBeta(beta);
-                //controls.lookAt(beta, gamma, 0);
+                controls.lookAt(beta, gamma, alpha);
             }
+        }
+    }
 
+    function onRight() {
+        if (contoler) {
+            contoler.moveRight = true;
+        }
+    }
 
+    function onRightEnd(event) {
+        if (contoler) {
+            contoler.moveRight = false;
+        }
+    }
+
+    function onLeft(event) {
+        if (contoler) {
+            contoler.moveLeft = true;
+        }
+    }
+
+    function onLeftEnd(event) {
+        if (contoler) {
+            contoler.moveLeft = false;
+        }
+    }
+
+    function onForward(event) {
+        console.log(event);
+        if (contoler) {
+            contoler.moveLeft = true;
+            contoler.moveForward = true;
+        }
+    }
+
+    function onForwardEnd(event) {
+        if (contoler) {
+            contoler.moveLeft = false;
+            contoler.moveForward = false;
         }
     }
 
@@ -86,6 +124,8 @@ const firstPerson = (props) => {
         controls = new FirstPersonControls(camera);
         controls.movementSpeed = 2000;
         controls.lookSpeed = 0.1;
+        //controls.activeLook = true;
+        setControler(controls);
         scene = new THREE.Scene();
         scene.background = new THREE.Color(0xaaccff);
         scene.fog = new THREE.FogExp2(0xaaccff, 0.0006);
@@ -144,7 +184,7 @@ const firstPerson = (props) => {
 
     //handleTouch();
 
-    console.log('win', win);
+    
     return (
         <div style={{
             width: '100%',
@@ -167,17 +207,60 @@ const firstPerson = (props) => {
                 <p >alpha: {alphatxt}</p>
                 <p >beta: {betatxt}</p>
             </div> : null}
-            <div style={{
+            {win ? <div style={{
                 position: 'absolute',
-                width: 100,
-                height: 50,
-                background: 'green',
-                alignSelf: 'center',
-                // top: win.innerHeight * 0.8,
-                // left: win.innerWidth * 0.5
+                bottom: win.innerHeight / 5,
+                left: win.innerWidth / 4,
+                width: win.innerWidth / 2,
+                height: win.innerHeight / 5,
+                display: 'flex',
+                background: 'grey',
+                alignItems: 'center',
+                justifyContent: 'space-around', //space-between
+                zIndex: 1
             }}>
-
-            </div>
+                {/* <span style={{
+                    width: '30%',
+                    height: '30%',
+                    background: 'green',
+                }}></span> */}
+                <span
+                    style={{
+                        width: '32%',
+                        height: '30%',
+                        background: 'green',
+                    }}
+                    onTouchStart={onLeft} // onTouchMove
+                    onTouchEnd={onLeftEnd}
+                    onMouseDown={onLeft}
+                    onMouseUp={onLeftEnd}
+                    ref={(ref) => { btnLeft = ref }}
+                ></span>
+                <span style={{
+                    width: '32%',
+                    height: '30%',
+                    background: 'green',
+                    zIndex: 2,
+                    overflow: 'hidden'
+                }}
+                    ref={(ref) => { btnForward = ref }}
+                    onTouchStart={onForward}
+                    onTouchEnd={onForwardEnd}
+                    onMouseDown={onForward}
+                    onMouseUp={onForwardEnd}
+                ></span>
+                <span style={{
+                    width: '32%',
+                    height: '30%',
+                    background: 'green',
+                }}
+                    ref={(ref) => { btnRight = ref }}
+                    onTouchStart={onRight}
+                    onTouchEnd={onRightEnd}
+                    onMouseDown={onRight}
+                    onMouseUp={onRightEnd}
+                ></span>
+            </div> : null}
             <div
                 style={{ width: '100%', height: '100%' }}
                 ref={(ref) => { con = ref }}
