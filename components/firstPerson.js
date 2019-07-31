@@ -60,13 +60,14 @@ const firstPerson = (props) => {
             let alpha = event.alpha; // > 180 ? event.alpha : 180;
             let beta = event.beta;
             let gamma = event.gamma + 200;
+            let y = window.innerHeight / 2 * Math.tan(beta - 90)
             console.log('contoler', controls);
             if (alpha && beta && gamma && controls) {
                 //controls.activeLook = true;
                 setGamma(gamma);
                 setAlpha(alpha);
                 setBeta(beta);
-                controls.lookAt(beta, gamma, 0);
+                controls.lookAt(0, y, 0);
             }
         }
     }
