@@ -124,7 +124,7 @@ const firstPerson = (props) => {
         controls = new FirstPersonControls(camera);
         controls.movementSpeed = 2000;
         controls.lookSpeed = 0.1;
-        controls.activeLook = true;
+        controls.activeLook = false;
         setControler(controls);
         scene = new THREE.Scene();
         scene.background = new THREE.Color(0xaaccff);
