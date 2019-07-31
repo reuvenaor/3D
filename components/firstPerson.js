@@ -62,11 +62,11 @@ const firstPerson = (props) => {
             let gamma = event.gamma + 200;
             console.log('contoler',controls);
             if (alpha && beta && gamma && controls) {
-                controls.activeLook = true;
+                //controls.activeLook = true;
                 setGamma(gamma);
                 setAlpha(alpha);
                 setBeta(beta);
-                controls.lookAt(beta, gamma, alpha);
+                controls.lookAt(beta, gamma, 0);
             }
         }
     }
@@ -124,7 +124,7 @@ const firstPerson = (props) => {
         controls = new FirstPersonControls(camera);
         controls.movementSpeed = 2000;
         controls.lookSpeed = 0.1;
-        //controls.activeLook = true;
+        controls.activeLook = true;
         setControler(controls);
         scene = new THREE.Scene();
         scene.background = new THREE.Color(0xaaccff);
