@@ -68,7 +68,7 @@ const firstPerson = (props) => {
                 setGamma(gamma);
                 setAlpha(alpha);
                 setBeta(beta);
-                controls.lookAt(0, y, 0);
+                controls.lookAt(0, 0, y);
             }
         }
     }
