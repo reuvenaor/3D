@@ -58,9 +58,10 @@ const firstPerson = (props) => {
         if (event) {
             let absolute = event.absolute;
             let alpha = event.alpha; // > 180 ? event.alpha : 180;
-            let beta = event.beta;
+            let beta = event.beta ;
             let gamma = event.gamma + 200;
-            let y = window.innerHeight / 2 * Math.tan(beta - 90)
+            let r = window.innerHeight / 2;
+            let y = beta > 90 ? (r * Math.tan(beta - 90)) + r : r - (r * Math.tan(beta - 90)) 
             console.log('contoler', controls);
             if (alpha && beta && gamma && controls) {
                 //controls.activeLook = true;
