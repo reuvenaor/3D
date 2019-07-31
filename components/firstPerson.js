@@ -60,7 +60,7 @@ const firstPerson = (props) => {
             let alpha = event.alpha; // > 180 ? event.alpha : 180;
             let beta = event.beta;
             let gamma = event.gamma + 200;
-            console.log('contoler',controls);
+            console.log('contoler', controls);
             if (alpha && beta && gamma && controls) {
                 //controls.activeLook = true;
                 setGamma(gamma);
@@ -98,14 +98,14 @@ const firstPerson = (props) => {
     function onForward(event) {
         console.log(event);
         if (contoler) {
-            contoler.moveLeft = true;
+            //contoler.moveLeft = true;
             contoler.moveForward = true;
         }
     }
 
     function onForwardEnd(event) {
         if (contoler) {
-            contoler.moveLeft = false;
+            //contoler.moveLeft = false;
             contoler.moveForward = false;
         }
     }
@@ -122,7 +122,7 @@ const firstPerson = (props) => {
         camera.position.y = 200;
         clock = new THREE.Clock();
         controls = new FirstPersonControls(camera);
-        controls.movementSpeed = 2000;
+        controls.movementSpeed = 1000;
         controls.lookSpeed = 0.1;
         controls.activeLook = false;
         setControler(controls);
@@ -184,7 +184,7 @@ const firstPerson = (props) => {
 
     //handleTouch();
 
-    
+
     return (
         <div style={{
             width: '100%',
@@ -196,17 +196,7 @@ const firstPerson = (props) => {
             //alphaZ={alphaZ}
             ref={(ref) => { wraper = ref }}
         >
-            {win && gammatxt ? <div style={{
-                position: 'absolute',
-                width: 100,
-                height: 100,
-                top: win.innerHeight * 0.6,
-                left: win.innerWidth * 0.5
-            }}>
-                <p >gamma: {gammatxt}</p>
-                <p >alpha: {alphatxt}</p>
-                <p >beta: {betatxt}</p>
-            </div> : null}
+
             {win ? <div style={{
                 position: 'absolute',
                 bottom: win.innerHeight / 5,
@@ -260,6 +250,17 @@ const firstPerson = (props) => {
                     onMouseDown={onRight}
                     onMouseUp={onRightEnd}
                 ></span>
+            </div> : null}
+            {win && gammatxt ? <div style={{
+                position: 'absolute',
+                width: 100,
+                height: 100,
+                top: win.innerHeight * 0.6,
+                left: win.innerWidth * 0.5
+            }}>
+                <p >gamma: {gammatxt}</p>
+                <p >alpha: {alphatxt}</p>
+                <p >beta: {betatxt}</p>
             </div> : null}
             <div
                 style={{ width: '100%', height: '100%' }}
