@@ -92,7 +92,7 @@ const firstPerson = (props) => {
                 setB(b);
                 setG(g);
                 setAbsolue('' + absolute);
-                controls.lookAt(a, b, 1000);
+                controls.lookAt(a, b, g);
                 //controls.
             }
         }
