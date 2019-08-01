@@ -76,14 +76,14 @@ const firstPerson = (props) => {
             let ar = alpha * Math.PI / 180;
             let br = beta * Math.PI / 180;
             let gr = gamma * Math.PI / 180;
-            
-            let radius = window.innerHeight /2;
+
+            let radius = window.innerHeight / 2;
 
             var eu = new THREE.Euler(ar, br, gr);
-            var v = new THREE.Vector3(1, radius , 1);
+            var v = new THREE.Vector3(1, radius, 1);
             v.applyEuler(eu);
-            console.log('eu',eu);
-            console.log('radius',radius);
+            console.log('eu', eu);
+            console.log('radius', radius);
 
 
             // let a = (alpha / 180) * Math.PI * radius;
@@ -107,7 +107,7 @@ const firstPerson = (props) => {
                 setB(v.y);
                 setG(v.z);
                 setAbsolue('' + absolute);
-                controls.lookAt(v.y, v.x, v.z);
+                controls.lookAt(v.y, v.x, 0);
                 //controls.
             }
         }
@@ -161,7 +161,7 @@ const firstPerson = (props) => {
 
     function init() {
         camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 20000);
-        let radius = window.innerHeight / 2; 
+        let radius = window.innerHeight / 2;
         setRadius(radius);
         camera.position.y = radius;    // this is RADIUS
         clock = new THREE.Clock();
