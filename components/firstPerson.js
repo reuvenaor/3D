@@ -13,6 +13,9 @@ const firstPerson = (props) => {
     const [alphatxt, setAlpha] = useState(0);
     const [betatxt, setBeta] = useState(0);
     const [contoler, setControler] = useState(null);
+    const [a, setA] = useState(null);
+    const [b, setB] = useState(null);
+    const [g, setG] = useState(null);
     let camera = null;
     let controls = null;;
     let scene = null;;
@@ -58,12 +61,12 @@ const firstPerson = (props) => {
         if (event) {
             let absolute = event.absolute;
             let alpha = event.alpha; // > 180 ? event.alpha : 180;
-            let beta = event.beta;
+            let beta = event.beta >= 90 ? event.beta : 90 ;
             let gamma = event.gamma;
             let r = window.innerHeight / 2;
-            let a = alpha / 180 * Math.PI * radius;
-            let b = beta / 180 * Math.PI * radius + radius ;
-            let g = gamma / 180 * Math.PI * radius + radius ;
+            let a = (alpha / 180) * Math.PI * radius;
+            let b = ((beta / 180) * Math.PI * radius) + radius ;
+            let g = (gamma / 180) * Math.PI * radius;
             // let y = (r * Math.tan(beta));
             // let y = beta >= 90 ? (r * Math.tan(beta)) + r : r - (r * Math.tan(beta));
             console.log('contoler', controls);
@@ -72,6 +75,9 @@ const firstPerson = (props) => {
                 setGamma(gamma);
                 setAlpha(alpha);
                 setBeta(beta);
+                setA(a);
+                setB(b);
+                setG(g);
                 controls.lookAt(a, b, g);
                 //controls.
             }
@@ -205,7 +211,7 @@ const firstPerson = (props) => {
             ref={(ref) => { wraper = ref }}
         >
 
-            {win ? <div style={{
+            {/* {win ? <div style={{
                 position: 'absolute',
                 bottom: win.innerHeight / 5,
                 left: win.innerWidth / 4,
@@ -217,11 +223,6 @@ const firstPerson = (props) => {
                 justifyContent: 'space-around', //space-between
                 zIndex: 1
             }}>
-                {/* <span style={{
-                    width: '30%',
-                    height: '30%',
-                    background: 'green',
-                }}></span> */}
                 <span
                     style={{
                         width: '32%',
@@ -258,11 +259,11 @@ const firstPerson = (props) => {
                     onMouseDown={onRight}
                     onMouseUp={onRightEnd}
                 ></span>
-            </div> : null}
+            </div> : null} */}
             {win && gammatxt ? <div style={{
                 position: 'absolute',
                 width: 100,
-                height: 100,
+                height: 200,
                 top: win.innerHeight * 0.6,
                 left: win.innerWidth * 0.5,
                 zIndex: 3
@@ -270,6 +271,9 @@ const firstPerson = (props) => {
                 <p >gamma: {gammatxt}</p>
                 <p >alpha: {alphatxt}</p>
                 <p >beta: {betatxt}</p>
+                <p >a: {a}</p>
+                <p >b: {b}</p>
+                <p >g: {g}</p>
             </div> : null}
             <div
                 style={{ width: '100%', height: '100%' }}
