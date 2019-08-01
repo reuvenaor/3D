@@ -16,6 +16,8 @@ const firstPerson = (props) => {
     const [a, setA] = useState(null);
     const [b, setB] = useState(null);
     const [g, setG] = useState(null);
+    const [absolute, setAbsolue] = useState(null);
+    
     let camera = null;
     let controls = null;;
     let scene = null;;
@@ -36,7 +38,7 @@ const firstPerson = (props) => {
     let btnForward = null;
     let btnLeft = null;
     let btnRight = null;
-    const radius  = 300;
+    const radius = 300;
 
 
     useEffect(() => {
@@ -60,13 +62,16 @@ const firstPerson = (props) => {
     function handleOrientation(event) {
         if (event) {
             let absolute = event.absolute;
-            let alpha = event.alpha; // > 180 ? event.alpha : 180;
-            let beta = event.beta >= 90 ? event.beta : 90 ;
-            let gamma = event.gamma;
+            let alpha = event.alpha >= 90 ? event.alpha : 90; // > 180 ? event.alpha : 180;
+            let beta = event.beta >= 90 ? event.beta : 90;
+            let gamma = event.gamma >= 90 ? event.gamma : 90;
             let r = window.innerHeight / 2;
             let a = (alpha / 180) * Math.PI * radius;
             let b = ((beta / 180) * Math.PI * radius) + radius ;
             let g = (gamma / 180) * Math.PI * radius;
+            // let a = Math.tan(alpha) * radius;
+            // let b = ((beta / 180) * Math.PI * radius) + radius ;
+            // let g = (gamma / 180) * Math.PI * radius;
             // let y = (r * Math.tan(beta));
             // let y = beta >= 90 ? (r * Math.tan(beta)) + r : r - (r * Math.tan(beta));
             console.log('contoler', controls);
@@ -78,6 +83,7 @@ const firstPerson = (props) => {
                 setA(a);
                 setB(b);
                 setG(g);
+                setAbsolue(absolute);
                 controls.lookAt(a, b, g);
                 //controls.
             }
@@ -263,8 +269,8 @@ const firstPerson = (props) => {
             {win && gammatxt ? <div style={{
                 position: 'absolute',
                 width: 100,
-                height: 200,
-                top: win.innerHeight * 0.6,
+                height: 220,
+                top: win.innerHeight * 0.5,
                 left: win.innerWidth * 0.5,
                 zIndex: 3
             }}>
@@ -274,6 +280,7 @@ const firstPerson = (props) => {
                 <p >a: {a}</p>
                 <p >b: {b}</p>
                 <p >g: {g}</p>
+                <p >absolute: {absolute}</p>
             </div> : null}
             <div
                 style={{ width: '100%', height: '100%' }}
