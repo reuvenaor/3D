@@ -66,13 +66,6 @@ const firstPerson = (props) => {
             let beta = event.beta;
             let gamma = event.gamma;
 
-            // let alpha = event.alpha >= 90 ? event.alpha : 90; // > 180 ? event.alpha : 180;
-            // let beta = event.beta >= 90 ? event.beta : 90;
-            // let gamma = event.gamma >= 90 ? event.gamma : 90;
-            // let a = Math.cos(alpha) + Math.sin(alpha) * radius;
-            // let b = Math.cos(beta)  + Math.sin(beta) * radius + radius ;
-            // let g = Math.cos(gamma) + Math.sin(gamma) * radius;
-
             let ar = alpha * Math.PI / 180;
             let br = beta * Math.PI / 180;
             let gr = gamma * Math.PI / 180;
@@ -85,29 +78,18 @@ const firstPerson = (props) => {
             console.log('eu', eu);
             console.log('radius', radius);
 
-
-            // let a = (alpha / 180) * Math.PI * radius;
-            // let b = ((beta / 180) * Math.PI * radius) + radius ;
-            // let g = (gamma / 180) * Math.PI * radius;
-
-            // let a = Math.tan(alpha) * radius;
-            // let b = (Math.tan(beta)  * radius) + radius ;
-            // let g = Math.tan(gamma)  * radius;
-
             console.log('contoler', controls);
             if (alpha && beta && gamma && controls) {
                 //controls.activeLook = true;
                 setGamma(gamma);
                 setAlpha(alpha);
                 setBeta(beta);
-                // setA(a);
-                // setB(b);
-                // setG(g);
+
                 setA(v.x);
                 setB(v.y);
                 setG(v.z);
                 setAbsolue('' + absolute);
-                controls.lookAt(v.x, v.y, v.z);
+                controls.lookAt(v.x, v.y + radius, v.z);
                 //controls.
             }
         }
