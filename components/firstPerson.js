@@ -99,7 +99,7 @@ const firstPerson = (props) => {
                 setB(v.y);
                 setG(v.z);
                 setAbsolue('' + absolute);
-                controls.lookAt(v.x, v.y + 200, v.z);  // controls.lookAt(v.x, v.y, v.z);
+                controls.lookAt(v.x, v.y + radius, v.z);  // controls.lookAt(v.x, v.y, v.z);
             }
         }
     }
@@ -237,7 +237,7 @@ const firstPerson = (props) => {
             ref={(ref) => { wraper = ref }}
         >
 
-            {/* {win ? <div style={{
+            {win ? <div style={{
                 position: 'absolute',
                 bottom: win.innerHeight / 5,
                 left: win.innerWidth / 4,
@@ -285,8 +285,8 @@ const firstPerson = (props) => {
                     onMouseDown={onRight}
                     onMouseUp={onRightEnd}
                 ></span>
-            </div> : null} */}
-            {win && gammatxt ? <div style={{
+            </div> : null}
+            {/* {win && gammatxt ? <div style={{
                 position: 'absolute',
                 width: 100,
                 height: 220,
@@ -301,7 +301,7 @@ const firstPerson = (props) => {
                 <p >v.y: {b}</p>
                 <p >v.z: {g}</p>
                 <p >radius: {radius}</p>
-            </div> : null}
+            </div> : null} */}
             <div
                 style={{ width: '100%', height: '100%' }}
                 ref={(ref) => { con = ref }}
