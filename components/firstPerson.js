@@ -75,9 +75,17 @@ const firstPerson = (props) => {
 
             let radius = window.innerHeight / 2;
 
-            let eu = new THREE.Euler(ar, br, gr);
+            // WITH EULER:
+            // let eu = new THREE.Euler(ar, br, gr);
+            // let v = new THREE.Vector3(1, 1, 1); // CHECK:  var v = new THREE.Vector3(1, radius, 1);
+            // v.applyEuler(eu);
+
+            // WITH quaternion:
+            var quaternion = new THREE.Quaternion();
+            quaternion.setFromAxisAngle( new THREE.Vector3( 1, radius, 1 ), Math.PI / 2 );
             let v = new THREE.Vector3(1, 1, 1); // CHECK:  var v = new THREE.Vector3(1, radius, 1);
-            v.applyEuler(eu);
+            v.applyQuaternion( quaternion );
+
             console.log('eu', eu);
             console.log('radius', radius);
 
