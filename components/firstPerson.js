@@ -99,7 +99,7 @@ const firstPerson = (props) => {
                 setB(v.y);
                 setG(v.z);
                 setAbsolue('' + absolute);
-                controls.lookAt(v.x, v.y + radius, v.z);  // controls.lookAt(v.x, v.y, v.z);
+                controls.lookAt(v.x, v.y , v.z);  // controls.lookAt(v.x, v.y, v.z);
             }
         }
     }
