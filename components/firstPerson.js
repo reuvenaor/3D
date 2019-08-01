@@ -43,7 +43,6 @@ const firstPerson = (props) => {
 
     useEffect(() => {
         setWindow(window);
-        setRadius(window.innerHeight / 2);
         init();
         window.addEventListener('resize', onWindowResize, false);
         window.addEventListener("deviceorientation", handleOrientation, true);
@@ -159,6 +158,8 @@ const firstPerson = (props) => {
 
     function init() {
         camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 20000);
+        let radius = window.innerHeight / 2; 
+        setRadius(radius);
         camera.position.y = radius;    // this is RADIUS
         clock = new THREE.Clock();
         controls = new FirstPersonControls(camera);
