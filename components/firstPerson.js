@@ -43,7 +43,7 @@ const firstPerson = (props) => {
 
     useEffect(() => {
         setWindow(window);
-        setRadius(window.innerWidth / 2);
+        setRadius(window.innerHeight / 2);
         init();
         window.addEventListener('resize', onWindowResize, false);
         window.addEventListener("deviceorientation", handleOrientation, true);
