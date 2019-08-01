@@ -62,12 +62,14 @@ const firstPerson = (props) => {
     function handleOrientation(event) {
         if (event) {
             let absolute = event.absolute;
-            // let alpha = event.alpha >= 90 ? event.alpha : 90; // > 180 ? event.alpha : 180;
-            // let beta = event.beta >= 90 ? event.beta : 90;
-            // let gamma = event.gamma >= 90 ? event.gamma : 90;
-            let alpha = event.alpha; // > 180 ? event.alpha : 180;
-            let beta = event.beta;
-            let gamma = event.gamma;
+            let alpha = event.alpha >= 90 ? event.alpha : 90; // > 180 ? event.alpha : 180;
+            let beta = event.beta >= 90 ? event.beta : 90;
+            let gamma = event.gamma >= 90 ? event.gamma : 90;
+
+            // let alpha = event.alpha; // > 180 ? event.alpha : 180;
+            // let beta = event.beta;
+            // let gamma = event.gamma;
+
             // let a = (alpha / 180) * Math.PI * radius;
             // let b = ((beta / 180) * Math.PI * radius) + radius ;
             // let g = (gamma / 180) * Math.PI * radius;
