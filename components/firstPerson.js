@@ -73,7 +73,7 @@ const firstPerson = (props) => {
             let radius = window.innerHeight / 2;
 
             var eu = new THREE.Euler(ar, br, gr);
-            var v = new THREE.Vector3(1, 1, 1);
+            var v = new THREE.Vector3(1, 1, 1); // CHECK:  var v = new THREE.Vector3(1, radius, 1);
             v.applyEuler(eu);
             console.log('eu', eu);
             console.log('radius', radius);
@@ -88,7 +88,7 @@ const firstPerson = (props) => {
                 setB(v.y);
                 setG(v.z);
                 setAbsolue('' + absolute);
-                controls.lookAt(v.x, v.y + radius, v.z);
+                controls.lookAt(v.x, v.y + radius, v.z);  // controls.lookAt(v.x, v.y, v.z);
             }
         }
     }
