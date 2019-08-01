@@ -38,7 +38,7 @@ const firstPerson = (props) => {
     let btnForward = null;
     let btnLeft = null;
     let btnRight = null;
-    const radius = 300;
+    const radius = window.innerWidth / 2;
 
 
     useEffect(() => {
