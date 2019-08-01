@@ -61,6 +61,7 @@ const firstPerson = (props) => {
             let beta = event.beta;
             let gamma = event.gamma;
             let r = window.innerHeight / 2;
+            let b = beta / 180 * Math.PI;
             // let y = (r * Math.tan(beta));
             // let y = beta >= 90 ? (r * Math.tan(beta)) + r : r - (r * Math.tan(beta));
             console.log('contoler', controls);
@@ -69,9 +70,8 @@ const firstPerson = (props) => {
                 setGamma(gamma);
                 setAlpha(alpha);
                 setBeta(beta);
-                //controls.lookAt(0, y, 0);
-                // camera.rotation.setY(beta);
-                controls.object.rotation.setY(beta);
+                controls.lookAt(0, b, 0);
+                //controls.
             }
         }
     }
