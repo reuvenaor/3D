@@ -84,13 +84,11 @@ const firstPerson = (props) => {
                 setGamma(gamma);
                 setAlpha(alpha);
                 setBeta(beta);
-
                 setA(v.x);
                 setB(v.y);
                 setG(v.z);
                 setAbsolue('' + absolute);
                 controls.lookAt(v.x, v.y + radius, v.z);
-                //controls.
             }
         }
     }
@@ -284,9 +282,9 @@ const firstPerson = (props) => {
                 <p >gamma: {gammatxt}</p>
                 <p >alpha: {alphatxt}</p>
                 <p >beta: {betatxt}</p>
-                <p >a: {a}</p>
-                <p >b: {b}</p>
-                <p >g: {g}</p>
+                <p >v.x: {a}</p>
+                <p >v.y: {b}</p>
+                <p >v.z: {g}</p>
                 <p >radius: {radius}</p>
             </div> : null}
             <div
