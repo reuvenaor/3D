@@ -18,7 +18,7 @@ const firstPerson = (props) => {
     const [b, setB] = useState(null);
     const [g, setG] = useState(null);
     const [absolute, setAbsolue] = useState(null);
-    
+
     let camera = null;
     let controls = null;;
     let scene = null;;
@@ -63,13 +63,26 @@ const firstPerson = (props) => {
     function handleOrientation(event) {
         if (event) {
             let absolute = event.absolute;
-            let alpha = event.alpha >= 90 ? event.alpha : 90; // > 180 ? event.alpha : 180;
-            let beta = event.beta >= 90 ? event.beta : 90;
-            let gamma = event.gamma >= 90 ? event.gamma : 90;
-            
-            // let alpha = event.alpha; // > 180 ? event.alpha : 180;
-            // let beta = event.beta;
-            // let gamma = event.gamma;
+            let alpha = event.alpha; // > 180 ? event.alpha : 180;
+            let beta = event.beta;
+            let gamma = event.gamma;
+
+            // let alpha = event.alpha >= 90 ? event.alpha : 90; // > 180 ? event.alpha : 180;
+            // let beta = event.beta >= 90 ? event.beta : 90;
+            // let gamma = event.gamma >= 90 ? event.gamma : 90;
+            // let a = Math.cos(alpha) + Math.sin(alpha) * radius;
+            // let b = Math.cos(beta)  + Math.sin(beta) * radius + radius ;
+            // let g = Math.cos(gamma) + Math.sin(gamma) * radius;
+
+            let ar = alpha * Math.PI / 180;
+            let br = beta * Math.PI / 180;
+            let gr = gamma * Math.PI / 180;
+
+            var eu = new THREE.Euler(ar, br, gr);
+            var v = new THREE.Vector3(0, radius, 0);
+            v.applyEuler(eu);
+            console.log('v', v);
+
 
             // let a = (alpha / 180) * Math.PI * radius;
             // let b = ((beta / 180) * Math.PI * radius) + radius ;
@@ -79,23 +92,20 @@ const firstPerson = (props) => {
             // let b = (Math.tan(beta)  * radius) + radius ;
             // let g = Math.tan(gamma)  * radius;
 
-            let a = Math.cos(alpha) + Math.sin(alpha) * radius;
-            let b = Math.cos(beta)  + Math.sin(beta) * radius + radius ;
-            let g = Math.cos(gamma) + Math.sin(gamma) * radius;
-
-            // let y = (r * Math.tan(beta));
-            // let y = beta >= 90 ? (r * Math.tan(beta)) + r : r - (r * Math.tan(beta));
             console.log('contoler', controls);
             if (alpha && beta && gamma && controls) {
                 //controls.activeLook = true;
                 setGamma(gamma);
                 setAlpha(alpha);
                 setBeta(beta);
-                setA(a);
-                setB(b);
-                setG(g);
+                // setA(a);
+                // setB(b);
+                // setG(g);
+                setA(ar);
+                setB(br);
+                setG(gr);
                 setAbsolue('' + absolute);
-                controls.lookAt(a, b, g);
+                controls.lookAt(v.x, v.y, v.z);
                 //controls.
             }
         }
