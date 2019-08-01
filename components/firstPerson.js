@@ -33,7 +33,7 @@ const firstPerson = (props) => {
     let btnForward = null;
     let btnLeft = null;
     let btnRight = null;
-
+    const radius  = 300;
 
 
     useEffect(() => {
@@ -61,7 +61,9 @@ const firstPerson = (props) => {
             let beta = event.beta;
             let gamma = event.gamma;
             let r = window.innerHeight / 2;
-            let b = beta / 180 * Math.PI;
+            let a = alpha / 180 * Math.PI * radius;
+            let b = beta / 180 * Math.PI * radius + radius ;
+            let g = gamma / 180 * Math.PI * radius + radius ;
             // let y = (r * Math.tan(beta));
             // let y = beta >= 90 ? (r * Math.tan(beta)) + r : r - (r * Math.tan(beta));
             console.log('contoler', controls);
@@ -70,7 +72,7 @@ const firstPerson = (props) => {
                 setGamma(gamma);
                 setAlpha(alpha);
                 setBeta(beta);
-                controls.lookAt(0, b, 0);
+                controls.lookAt(a, b, g);
                 //controls.
             }
         }
@@ -124,10 +126,11 @@ const firstPerson = (props) => {
 
     function init() {
         camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 20000);
-        camera.position.y = 200;
+        camera.position.y = radius;    // this is RADIUS
         clock = new THREE.Clock();
         controls = new FirstPersonControls(camera);
         controls.movementSpeed = 1000;
+        //controls.lookAt(1, 1, 1);
         controls.lookSpeed = 0.1;
         controls.activeLook = false;
         setControler(controls);
