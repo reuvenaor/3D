@@ -100,9 +100,9 @@ const firstPerson = (props) => {
                 // setA(a);
                 // setB(b);
                 // setG(g);
-                setA(ar);
-                setB(br);
-                setG(gr);
+                setA(v.x);
+                setB(v.y);
+                setG(v.z);
                 setAbsolue('' + absolute);
                 controls.lookAt(v.x, v.y, v.z);
                 //controls.
