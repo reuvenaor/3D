@@ -82,7 +82,7 @@ const firstPerson = (props) => {
 
             // WITH quaternion:
             var quaternion = new THREE.Quaternion();
-            quaternion.setFromAxisAngle( new THREE.Vector3( 1, radius, 1 ), Math.PI / 2 );
+            quaternion.setFromAxisAngle( new THREE.Vector3( 1, 1, 1 ), Math.PI / 2 );
             let v = new THREE.Vector3(1, 1, 1); // CHECK:  var v = new THREE.Vector3(1, radius, 1);
             v.applyQuaternion( quaternion );
 
