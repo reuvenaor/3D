@@ -30,7 +30,10 @@ const firstPerson = (props) => {
     let clock = null;;
     let worldWidth = 200;
     let worldDepth = 128;
+    
+    // container - view wrap
     let con = null;
+
     let position = null;
     let texture = null;
     let delta = null;
@@ -72,8 +75,8 @@ const firstPerson = (props) => {
 
             let radius = window.innerHeight / 2;
 
-            var eu = new THREE.Euler(ar, br, gr);
-            var v = new THREE.Vector3(1, 1, 1); // CHECK:  var v = new THREE.Vector3(1, radius, 1);
+            let eu = new THREE.Euler(ar, br, gr);
+            let v = new THREE.Vector3(1, 1, 1); // CHECK:  var v = new THREE.Vector3(1, radius, 1);
             v.applyEuler(eu);
             console.log('eu', eu);
             console.log('radius', radius);
@@ -147,7 +150,6 @@ const firstPerson = (props) => {
         clock = new THREE.Clock();
         controls = new FirstPersonControls(camera);
         controls.movementSpeed = 1000;
-        //controls.lookAt(1, 1, 1);
         controls.lookSpeed = 0.1;
         controls.activeLook = false;
         setControler(controls);
@@ -206,6 +208,10 @@ const firstPerson = (props) => {
         renderer.render(scene, camera);
     }
 
+    function touchScreen(event) {
+        alert(event.toString());
+    }
+
 
     //handleTouch();
 
@@ -219,6 +225,7 @@ const firstPerson = (props) => {
             // justifyContent: 'center'
         }}
             //alphaZ={alphaZ}
+            onTouchStart={touchScreen}
             ref={(ref) => { wraper = ref }}
         >
 
