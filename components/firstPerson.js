@@ -302,7 +302,7 @@ const firstPerson = (props) => {
                 <p >a: {a}</p>
                 <p >b: {b}</p>
                 <p >g: {g}</p>
-                <p >absolute: {absolute}</p>
+                <p >radius: {radius}</p>
             </div> : null}
             <div
                 style={{ width: '100%', height: '100%' }}
