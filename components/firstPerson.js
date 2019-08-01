@@ -62,16 +62,18 @@ const firstPerson = (props) => {
     function handleOrientation(event) {
         if (event) {
             let absolute = event.absolute;
-            let alpha = event.alpha >= 90 ? event.alpha : 90; // > 180 ? event.alpha : 180;
+            // let alpha = event.alpha >= 90 ? event.alpha : 90; // > 180 ? event.alpha : 180;
+            // let beta = event.beta >= 90 ? event.beta : 90;
+            // let gamma = event.gamma >= 90 ? event.gamma : 90;
+            let alpha = event.alpha; // > 180 ? event.alpha : 180;
             let beta = event.beta >= 90 ? event.beta : 90;
-            let gamma = event.gamma >= 90 ? event.gamma : 90;
-            let r = window.innerHeight / 2;
+            let gamma = event.gamma;
             let a = (alpha / 180) * Math.PI * radius;
             let b = ((beta / 180) * Math.PI * radius) + radius ;
             let g = (gamma / 180) * Math.PI * radius;
             // let a = Math.tan(alpha) * radius;
-            // let b = ((beta / 180) * Math.PI * radius) + radius ;
-            // let g = (gamma / 180) * Math.PI * radius;
+            // let b = Math.tan(beta)  * radius) + radius ;
+            // let g = Math.tan(gamma)  * radius;
             // let y = (r * Math.tan(beta));
             // let y = beta >= 90 ? (r * Math.tan(beta)) + r : r - (r * Math.tan(beta));
             console.log('contoler', controls);
