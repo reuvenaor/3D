@@ -76,10 +76,10 @@ const firstPerson = (props) => {
             // let b = (Math.tan(beta)  * radius) + radius ;
             // let g = Math.tan(gamma)  * radius;
 
-            let a = Math.tan(alpha) * radius;
-            let b = (Math.tan(beta)  * radius) + radius ;
-            let g = Math.tan(gamma)  * radius;
-            
+            let a = Math.cos(alpha) + Math.sin(alpha) * radius;
+            let b = Math.cos(beta)  + Math.sin(beta) * radius + radius ;
+            let g = Math.cos(gamma) + Math.sin(gamma) * radius;
+
             // let y = (r * Math.tan(beta));
             // let y = beta >= 90 ? (r * Math.tan(beta)) + r : r - (r * Math.tan(beta));
             console.log('contoler', controls);
