@@ -70,7 +70,8 @@ const firstPerson = (props) => {
                 setAlpha(alpha);
                 setBeta(beta);
                 //controls.lookAt(0, y, 0);
-                camera.rotation.setY(beta);
+                // camera.rotation.setY(beta);
+                controls.object.rotation.setY(beta);
             }
         }
     }
