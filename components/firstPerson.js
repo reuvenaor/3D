@@ -73,7 +73,7 @@ const firstPerson = (props) => {
             let radius = window.innerHeight / 2;
 
             var eu = new THREE.Euler(ar, br, gr);
-            var v = new THREE.Vector3(1, radius, 1);
+            var v = new THREE.Vector3(1, 1, 1);
             v.applyEuler(eu);
             console.log('eu', eu);
             console.log('radius', radius);
