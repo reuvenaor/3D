@@ -13,6 +13,7 @@ const firstPerson = (props) => {
     const [alphatxt, setAlpha] = useState(0);
     const [betatxt, setBeta] = useState(0);
     const [contoler, setControler] = useState(null);
+    const [radius, setRadius] = useState(null)
     const [a, setA] = useState(null);
     const [b, setB] = useState(null);
     const [g, setG] = useState(null);
@@ -38,11 +39,11 @@ const firstPerson = (props) => {
     let btnForward = null;
     let btnLeft = null;
     let btnRight = null;
-    const radius = window.innerWidth / 2;
 
 
     useEffect(() => {
         setWindow(window);
+        setRadius(window.innerWidth / 2);
         init();
         window.addEventListener('resize', onWindowResize, false);
         window.addEventListener("deviceorientation", handleOrientation, true);
