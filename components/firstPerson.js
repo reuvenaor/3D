@@ -68,13 +68,13 @@ const firstPerson = (props) => {
             let alpha = event.alpha; // > 180 ? event.alpha : 180;
             let beta = event.beta;
             let gamma = event.gamma;
-            let a = (alpha / 180) * Math.PI * radius;
-            let b = ((beta / 180) * Math.PI * radius) + radius ;
-            let g = (gamma / 180) * Math.PI * radius;
+            // let a = (alpha / 180) * Math.PI * radius;
+            // let b = ((beta / 180) * Math.PI * radius) + radius ;
+            // let g = (gamma / 180) * Math.PI * radius;
             console.log('absolute',absolute);
-            // let a = Math.tan(alpha) * radius;
-            // let b = Math.tan(beta)  * radius) + radius ;
-            // let g = Math.tan(gamma)  * radius;
+            let a = Math.tan(alpha) * radius;
+            let b = (Math.tan(beta)  * radius) + radius ;
+            let g = Math.tan(gamma)  * radius;
             // let y = (r * Math.tan(beta));
             // let y = beta >= 90 ? (r * Math.tan(beta)) + r : r - (r * Math.tan(beta));
             console.log('contoler', controls);
@@ -87,7 +87,7 @@ const firstPerson = (props) => {
                 setB(b);
                 setG(g);
                 setAbsolue('' + absolute);
-                controls.lookAt(a, b, g);
+                controls.lookAt(a, b, 1000);
                 //controls.
             }
         }
