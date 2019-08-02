@@ -77,15 +77,15 @@ const firstPerson = (props) => {
 
             // WITH EULER:
             let eu = new THREE.Euler(ar, br, gr);
-            // let v = new THREE.Vector3(1, 1, 1); // CHECK:  var v = new THREE.Vector3(1, radius, 1);
+            // let v = new THREE.Vector3(1, 1, 1); 
             // v.applyEuler(eu);
 
             // WITH quaternion:
-            var quaternion = new THREE.Quaternion();
+            let quaternion = new THREE.Quaternion();
             quaternion.setFromEuler(eu);
             // watching ground: 
             // let v = new THREE.Vector3(1, 1, 1); 
-            var v = new THREE.Vector3(1, radius, 1);
+            let v = new THREE.Vector3(1, radius, 1);
             v.applyQuaternion( quaternion );
 
             console.log('eu', eu);
@@ -101,7 +101,7 @@ const firstPerson = (props) => {
                 setB(v.y);
                 setG(v.z);
                 setAbsolue('' + absolute);
-                controls.lookAt(v.x, v.y, 1);  // controls.lookAt(v.x, v.y + radius, v.z);
+                controls.lookAt(v.y, v.x, v.z);  // controls.lookAt(v.x, v.y + radius, v.z);
             }
         }
     }
