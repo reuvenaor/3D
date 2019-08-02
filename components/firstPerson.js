@@ -69,14 +69,23 @@ const firstPerson = (props) => {
             let beta = event.beta ;
             let gamma = event.gamma ;
 
+            // let ar = alpha * Math.PI / 180;
+            // let br = beta * Math.PI / 180;
+            // let gr = gamma * Math.PI / 180;
+
             let ar = alpha * Math.PI / 180;
             let br = beta * Math.PI / 180;
             let gr = gamma * Math.PI / 180;
 
+            let art = ar >= 0 ? ar : ar * -1;
+            let brt = ar >= 0 ? br : br * -1;
+            let grt = gr >= 0 ? gr : gr * -1;
+
+
             let radius = window.innerHeight / 2;
 
             // WITH EULER:
-            let eu = new THREE.Euler(ar, br, gr);
+            let eu = new THREE.Euler(art, brt, grt);
             // let v = new THREE.Vector3(1, 1, 1); 
             // v.applyEuler(eu);
 
