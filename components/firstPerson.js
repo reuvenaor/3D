@@ -230,8 +230,7 @@ const firstPerson = (props) => {
             height: '100%',
             display: 'block'
         }}
-            //alphaZ={alphaZ}
-            onTouchStart={touchScreen}
+            // onTouchStart={touchScreen}
             ref={(ref) => { wraper = ref }}
         >
 
