@@ -99,7 +99,7 @@ const firstPerson = (props) => {
                 setB(v.y);
                 setG(v.z);
                 setAbsolue('' + absolute);
-                controls.lookAt(v.x, v.y + radius, v.z);  // controls.lookAt(v.x, v.y, v.z);
+                controls.lookAt(v.x, v.y, v.z);  // controls.lookAt(v.x, v.y + radius, v.z);
             }
         }
     }
@@ -226,8 +226,9 @@ const firstPerson = (props) => {
 
     return (
         <div style={{
-            width: '100%',
-            height: '100%',
+            // width: '100%',
+            // height: '100%',
+            display: 'block'
             // display: 'flex',
             // alignItems: 'center',
             // justifyContent: 'center'
