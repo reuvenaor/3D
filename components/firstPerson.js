@@ -4,7 +4,7 @@ import Stats from '../lib/stats.module';
 // import * as THREE from '../lib/three.module';
 // const Stats = require('../texture/')
 import { FirstPersonControls } from '../lib/FirstPersonControls';
-import { Lensflare, LensflareElement } from '../Lib/Lensflare.js';
+// import { Lensflare, LensflareElement } from '../Lib/Lensflare.js';
 //import * as FirstPersonControls from 'three/examples/jsm/controls/FirstPersonControls.js';
 
 const firstPerson = (props) => {
