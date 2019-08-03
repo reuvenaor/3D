@@ -185,8 +185,8 @@ const firstPerson = (props) => {
             let y = Math.sin(i / 2);
             position.setY(i, y);
         }
-        texture = new THREE.TextureLoader().load('https://wallpaperstream.com/wallpapers/full/nebula/Carina-Nebula-Space-Stars.jpg'); // .setPath('../lib/water.jpg')
-        texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+
+        texture = new THREE.TextureLoader().load('https://images.pexels.com/photos/728848/pexels-photo-728848.jpeg '); // .setPath('../lib/water.jpg') 
         texture.repeat.set(5, 5);
         material = new THREE.MeshBasicMaterial({ color: 0x0044dd, map: texture });
         mesh = new THREE.Mesh(geometry, material);
@@ -245,7 +245,7 @@ const firstPerson = (props) => {
             ref={(ref) => { wraper = ref }}
         >
 
-            {/* {win ? <div style={{
+            {win ? <div style={{
                 position: 'absolute',
                 bottom: win.innerHeight / 5,
                 left: win.innerWidth / 4,
@@ -293,8 +293,8 @@ const firstPerson = (props) => {
                     onMouseDown={onRight}
                     onMouseUp={onRightEnd}
                 ></span>
-            </div> : null} */}
-            {win && gammatxt ? <div style={{
+            </div> : null}
+            {/* {win && gammatxt ? <div style={{
                 position: 'absolute',
                 width: 100,
                 height: 220,
@@ -309,7 +309,7 @@ const firstPerson = (props) => {
                 <p >v.y: {b}</p>
                 <p >v.z: {g}</p>
                 <p >radius: {radius}</p>
-            </div> : null}
+            </div> : null} */}
             <div
                 style={{ width: '100%', height: '100%' }}
                 ref={(ref) => { con = ref }}
