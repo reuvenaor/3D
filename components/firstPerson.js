@@ -185,7 +185,7 @@ const firstPerson = (props) => {
         texture = new THREE.TextureLoader().load('https://images.pexels.com/photos/728848/pexels-photo-728848.jpeg'); // .setPath('../lib/water.jpg') // https://wallpaperstream.com/wallpapers/full/nebula/Carina-Nebula-Space-Stars.jpg
         texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
         texture.repeat.set(5, 5);
-        material = new THREE.MeshBasicMaterial({ color: 0x0044dd, map: texture });
+        material = new THREE.MeshBasicMaterial({ color: 0x000000, map: texture });
         mesh = new THREE.Mesh(geometry, material);
         scene.add(mesh);
 
