@@ -182,10 +182,10 @@ const firstPerson = (props) => {
             position.setY(i, y);
         }
 
-        texture = new THREE.TextureLoader().load('https://github.com/mrdoob/three.js/blob/dev/examples/textures/water/Water_1_M_Normal.jpg'); // .setPath('../lib/water.jpg') // https://wallpaperstream.com/wallpapers/full/nebula/Carina-Nebula-Space-Stars.jpg
+        texture = new THREE.TextureLoader().load('https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/water.jpg'); // .setPath('../lib/water.jpg') // https://wallpaperstream.com/wallpapers/full/nebula/Carina-Nebula-Space-Stars.jpg
         texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
         texture.repeat.set(5, 5);
-        material = new THREE.MeshBasicMaterial({ color: 0x000000, map: texture });
+        material = new THREE.MeshBasicMaterial({ color: 0xffffff, map: texture });
         mesh = new THREE.Mesh(geometry, material);
         scene.add(mesh);
 
