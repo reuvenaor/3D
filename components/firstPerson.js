@@ -227,7 +227,7 @@ const firstPerson = (props) => {
 
         // MeshLambertMaterial box
 
-        for (var i = 0; i < 1000; i++) {
+        for (var i = 0; i < 100; i++) {
             var object = new THREE.Mesh(sphere, new THREE.MeshLambertMaterial({ color: Math.random() * 0xffffff }));
             object.position.x = Math.random() * 800 - 400;
             object.position.y = Math.random() * 800 - 400;
