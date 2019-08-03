@@ -65,6 +65,7 @@ const firstPerson = (props) => {
         animate();
         // console.log(raycaster);
         console.log(controls);
+        console.log('scene',scene);
         return () => {
 
         }
@@ -116,6 +117,18 @@ const firstPerson = (props) => {
                 setG(v.z);
                 setAbsolue('' + absolute);
                 controls.lookAt(v.y, v.x, v.z);  // controls.lookAt(v.x, v.y + radius, v.z);
+
+                for (var i = 3; i < 103; i++) {
+                    scene.children[i].position.x = v.x * 0.1 + v.x;
+                    scene.children[i].position.y = v.y * 0.1 + v.y;
+                    scene.children[i].position.z = v.z * 0.1 + v.z;
+                    // object.rotation.x = Math.random() * 2 * Math.PI;
+                    // object.rotation.y = Math.random() * 2 * Math.PI;
+                    // object.rotation.z = Math.random() * 2 * Math.PI;
+                    // object.scale.x = Math.random() + 0.5;
+                    // object.scale.y = Math.random() + 0.5;
+                    // object.scale.z = Math.random() + 0.5;
+                }
             }
         }
     }
