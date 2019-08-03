@@ -9,6 +9,7 @@ import { FirstPersonControls } from '../lib/FirstPersonControls';
 
 const firstPerson = (props) => {
 
+    const NUM_OF_BALLS = 30;
     const [win, setWindow] = useState(null);
     const [gammatxt, setGamma] = useState(0)
     const [alphatxt, setAlpha] = useState(0);
@@ -118,10 +119,10 @@ const firstPerson = (props) => {
                 setAbsolue('' + absolute);
                 controls.lookAt(v.y, v.x, v.z);  // controls.lookAt(v.x, v.y + radius, v.z);
 
-                for (var i = 3; i < 103; i++) {
-                    scene.children[i].position.x = Math.random() * 30 - 15 + v.x;
-                    scene.children[i].position.y = Math.random() * 30 - 15 + v.y;
-                    scene.children[i].position.z = Math.random() * 30 - 15 + v.z;
+                for (var i = 3; i < NUM_OF_BALLS + 3; i++) {
+                    scene.children[i].position.x = Math.random() * 50 - 25 + v.x;
+                    scene.children[i].position.y = Math.random() * 50 - 25 + v.y;
+                    scene.children[i].position.z = Math.random() * 50 - 25 + v.z;
                     // object.rotation.x = Math.random() * 2 * Math.PI;
                     // object.rotation.y = Math.random() * 2 * Math.PI;
                     // object.rotation.z = Math.random() * 2 * Math.PI;
@@ -240,7 +241,7 @@ const firstPerson = (props) => {
 
         // MeshLambertMaterial box
 
-        for (var i = 0; i < 100; i++) {
+        for (var i = 0; i < NUM_OF_BALLS ; i++) {
             var object = new THREE.Mesh(sphere, new THREE.MeshLambertMaterial({ color: Math.random() * 0xffffff }));
             object.position.x = Math.random() * 800 - 400;
             object.position.y = Math.random() * 800 - 400;
@@ -284,17 +285,6 @@ const firstPerson = (props) => {
         for (let i = 0; i < position.count; i++) {
             let y = 35 * Math.sin(i / 5 + (time + i) / 7);
             position.setY(i, y);
-        }
-        for (var i = 3; i < 103; i++) {
-            scene.children[i].position.x = Math.random() * 100 - 50;
-            scene.children[i].position.y = Math.random() * 100 - 50;
-            scene.children[i].position.z = Math.random() * 100 - 50;
-            // object.rotation.x = Math.random() * 2 * Math.PI;
-            // object.rotation.y = Math.random() * 2 * Math.PI;
-            // object.rotation.z = Math.random() * 2 * Math.PI;
-            // object.scale.x = Math.random() + 0.5;
-            // object.scale.y = Math.random() + 0.5;
-            // object.scale.z = Math.random() + 0.5;
         }
 
         // light1.position.x = Math.sin( time * 0.7 ) * 30;
