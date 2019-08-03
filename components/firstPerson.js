@@ -30,7 +30,7 @@ const firstPerson = (props) => {
     let clock = null;;
     let worldWidth = 200;
     let worldDepth = 128;
-    
+
     // container - view wrap
     let con = null;
 
@@ -65,21 +65,25 @@ const firstPerson = (props) => {
     function handleOrientation(event) {
         if (event) {
             let absolute = event.absolute;
-            let alpha = event.alpha ; // > 180 ? event.alpha : 180;
-            let beta = event.beta ;
-            let gamma = event.gamma ;
+            let alpha = event.alpha; // > 180 ? event.alpha : 180;
+            let beta = event.beta;
+            let gamma = event.gamma;
 
             // let ar = alpha * Math.PI / 180;
             // let br = beta * Math.PI / 180;
             // let gr = gamma * Math.PI / 180;
 
-            let ar = alpha * Math.PI / 360;
+            let ar = alpha * Math.PI / 180;
             let br = beta * Math.PI / 180;
-            let gr = gamma * Math.PI / 90;
+            let gr = gamma * Math.PI / 180;
 
-            let art = ar >= 0 ? ar : ar * -1;
-            let brt = br >= 0 ? br : br * -1;
-            let grt = gr >= 0 ? gr : gr * -1;
+            // let art = ar >= 0 ? ar : ar * -1;
+            // let brt = br >= 0 ? br : br * -1;
+            // let grt = gr >= 0 ? gr : gr * -1;
+
+            let art = ar >= 0 ? ar : ar ;
+            let brt = br >= 0 ? br : br ;
+            let grt = gr >= 0 ? gr : gr ;
 
 
             let radius = window.innerHeight / 2;
@@ -95,7 +99,7 @@ const firstPerson = (props) => {
             // watching ground: 
             // let v = new THREE.Vector3(1, 1, 1); 
             let v = new THREE.Vector3(1, radius, 1);
-            v.applyQuaternion( quaternion );
+            v.applyQuaternion(quaternion);
 
             console.log('eu', eu);
             console.log('radius', radius);
