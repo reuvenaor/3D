@@ -84,21 +84,16 @@ const firstPerson = (props) => {
 
             let radius = window.innerHeight / 2;
 
-            // WITH EULER:
             let eu = new THREE.Euler(art, brt, grt);
-            // let v = new THREE.Vector3(1, 1, 1); 
-            // v.applyEuler(eu);
-
-            // WITH quaternion:
             let quaternion = new THREE.Quaternion();
             quaternion.setFromEuler(eu);
+
             // watching ground: 
             // let v = new THREE.Vector3(1, 1, 1); 
-            let v = new THREE.Vector3(1, radius, radius);
-            v.applyQuaternion(quaternion);
 
-            console.log('eu', eu);
-            console.log('radius', radius);
+            let v = new THREE.Vector3(1, radius, radius);
+
+            v.applyQuaternion(quaternion);
 
             console.log('contoler', controls);
             if (alpha && beta && gamma && controls) {
