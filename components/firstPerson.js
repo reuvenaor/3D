@@ -182,58 +182,22 @@ const firstPerson = (props) => {
             position.setY(i, y);
         }
 
-        // instantiate a loader
-        var loader = new THREE.TextureLoader();
+        texture = new THREE.TextureLoader().load('https://github.com/mrdoob/three.js/blob/dev/examples/textures/water/Water_1_M_Normal.jpg'); // .setPath('../lib/water.jpg') // https://wallpaperstream.com/wallpapers/full/nebula/Carina-Nebula-Space-Stars.jpg
+        texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+        texture.repeat.set(5, 5);
+        material = new THREE.MeshBasicMaterial({ color: 0x000000, map: texture });
+        mesh = new THREE.Mesh(geometry, material);
+        scene.add(mesh);
 
-        // load a resource
-        loader.load(
-            // resource URL
-            'https://images.pexels.com/photos/728848/pexels-photo-728848.jpeg',
+        renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setPixelRatio(window.devicePixelRatio);
+        renderer.setSize(window.innerWidth, window.innerHeight);
 
-            // onLoad callback
-            function (texture) {
-                // in this example we create the material when the texture is loaded
-                texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
-                texture.repeat.set(5, 5);
-                material = new THREE.MeshBasicMaterial({ color: 0x000000, map: texture });
-                mesh = new THREE.Mesh(geometry, material);
-                scene.add(mesh);
-        
-                renderer = new THREE.WebGLRenderer({ antialias: true });
-                renderer.setPixelRatio(window.devicePixelRatio);
-                renderer.setSize(window.innerWidth, window.innerHeight);
-        
-                console.log(window.innerWidth);
-        
-                stats = new Stats();
-                con.appendChild(stats.dom);
-                con.appendChild(renderer.domElement);
-            },
+        console.log(window.innerWidth);
 
-            // onProgress callback currently not supported
-            undefined,
-
-            // onError callback
-            function (err) {
-                console.error('An error happened.');
-            }
-        );
-        // texture = new THREE.TextureLoader().load('https://images.pexels.com/photos/728848/pexels-photo-728848.jpeg'); // .setPath('../lib/water.jpg') // https://wallpaperstream.com/wallpapers/full/nebula/Carina-Nebula-Space-Stars.jpg
-        // texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
-        // texture.repeat.set(5, 5);
-        // material = new THREE.MeshBasicMaterial({ color: 0x000000, map: texture });
-        // mesh = new THREE.Mesh(geometry, material);
-        // scene.add(mesh);
-
-        // renderer = new THREE.WebGLRenderer({ antialias: true });
-        // renderer.setPixelRatio(window.devicePixelRatio);
-        // renderer.setSize(window.innerWidth, window.innerHeight);
-
-        // console.log(window.innerWidth);
-
-        // stats = new Stats();
-        // con.appendChild(stats.dom);
-        // con.appendChild(renderer.domElement);
+        stats = new Stats();
+        con.appendChild(stats.dom);
+        con.appendChild(renderer.domElement);
     }
 
     function animate() {
