@@ -4,6 +4,7 @@ import Stats from '../lib/stats.module';
 // import * as THREE from '../lib/three.module';
 // const Stats = require('../texture/')
 import { FirstPersonControls } from '../lib/FirstPersonControls';
+import { Lensflare, LensflareElement } from '../Lib/Lensflare.js';
 //import * as FirstPersonControls from 'three/examples/jsm/controls/FirstPersonControls.js';
 
 const firstPerson = (props) => {
@@ -43,6 +44,13 @@ const firstPerson = (props) => {
     let btnLeft = null;
     let btnRight = null;
 
+    let light1 = null; 
+    let light2 = null;
+    let light3 = null; 
+    let light4 = null;
+
+    // let raycaster = null;
+
 
     useEffect(() => {
         setWindow(window);
@@ -55,7 +63,7 @@ const firstPerson = (props) => {
         // }
 
         animate();
-        console.log(camera);
+        // console.log(raycaster);
         console.log(controls);
         return () => {
 
@@ -64,6 +72,7 @@ const firstPerson = (props) => {
 
     function handleOrientation(event) {
         if (event) {
+            event.preventDefault();
             let absolute = event.absolute;
             let alpha = event.alpha; // > 180 ? event.alpha : 180;
             let beta = event.beta;
@@ -158,6 +167,7 @@ const firstPerson = (props) => {
     }
 
     function init() {
+        // raycaster = new THREE.Raycaster();
         camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 20000);
         let radius = window.innerHeight / 2;
         setRadius(radius);
@@ -168,9 +178,35 @@ const firstPerson = (props) => {
         controls.lookSpeed = 0.1;
         controls.activeLook = false;
         setControler(controls);
+        var light = new THREE.DirectionalLight(0xffffff, 1);
         scene = new THREE.Scene();
         scene.background = new THREE.Color(0xaaccff);
         scene.fog = new THREE.FogExp2(0xaaccff, 0.0006);
+
+        // LIGHT
+
+        var light1 = new THREE.DirectionalLight(0xffffff, 0.5);
+        light1.position.set(1, 1, 1);
+        scene.add(light1);
+        var light2 = new THREE.DirectionalLight(0xffffff, 1.5);
+        light2.position.set(0, - 1, 0);
+        scene.add(light2);
+
+        var sphere = new THREE.SphereBufferGeometry( 5, 64, 32);
+
+        // light1 = new THREE.PointLight( 0xff0040, 2, 50 );
+        // light1.add( new THREE.Mesh( sphere, new THREE.MeshBasicMaterial( { color: 0xff0040 } ) ) );
+        // scene.add( light1 );
+        // light2 = new THREE.PointLight( 0x0040ff, 2, 50 );
+        // light2.add( new THREE.Mesh( sphere, new THREE.MeshBasicMaterial( { color: 0x0040ff } ) ) );
+        // scene.add( light2 );
+        // light3 = new THREE.PointLight( 0x80ff80, 2, 50 );
+        // light3.add( new THREE.Mesh( sphere, new THREE.MeshBasicMaterial( { color: 0x80ff80 } ) ) );
+        // scene.add( light3 );
+        // light4 = new THREE.PointLight( 0xffaa00, 2, 50 );
+        // light4.add( new THREE.Mesh( sphere, new THREE.MeshBasicMaterial( { color: 0xffaa00 } ) ) );
+        // scene.add( light4 );
+
         //WAVES VIEW
         geometry = new THREE.PlaneBufferGeometry(20000, 20000, worldWidth - 1, worldDepth - 1);
         geometry.rotateX(- Math.PI / 2);
@@ -189,6 +225,23 @@ const firstPerson = (props) => {
         mesh = new THREE.Mesh(geometry, material);
         scene.add(mesh);
 
+        // MeshLambertMaterial box
+
+        for (var i = 0; i < 1000; i++) {
+            var object = new THREE.Mesh(sphere, new THREE.MeshLambertMaterial({ color: Math.random() * 0xffffff }));
+            object.position.x = Math.random() * 800 - 400;
+            object.position.y = Math.random() * 800 - 400;
+            object.position.z = Math.random() * 800 - 400;
+            // object.rotation.x = Math.random() * 2 * Math.PI;
+            // object.rotation.y = Math.random() * 2 * Math.PI;
+            // object.rotation.z = Math.random() * 2 * Math.PI;
+            // object.scale.x = Math.random() + 0.5;
+            // object.scale.y = Math.random() + 0.5;
+            // object.scale.z = Math.random() + 0.5;
+            scene.add(object);
+        }
+
+        // RENDERS & APPENDS
         renderer = new THREE.WebGLRenderer({ antialias: true });
         renderer.setPixelRatio(window.devicePixelRatio);
         renderer.setSize(window.innerWidth, window.innerHeight);
@@ -219,10 +272,26 @@ const firstPerson = (props) => {
             let y = 35 * Math.sin(i / 5 + (time + i) / 7);
             position.setY(i, y);
         }
+
+        // light1.position.x = Math.sin( time * 0.7 ) * 30;
+        // light1.position.y = Math.cos( time * 0.5 ) * 40;
+        // light1.position.z = Math.cos( time * 0.3 ) * 30;
+        // light2.position.x = Math.cos( time * 0.3 ) * 30;
+        // light2.position.y = Math.sin( time * 0.5 ) * 40;
+        // light2.position.z = Math.sin( time * 0.7 ) * 30;
+        // light3.position.x = Math.sin( time * 0.7 ) * 30;
+        // light3.position.y = Math.cos( time * 0.3 ) * 40;
+        // light3.position.z = Math.sin( time * 0.5 ) * 30;
+        // light4.position.x = Math.sin( time * 0.3 ) * 30;
+        // light4.position.y = Math.cos( time * 0.7 ) * 40;
+        // light4.position.z = Math.sin( time * 0.5 ) * 30;
+
         position.needsUpdate = true;
         controls.update(delta);
         renderer.render(scene, camera);
     }
+
+
 
     function touchScreen(event) {
         alert(event.toString());
@@ -242,7 +311,7 @@ const firstPerson = (props) => {
             ref={(ref) => { wraper = ref }}
         >
 
-            {win ? <div style={{
+            {/* {win ? <div style={{
                 position: 'absolute',
                 bottom: win.innerHeight / 5,
                 left: win.innerWidth / 4,
@@ -290,7 +359,7 @@ const firstPerson = (props) => {
                     onMouseDown={onRight}
                     onMouseUp={onRightEnd}
                 ></span>
-            </div> : null}
+            </div> : null} */}
             {/* {win && gammatxt ? <div style={{
                 position: 'absolute',
                 width: 100,
