@@ -94,7 +94,7 @@ const firstPerson = (props) => {
             quaternion.setFromEuler(eu);
             // watching ground: 
             // let v = new THREE.Vector3(1, 1, 1); 
-            let v = new THREE.Vector3(1, radius, 200);
+            let v = new THREE.Vector3(1, radius, radius);
             v.applyQuaternion(quaternion);
 
             console.log('eu', eu);
