@@ -73,9 +73,9 @@ const firstPerson = (props) => {
             // let br = beta * Math.PI / 180;
             // let gr = gamma * Math.PI / 180;
 
-            let ar = alpha * Math.PI / 180;
+            let ar = alpha * Math.PI / 360;
             let br = beta * Math.PI / 180;
-            let gr = gamma * Math.PI / 180;
+            let gr = gamma * Math.PI / 90;
 
             let art = ar >= 0 ? ar : ar * -1;
             let brt = br >= 0 ? br : br * -1;
