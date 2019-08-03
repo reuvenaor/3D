@@ -185,7 +185,7 @@ const firstPerson = (props) => {
             let y = Math.sin(i / 2);
             position.setY(i, y);
         }
-        texture = new THREE.TextureLoader().load('https://www.jpl.nasa.gov/spaceimages/images/largesize/PIA16884_hires.jpg'); // .setPath('../lib/water.jpg')
+        texture = new THREE.TextureLoader().load('https://images.pexels.com/photos/728848/pexels-photo-728848.jpeg'); // .setPath('../lib/water.jpg')
         texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
         texture.repeat.set(5, 5);
         material = new THREE.MeshBasicMaterial({ color: 0x0044dd, map: texture });
