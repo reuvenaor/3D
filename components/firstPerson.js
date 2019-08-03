@@ -183,7 +183,7 @@ const firstPerson = (props) => {
 
         texture = new THREE.TextureLoader().load('https://images.pexels.com/photos/728848/pexels-photo-728848.jpeg '); // .setPath('../lib/water.jpg') 
         texture.repeat.set(5, 5);
-        material = new THREE.MeshBasicMaterial({ color: 0x0044dd, map: texture });
+        material = new THREE.MeshBasicMaterial({ map: texture }); // { color: 0x0044dd, map: texture }
         mesh = new THREE.Mesh(geometry, material);
         scene.add(mesh);
 
