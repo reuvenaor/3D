@@ -185,7 +185,7 @@ const firstPerson = (props) => {
             let y = Math.sin(i / 2);
             position.setY(i, y);
         }
-        texture = new THREE.TextureLoader().load('https://2355qj18gs661xupcu3zgegq-wpengine.netdna-ssl.com/wp-content/uploads/2016/04/dangers-of-psychedelics-e1461094853487-1024x650.jpg'); // .setPath('../lib/water.jpg')
+        texture = new THREE.TextureLoader().load('https://www.jpl.nasa.gov/spaceimages/images/largesize/PIA16884_hires.jpg'); // .setPath('../lib/water.jpg')
         texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
         texture.repeat.set(5, 5);
         material = new THREE.MeshBasicMaterial({ color: 0x0044dd, map: texture });
