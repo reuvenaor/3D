@@ -119,9 +119,9 @@ const firstPerson = (props) => {
                 controls.lookAt(v.y, v.x, v.z);  // controls.lookAt(v.x, v.y + radius, v.z);
 
                 for (var i = 3; i < 103; i++) {
-                    scene.children[i].position.x = v.x * 0.1 + v.x;
-                    scene.children[i].position.y = v.y * 0.1 + v.y;
-                    scene.children[i].position.z = v.z * 0.1 + v.z;
+                    scene.children[i].position.x = Math.random() + v.x;
+                    scene.children[i].position.y = Math.random() + v.y;
+                    scene.children[i].position.z = Math.random() + v.z;
                     // object.rotation.x = Math.random() * 2 * Math.PI;
                     // object.rotation.y = Math.random() * 2 * Math.PI;
                     // object.rotation.z = Math.random() * 2 * Math.PI;
