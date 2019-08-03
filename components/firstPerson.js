@@ -163,7 +163,7 @@ const firstPerson = (props) => {
         camera.position.y = radius;    // this is RADIUS
         clock = new THREE.Clock();
         controls = new FirstPersonControls(camera);
-        controls.movementSpeed = 1000;
+        controls.movementSpeed = 100;
         controls.lookSpeed = 0.1;
         controls.activeLook = false;
         setControler(controls);
