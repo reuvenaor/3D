@@ -19,7 +19,7 @@ const firstPerson = (props) => {
     const [b, setB] = useState(null);
     const [g, setG] = useState(null);
     const [absolute, setAbsolue] = useState(null);
-
+    //
     let camera = null;
     let controls = null;;
     let scene = null;;
