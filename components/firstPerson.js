@@ -77,22 +77,23 @@ const firstPerson = (props) => {
             // let brt = br >= 0 ? br : br * -1;
             // let grt = gr >= 0 ? gr : gr * -1;
 
-            let art = ar >= 0 ? ar : ar ;
-            let brt = br >= 0 ? br : br ;
-            let grt = gr >= 0 ? gr : gr ;
+            let art = ar >= 0 ? ar : ar;
+            let brt = br >= 0 ? br : br;
+            let grt = gr >= 0 ? gr : gr;
 
 
             let radius = window.innerHeight / 2;
 
+            // WITH EULER:
             let eu = new THREE.Euler(art, brt, grt);
+            // let v = new THREE.Vector3(1, 1, 1); 
+            // WITH quaternion:
             let quaternion = new THREE.Quaternion();
             quaternion.setFromEuler(eu);
 
+            let v = new THREE.Vector3(1, radius, radius);
             // watching ground: 
             // let v = new THREE.Vector3(1, 1, 1); 
-
-            let v = new THREE.Vector3(1, radius, radius);
-
             v.applyQuaternion(quaternion);
 
             console.log('contoler', controls);
@@ -163,7 +164,7 @@ const firstPerson = (props) => {
         camera.position.y = radius;    // this is RADIUS
         clock = new THREE.Clock();
         controls = new FirstPersonControls(camera);
-        controls.movementSpeed = 100;
+        controls.movementSpeed = 1000;
         controls.lookSpeed = 0.1;
         controls.activeLook = false;
         setControler(controls);
@@ -181,9 +182,10 @@ const firstPerson = (props) => {
             position.setY(i, y);
         }
 
-        texture = new THREE.TextureLoader().load('https://images.pexels.com/photos/728848/pexels-photo-728848.jpeg '); // .setPath('../lib/water.jpg') 
+        texture = new THREE.TextureLoader().load('https://images.pexels.com/photos/728848/pexels-photo-728848.jpeg'); // .setPath('../lib/water.jpg') // https://wallpaperstream.com/wallpapers/full/nebula/Carina-Nebula-Space-Stars.jpg
+        texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
         texture.repeat.set(5, 5);
-        material = new THREE.MeshBasicMaterial({ map: texture }); // { color: 0x0044dd, map: texture }
+        material = new THREE.MeshBasicMaterial({ color: 0x0044dd, map: texture });
         mesh = new THREE.Mesh(geometry, material);
         scene.add(mesh);
 
