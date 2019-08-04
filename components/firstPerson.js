@@ -79,8 +79,8 @@ const firstPerson = (props) => {
         let x = event.touches[0].clientX;
         let y = event.touches[0].clientY;
         let touch2D = new THREE.Vector2();
-        touch2D.x = (x / window.innerWidth/2) * 2 - 1;
-        touch2D.y = - (y / window.innerHeight/2) * 2 + 1;
+        touch2D.x = (x / window.innerWidth) * 2 - 1;
+        touch2D.y = - (y / window.innerHeight) * 2 + 1;
         // touch2D.x = x;
         // touch2D.y = - y;
         setA(touch2D.x);
