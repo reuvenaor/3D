@@ -87,7 +87,7 @@ const firstPerson = (props) => {
         touch2D.y = - (y / window.innerHeight) * 2 + 1;
         setA(touch2D.x);
         setB(touch2D.y);
-        return touch2D;
+        isTouched = touch2D;
     };
 
     function handleTouchEnd(event) {
@@ -138,8 +138,8 @@ const firstPerson = (props) => {
                 controls.lookAt(v.y, v.x, v.z);
                 if (isTouched) {
                     for (var i = 3; i < NUM_OF_BALLS + 3; i++) {
-                        scene.children[i].position.x = Math.random() * 50 - 25 + v.x;
-                        scene.children[i].position.y = Math.random() * 50 - 25 + v.y;
+                        scene.children[i].position.x = Math.random() * 50 - 25 + v.x + isTouched.x;
+                        scene.children[i].position.y = Math.random() * 50 - 25 + v.y + isTouched.y;
                         scene.children[i].position.z = Math.random() * 50 - 25 + v.z;
                     }
                 }
