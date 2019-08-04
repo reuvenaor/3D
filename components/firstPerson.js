@@ -82,7 +82,7 @@ const firstPerson = (props) => {
         // touch2D.x = (x / window.innerWidth) * 2 - 1;
         // touch2D.y = - (y / window.innerHeight) * 2 + 1;
         touch2D.x = x;
-        touch2D.y = y;
+        touch2D.y = - y;
         setA(touch2D.x);
         setB(touch2D.y);
         // setA(event.touches[0].detail.deltaX);
