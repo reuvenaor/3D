@@ -79,14 +79,12 @@ const firstPerson = (props) => {
         let x = event.touches[0].clientX;
         let y = event.touches[0].clientY;
         let touch2D = new THREE.Vector2();
-        // touch2D.x = (x / window.innerWidth) * 2 - 1;
-        // touch2D.y = - (y / window.innerHeight) * 2 + 1;
-        touch2D.x = x;
-        touch2D.y = - y;
+        touch2D.x = (x / window.innerWidth) * 2 - 1;
+        touch2D.y = - (y / window.innerHeight) * 2 + 1;
+        // touch2D.x = x;
+        // touch2D.y = - y;
         setA(touch2D.x);
         setB(touch2D.y);
-        // setA(event.touches[0].detail.deltaX);
-        // setB(event.touches[0].detail.deltaY);
 
         isTouched = touch2D;
     };
@@ -139,9 +137,12 @@ const firstPerson = (props) => {
                 controls.lookAt(v.y, v.x, v.z);
                 if (isTouched) {
                     for (var i = 3; i < NUM_OF_BALLS + 3; i++) {
-                        scene.children[i].position.x = Math.random() * 50 - 25 + v.x + isTouched.x;
-                        scene.children[i].position.y = Math.random() * 50 - 25 + v.y + isTouched.y;
-                        scene.children[i].position.z = Math.random() * 50 - 25 + v.z;
+                        // scene.children[i].position.x = Math.random() * 50 - 25 + v.x + isTouched.x;
+                        // scene.children[i].position.y = Math.random() * 50 - 25 + v.y + isTouched.y;
+                        // scene.children[i].position.z = Math.random() * 50 - 25 + v.z;
+                        scene.children[i].position.x = Math.random() + v.x + isTouched.x;
+                        scene.children[i].position.y = Math.random() + v.y + isTouched.y;
+                        scene.children[i].position.z = Math.random() + v.z;
                     }
                 }
             }
