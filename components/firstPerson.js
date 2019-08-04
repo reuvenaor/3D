@@ -78,12 +78,21 @@ const firstPerson = (props) => {
 
     function handleTouchStart(event) {
         isTouched = true;
-        setIsTouch(true);
+        //setIsTouch(event);
+
+        let x = event.touches[0].clientX;
+        let y = event.touches[0].clientY;
+        let touch2D = new THREE.Vector2();
+        touch2D.x = (x / window.innerWidth) * 2 - 1;
+        touch2D.y = - (y / window.innerHeight) * 2 + 1;
+        setA(touch2D.x);
+        setB(touch2D.y);
+        return touch2D;
     };
 
     function handleTouchEnd(event) {
         isTouched = false;
-        setIsTouch(false);
+        //setIsTouch(false);
     }
 
     function handleOrientation(event) {
@@ -127,7 +136,7 @@ const firstPerson = (props) => {
                 setG(v.z);
                 setAbsolue('' + absolute);
                 controls.lookAt(v.y, v.x, v.z);
-                if (isTouch) {
+                if (isTouched) {
                     for (var i = 3; i < NUM_OF_BALLS + 3; i++) {
                         scene.children[i].position.x = Math.random() * 50 - 25 + v.x;
                         scene.children[i].position.y = Math.random() * 50 - 25 + v.y;
