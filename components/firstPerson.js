@@ -241,9 +241,9 @@ const firstPerson = (props) => {
             object.position.x = Math.random() * radius - radius;
             object.position.y = Math.random() * radius + radius;
             object.position.z = Math.random() * radius - radius;
-            // object.rotation.x = Math.random() * 2 * Math.PI;
-            // object.rotation.y = Math.random() * 2 * Math.PI;
-            // object.rotation.z = Math.random() * 2 * Math.PI;
+            // object.rotation.x = Math.random() * 1000 * Math.PI;
+            // object.rotation.y = Math.random() * 1000 * Math.PI;
+            // object.rotation.z = Math.random() * 1000 * Math.PI;
             // object.scale.x = Math.random() + 0.5;
             // object.scale.y = Math.random() + 0.5;
             // object.scale.z = Math.random() + 0.5;
@@ -279,6 +279,16 @@ const firstPerson = (props) => {
             let y = 35 * Math.sin(i / 5 + (time + i) / 7);
             position.setY(i, y);
         }
+
+        for (var i = 3; i < NUM_OF_BALLS + 3; i++) {
+            scene.children[i].position.x += 0.05;
+            scene.children[i].position.y -= 0.1;
+            scene.children[i].position.z -= 0.1;
+            //scene.children[i].rotation.x += Math.random() * 2 * Math.PI;
+            scene.children[i].rotation.z += 0.2;
+
+        }
+
 
         // light1.position.x = Math.sin( time * 0.7 ) * 30;
         // light1.position.y = Math.cos( time * 0.5 ) * 40;
