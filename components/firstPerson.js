@@ -53,6 +53,7 @@ const firstPerson = (props) => {
 
     // let raycaster = null;
     let isTouched = false;
+    const [isTouch, setIsTouch] = useState(false);
 
 
     useEffect(() => {
@@ -77,10 +78,12 @@ const firstPerson = (props) => {
 
     function handleTouchStart(event) {
         isTouched = true;
+        setIsTouch(true);
     };
 
     function handleTouchEnd(event) {
         isTouched = false;
+        setIsTouch(false);
     }
 
     function handleOrientation(event) {
@@ -124,7 +127,7 @@ const firstPerson = (props) => {
                 setG(v.z);
                 setAbsolue('' + absolute);
                 controls.lookAt(v.y, v.x, v.z);
-                if (isTouched) {
+                if (isTouch) {
                     for (var i = 3; i < NUM_OF_BALLS + 3; i++) {
                         scene.children[i].position.x = Math.random() * 50 - 25 + v.x;
                         scene.children[i].position.y = Math.random() * 50 - 25 + v.y;
