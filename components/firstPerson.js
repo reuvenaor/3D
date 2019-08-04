@@ -52,6 +52,7 @@ const firstPerson = (props) => {
     let light4 = null;
 
     // let raycaster = null;
+    let isTouched = false;
 
 
     useEffect(() => {
@@ -59,10 +60,9 @@ const firstPerson = (props) => {
         init();
         window.addEventListener('resize', onWindowResize, false);
         window.addEventListener("deviceorientation", handleOrientation, true);
-        // if (contoler) {
-        //     btnForward.addEventListener('touchstart', handleTouchStart, true);
-        //     btnForward.addEventListener('touchend', handleTouchEnd, true)
-        // }
+
+        window.addEventListener('touchstart', handleTouchStart, true);
+        windows.addEventListener('touchend', handleTouchEnd, true)
 
         animate();
 
@@ -74,6 +74,14 @@ const firstPerson = (props) => {
             stop();
         }
     }, []);
+
+    function handleTouchStart(event) {
+        isTouched = true;
+    };
+
+    function handleTouchEnd(event) {
+        isTouched = false;
+    }
 
     function handleOrientation(event) {
         if (event) {
@@ -116,11 +124,12 @@ const firstPerson = (props) => {
                 setG(v.z);
                 setAbsolue('' + absolute);
                 controls.lookAt(v.y, v.x, v.z);
-
-                for (var i = 3; i < NUM_OF_BALLS + 3; i++) {
-                    scene.children[i].position.x = Math.random() * 50 - 25 + v.x;
-                    scene.children[i].position.y = Math.random() * 50 - 25 + v.y;
-                    scene.children[i].position.z = Math.random() * 50 - 25 + v.z;
+                if (isTouched) {
+                    for (var i = 3; i < NUM_OF_BALLS + 3; i++) {
+                        scene.children[i].position.x = Math.random() * 50 - 25 + v.x;
+                        scene.children[i].position.y = Math.random() * 50 - 25 + v.y;
+                        scene.children[i].position.z = Math.random() * 50 - 25 + v.z;
+                    }
                 }
             }
         }
@@ -300,27 +309,24 @@ const firstPerson = (props) => {
 
 
 
-    function touchScreen(event) {
-        event.preventDefault();
-        if (event.touches && radius && abScene) {
-            let x = event.touches[0].clientX;
-            let y = event.touches[0].clientY;
-            let touch2D = new THREE.Vector2();
-            touch2D.x = ( x / window.innerWidth ) * 2 - 1;
-            touch2D.y = - ( y / window.innerHeight ) * 2 + 1;
-            setA(touch2D.x);
-            setB(touch2D.y);
-            for (var i = 3; i < NUM_OF_BALLS + 3; i++) {
-                abScene.children[i].position.x = touch2D.x;
-                abScene.children[i].position.y = touch2D.y;
-                //abScene.children[i].position.z = -200;
-                // scene.children[i].position.z = Math.random() * 50 - 25 + v.z;
-            }
-        }
-    }
-
-
-    //handleTouch();
+    // function touchScreen(event) {
+    //     event.preventDefault();
+    //     if (event.touches && radius && abScene) {
+    //         let x = event.touches[0].clientX;
+    //         let y = event.touches[0].clientY;
+    //         let touch2D = new THREE.Vector2();
+    //         touch2D.x = ( x / window.innerWidth ) * 2 - 1;
+    //         touch2D.y = - ( y / window.innerHeight ) * 2 + 1;
+    //         setA(touch2D.x);
+    //         setB(touch2D.y);
+    //         for (var i = 3; i < NUM_OF_BALLS + 3; i++) {
+    //             abScene.children[i].position.x = touch2D.x;
+    //             abScene.children[i].position.y = touch2D.y;
+    //             //abScene.children[i].position.z = -200;
+    //             // scene.children[i].position.z = Math.random() * 50 - 25 + v.z;
+    //         }
+    //     }
+    // }
 
 
     return (
@@ -329,7 +335,7 @@ const firstPerson = (props) => {
             height: '100%',
             display: 'block'
         }}
-            onTouchStart={touchScreen}
+            //onTouchStart={touchScreen}
             ref={(ref) => { wraper = ref }}
         >
 
