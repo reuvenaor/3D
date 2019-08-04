@@ -198,7 +198,7 @@ const firstPerson = (props) => {
 
     function init() {
         // raycaster = new THREE.Raycaster();
-        camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 20000);
+        camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 2000);
         let radius = window.innerHeight / 2;
         setRadius(radius);
         camera.position.y = radius;    // this is RADIUS
@@ -211,7 +211,7 @@ const firstPerson = (props) => {
         var light = new THREE.DirectionalLight(0xffffff, 1);
         scene = new THREE.Scene();
         scene.background = new THREE.Color(0xaaccff);
-        scene.fog = new THREE.FogExp2(0xaaccff, 0.0006);
+        scene.fog = new THREE.FogExp2(0xaaccff, 0.0008);
 
         var sphere = new THREE.SphereBufferGeometry(5, 64, 32);
 
@@ -344,9 +344,11 @@ const firstPerson = (props) => {
 
     return (
         <div style={{
-            width: '100%',
-            height: '100%',
-            display: 'block'
+            width: '100vw',
+            height: '100vh',
+            display: 'block',
+            position: 'fixed',
+            margin: 0
         }}
             //onTouchStart={touchScreen}
             ref={(ref) => { wraper = ref }}
