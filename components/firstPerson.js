@@ -81,10 +81,10 @@ const firstPerson = (props) => {
         let touch2D = new THREE.Vector2();
         touch2D.x = (x / window.innerWidth) * 2 - 1;
         touch2D.y = - (y / window.innerHeight) * 2 + 1;
-        // setA(touch2D.x);
-        // setB(touch2D.y);
-        setA(event.touches[0].detail.deltaX);
-        setB(event.touches[0].detail.deltaY);
+        setA(touch2D.x);
+        setB(touch2D.y);
+        // setA(event.touches[0].detail.deltaX);
+        // setB(event.touches[0].detail.deltaY);
 
         isTouched = touch2D;
     };
@@ -268,7 +268,7 @@ const firstPerson = (props) => {
 
     function stop() {
         con.removeChild(renderer.domElement);
-        cancelAnimationFrame(wraper);
+        cancelAnimationFrame(con);
     }
 
     function render() {
