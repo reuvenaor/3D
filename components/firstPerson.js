@@ -45,9 +45,9 @@ const firstPerson = (props) => {
     let btnLeft = null;
     let btnRight = null;
 
-    let light1 = null; 
+    let light1 = null;
     let light2 = null;
-    let light3 = null; 
+    let light3 = null;
     let light4 = null;
 
     // let raycaster = null;
@@ -66,9 +66,9 @@ const firstPerson = (props) => {
         animate();
         // console.log(raycaster);
         console.log(controls);
-        console.log('scene',scene);
+        console.log('scene', scene);
         return () => {
-
+            stop();
         }
     }, []);
 
@@ -84,14 +84,9 @@ const firstPerson = (props) => {
             let br = beta * Math.PI / 180;
             let gr = gamma * Math.PI / 180;
 
-            // let art = ar >= 0 ? ar : ar * -1;
-            // let brt = br >= 0 ? br : br * -1;
-            // let grt = gr >= 0 ? gr : gr * -1;
-
             let art = ar >= 0 ? ar : ar;
             let brt = br >= 0 ? br : br;
             let grt = gr >= 0 ? gr : gr;
-
 
             let radius = window.innerHeight / 2;
 
@@ -113,55 +108,52 @@ const firstPerson = (props) => {
                 setGamma(gamma);
                 setAlpha(alpha);
                 setBeta(beta);
-                setA(v.x);
-                setB(v.y);
+                // setA(v.x);
+                // setB(v.y);
                 setG(v.z);
                 setAbsolue('' + absolute);
-                controls.lookAt(v.y, v.x, v.z);  // controls.lookAt(v.x, v.y + radius, v.z);
+                controls.lookAt(v.y, v.x, v.z);
 
                 for (var i = 3; i < NUM_OF_BALLS + 3; i++) {
                     scene.children[i].position.x = Math.random() * 50 - 25 + v.x;
                     scene.children[i].position.y = Math.random() * 50 - 25 + v.y;
                     scene.children[i].position.z = Math.random() * 50 - 25 + v.z;
-                    // object.rotation.x = Math.random() * 2 * Math.PI;
-                    // object.rotation.y = Math.random() * 2 * Math.PI;
-                    // object.rotation.z = Math.random() * 2 * Math.PI;
-                    // object.scale.x = Math.random() + 0.5;
-                    // object.scale.y = Math.random() + 0.5;
-                    // object.scale.z = Math.random() + 0.5;
                 }
             }
         }
     }
 
-    function onRight() {
+    function onRight(event) {
+        event.preventDefault();
         if (contoler) {
             contoler.moveRight = true;
         }
     }
 
     function onRightEnd(event) {
+        event.preventDefault();
         if (contoler) {
             contoler.moveRight = false;
         }
     }
 
     function onLeft(event) {
+        event.preventDefault();
         if (contoler) {
             contoler.moveLeft = true;
         }
     }
 
     function onLeftEnd(event) {
+        event.preventDefault();
         if (contoler) {
             contoler.moveLeft = false;
         }
     }
 
     function onForward(event) {
-        console.log(event);
+        event.preventDefault();
         if (contoler) {
-            //contoler.moveLeft = true;
             contoler.moveForward = true;
         }
     }
@@ -206,7 +198,7 @@ const firstPerson = (props) => {
         light2.position.set(0, - 1, 0);
         scene.add(light2);
 
-        var sphere = new THREE.SphereBufferGeometry( 5, 64, 32);
+        var sphere = new THREE.SphereBufferGeometry(5, 64, 32);
 
         // light1 = new THREE.PointLight( 0xff0040, 2, 50 );
         // light1.add( new THREE.Mesh( sphere, new THREE.MeshBasicMaterial( { color: 0xff0040 } ) ) );
@@ -241,11 +233,11 @@ const firstPerson = (props) => {
 
         // MeshLambertMaterial box
 
-        for (var i = 0; i < NUM_OF_BALLS ; i++) {
+        for (var i = 0; i < NUM_OF_BALLS; i++) {
             var object = new THREE.Mesh(sphere, new THREE.MeshLambertMaterial({ color: Math.random() * 0xffffff }));
-            object.position.x = Math.random() * 800 - 400;
-            object.position.y = Math.random() * 800 - 400;
-            object.position.z = Math.random() * 800 - 400;
+            object.position.x = Math.random() * radius - radius;
+            object.position.y = Math.random() * radius + radius;
+            object.position.z = Math.random() * radius - radius;
             // object.rotation.x = Math.random() * 2 * Math.PI;
             // object.rotation.y = Math.random() * 2 * Math.PI;
             // object.rotation.z = Math.random() * 2 * Math.PI;
@@ -260,8 +252,6 @@ const firstPerson = (props) => {
         renderer.setPixelRatio(window.devicePixelRatio);
         renderer.setSize(window.innerWidth, window.innerHeight);
 
-        console.log(window.innerWidth);
-
         stats = new Stats();
         con.appendChild(stats.dom);
         con.appendChild(renderer.domElement);
@@ -275,7 +265,7 @@ const firstPerson = (props) => {
 
     function stop() {
         con.removeChild(renderer.domElement);
-        cancelAnimationFrame(con);
+        cancelAnimationFrame(wraper);
     }
 
     function render() {
@@ -308,7 +298,21 @@ const firstPerson = (props) => {
 
 
     function touchScreen(event) {
-        alert(event.toString());
+        event.preventDefault();
+        if (event.touches && radius && scene) {
+            let x = event.touches[0].clientX;
+            let y = event.touches[0].clientY;
+            let touch2D = new THREE.Vector2();
+            touch2D.x = ( x / window.innerWidth ) * 2 - 1;
+            touch2D.y = - ( y / window.innerHeight ) * 2 + 1;
+            setA(touch2D.x);
+            setB(touch2D.y);
+            for (var i = 3; i < NUM_OF_BALLS + 3; i++) {
+                scene.children[i].position.x = Math.random() * 50 - 25 + touch2D.x;
+                scene.children[i].position.y = Math.random() * 50 - 25 + touch2D.y;
+                // scene.children[i].position.z = Math.random() * 50 - 25 + v.z;
+            }
+        }
     }
 
 
@@ -321,16 +325,16 @@ const firstPerson = (props) => {
             height: '100%',
             display: 'block'
         }}
-            // onTouchStart={touchScreen}
+            onTouchStart={touchScreen}
             ref={(ref) => { wraper = ref }}
         >
 
-            {/* {win ? <div style={{
+            {/* <div style={{
                 position: 'absolute',
-                bottom: win.innerHeight / 5,
-                left: win.innerWidth / 4,
-                width: win.innerWidth / 2,
-                height: win.innerHeight / 5,
+                bottom: '20%',
+                left: '25%',
+                width: '50%',
+                height: '20%',
                 display: 'flex',
                 background: 'grey',
                 alignItems: 'center',
@@ -373,23 +377,23 @@ const firstPerson = (props) => {
                     onMouseDown={onRight}
                     onMouseUp={onRightEnd}
                 ></span>
-            </div> : null} */}
-            {/* {win && gammatxt ? <div style={{
+            </div> */}
+            <div style={{
                 position: 'absolute',
                 width: 100,
-                height: 220,
-                top: win.innerHeight * 0.5,
-                left: win.innerWidth * 0.5,
+                height: '10%',
+                top: '50%',
+                left: '50%',
                 zIndex: 3
             }}>
-                <p >gamma: {gammatxt}</p>
+                {/* <p >gamma: {gammatxt}</p>
                 <p >alpha: {alphatxt}</p>
-                <p >beta: {betatxt}</p>
+                <p >beta: {betatxt}</p> */}
                 <p >v.x: {a}</p>
                 <p >v.y: {b}</p>
-                <p >v.z: {g}</p>
-                <p >radius: {radius}</p>
-            </div> : null} */}
+                {/* <p >v.z: {g}</p>
+                <p >radius: {radius}</p> */}
+            </div>
             <div
                 style={{ width: '100%', height: '100%' }}
                 ref={(ref) => { con = ref }}
