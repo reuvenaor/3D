@@ -104,7 +104,7 @@ const firstPerson = (props) => {
             v.applyQuaternion(quaternion);
 
             console.log('contoler', controls);
-            if (alpha && beta && gamma && controls) {
+            if (alpha && beta && gamma && controls && abScene) {
                 //controls.activeLook = true;
                 setGamma(gamma);
                 setAlpha(alpha);
@@ -116,9 +116,9 @@ const firstPerson = (props) => {
                 controls.lookAt(v.y, v.x, v.z);
 
                 for (var i = 3; i < NUM_OF_BALLS + 3; i++) {
-                    scene.children[i].position.x = Math.random() * 50 - 25 + v.x;
-                    scene.children[i].position.y = Math.random() * 50 - 25 + v.y;
-                    scene.children[i].position.z = Math.random() * 50 - 25 + v.z;
+                    abScene.children[i].position.x = Math.random() * 50 - 25 + v.x;
+                    abScene.children[i].position.y = Math.random() * 50 - 25 + v.y;
+                    abScene.children[i].position.z = Math.random() * 50 - 25 + v.z;
                 }
             }
         }
