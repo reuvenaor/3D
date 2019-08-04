@@ -58,7 +58,6 @@ const firstPerson = (props) => {
         setWindow(window);
         init();
         window.addEventListener('resize', onWindowResize, false);
-        window.addEventListener("deviceorientation", handleOrientation, true);
         // if (contoler) {
         //     btnForward.addEventListener('touchstart', handleTouchStart, true);
         //     btnForward.addEventListener('touchend', handleTouchEnd, true)
@@ -66,6 +65,7 @@ const firstPerson = (props) => {
 
         animate();
         // console.log(raycaster);
+        window.addEventListener("deviceorientation", handleOrientation, true);
         console.log(controls);
         console.log('scene', scene);
         return () => {
