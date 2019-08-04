@@ -53,7 +53,6 @@ const firstPerson = (props) => {
 
     // let raycaster = null;
     let isTouched = false;
-    const [isTouch, setIsTouch] = useState(false);
 
 
     useEffect(() => {
@@ -77,16 +76,16 @@ const firstPerson = (props) => {
     }, []);
 
     function handleTouchStart(event) {
-        isTouched = true;
-        //setIsTouch(event);
-
         let x = event.touches[0].clientX;
         let y = event.touches[0].clientY;
         let touch2D = new THREE.Vector2();
         touch2D.x = (x / window.innerWidth) * 2 - 1;
         touch2D.y = - (y / window.innerHeight) * 2 + 1;
-        setA(touch2D.x);
-        setB(touch2D.y);
+        // setA(touch2D.x);
+        // setB(touch2D.y);
+        setA(event.touches[0].detail.deltaX);
+        setB(event.touches[0].detail.deltaY);
+
         isTouched = touch2D;
     };
 
@@ -196,6 +195,7 @@ const firstPerson = (props) => {
         controls.handleResize();
     }
 
+
     function init() {
         // raycaster = new THREE.Raycaster();
         camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 20000);
@@ -213,30 +213,9 @@ const firstPerson = (props) => {
         scene.background = new THREE.Color(0xaaccff);
         scene.fog = new THREE.FogExp2(0xaaccff, 0.0006);
 
-        // LIGHT
-
-        var light1 = new THREE.DirectionalLight(0xffffff, 0.5);
-        light1.position.set(1, 1, 1);
-        scene.add(light1);
-        var light2 = new THREE.DirectionalLight(0xffffff, 1.5);
-        light2.position.set(0, - 1, 0);
-        scene.add(light2);
-
         var sphere = new THREE.SphereBufferGeometry(5, 64, 32);
 
-        // light1 = new THREE.PointLight( 0xff0040, 2, 50 );
-        // light1.add( new THREE.Mesh( sphere, new THREE.MeshBasicMaterial( { color: 0xff0040 } ) ) );
-        // scene.add( light1 );
-        // light2 = new THREE.PointLight( 0x0040ff, 2, 50 );
-        // light2.add( new THREE.Mesh( sphere, new THREE.MeshBasicMaterial( { color: 0x0040ff } ) ) );
-        // scene.add( light2 );
-        // light3 = new THREE.PointLight( 0x80ff80, 2, 50 );
-        // light3.add( new THREE.Mesh( sphere, new THREE.MeshBasicMaterial( { color: 0x80ff80 } ) ) );
-        // scene.add( light3 );
-        // light4 = new THREE.PointLight( 0xffaa00, 2, 50 );
-        // light4.add( new THREE.Mesh( sphere, new THREE.MeshBasicMaterial( { color: 0xffaa00 } ) ) );
-        // scene.add( light4 );
-
+        addLights();
         //WAVES VIEW
         geometry = new THREE.PlaneBufferGeometry(20000, 20000, worldWidth - 1, worldDepth - 1);
         geometry.rotateX(- Math.PI / 2);
@@ -317,6 +296,28 @@ const firstPerson = (props) => {
         position.needsUpdate = true;
         controls.update(delta);
         renderer.render(scene, camera);
+    }
+
+    function addLights() {
+        var light1 = new THREE.DirectionalLight(0xffffff, 0.5);
+        light1.position.set(1, 1, 1);
+        scene.add(light1);
+        var light2 = new THREE.DirectionalLight(0xffffff, 1.5);
+        light2.position.set(0, - 1, 0);
+        scene.add(light2);
+
+        // light1 = new THREE.PointLight( 0xff0040, 2, 50 );
+        // light1.add( new THREE.Mesh( sphere, new THREE.MeshBasicMaterial( { color: 0xff0040 } ) ) );
+        // scene.add( light1 );
+        // light2 = new THREE.PointLight( 0x0040ff, 2, 50 );
+        // light2.add( new THREE.Mesh( sphere, new THREE.MeshBasicMaterial( { color: 0x0040ff } ) ) );
+        // scene.add( light2 );
+        // light3 = new THREE.PointLight( 0x80ff80, 2, 50 );
+        // light3.add( new THREE.Mesh( sphere, new THREE.MeshBasicMaterial( { color: 0x80ff80 } ) ) );
+        // scene.add( light3 );
+        // light4 = new THREE.PointLight( 0xffaa00, 2, 50 );
+        // light4.add( new THREE.Mesh( sphere, new THREE.MeshBasicMaterial( { color: 0xffaa00 } ) ) );
+        // scene.add( light4 );
     }
 
 
