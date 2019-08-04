@@ -62,7 +62,7 @@ const firstPerson = (props) => {
         window.addEventListener("deviceorientation", handleOrientation, true);
 
         window.addEventListener('touchstart', handleTouchStart, true);
-        windows.addEventListener('touchend', handleTouchEnd, true)
+        window.addEventListener('touchend', handleTouchEnd, true)
 
         animate();
 
