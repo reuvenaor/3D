@@ -58,14 +58,16 @@ const firstPerson = (props) => {
         setWindow(window);
         init();
         window.addEventListener('resize', onWindowResize, false);
+        window.addEventListener("deviceorientation", handleOrientation, true);
         // if (contoler) {
         //     btnForward.addEventListener('touchstart', handleTouchStart, true);
         //     btnForward.addEventListener('touchend', handleTouchEnd, true)
         // }
 
         animate();
+
         // console.log(raycaster);
-        window.addEventListener("deviceorientation", handleOrientation, true);
+
         console.log(controls);
         console.log('scene', scene);
         return () => {
@@ -75,7 +77,7 @@ const firstPerson = (props) => {
 
     function handleOrientation(event) {
         if (event) {
-            // event.preventDefault();
+            event.preventDefault();
             let absolute = event.absolute;
             let alpha = event.alpha; // > 180 ? event.alpha : 180;
             let beta = event.beta;
@@ -104,7 +106,7 @@ const firstPerson = (props) => {
             v.applyQuaternion(quaternion);
 
             console.log('contoler', controls);
-            if (alpha && beta && gamma && controls && abScene) {
+            if (alpha && beta && gamma && controls) {
                 //controls.activeLook = true;
                 setGamma(gamma);
                 setAlpha(alpha);
@@ -116,9 +118,9 @@ const firstPerson = (props) => {
                 controls.lookAt(v.y, v.x, v.z);
 
                 for (var i = 3; i < NUM_OF_BALLS + 3; i++) {
-                    abScene.children[i].position.x = Math.random() * 50 - 25 + v.x;
-                    abScene.children[i].position.y = Math.random() * 50 - 25 + v.y;
-                    abScene.children[i].position.z = Math.random() * 50 - 25 + v.z;
+                    scene.children[i].position.x = Math.random() * 50 - 25 + v.x;
+                    scene.children[i].position.y = Math.random() * 50 - 25 + v.y;
+                    scene.children[i].position.z = Math.random() * 50 - 25 + v.z;
                 }
             }
         }
