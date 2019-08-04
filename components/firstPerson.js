@@ -11,6 +11,7 @@ const firstPerson = (props) => {
 
     const NUM_OF_BALLS = 30;
     const [win, setWindow] = useState(null);
+    const [abScene, setScene] = useState(null);
     const [gammatxt, setGamma] = useState(0)
     const [alphatxt, setAlpha] = useState(0);
     const [betatxt, setBeta] = useState(0);
@@ -251,7 +252,7 @@ const firstPerson = (props) => {
         renderer = new THREE.WebGLRenderer({ antialias: true });
         renderer.setPixelRatio(window.devicePixelRatio);
         renderer.setSize(window.innerWidth, window.innerHeight);
-
+        setScene(scene);
         stats = new Stats();
         con.appendChild(stats.dom);
         con.appendChild(renderer.domElement);
@@ -299,7 +300,7 @@ const firstPerson = (props) => {
 
     function touchScreen(event) {
         event.preventDefault();
-        if (event.touches && radius && scene) {
+        if (event.touches && radius && abScene) {
             let x = event.touches[0].clientX;
             let y = event.touches[0].clientY;
             let touch2D = new THREE.Vector2();
@@ -308,8 +309,9 @@ const firstPerson = (props) => {
             setA(touch2D.x);
             setB(touch2D.y);
             for (var i = 3; i < NUM_OF_BALLS + 3; i++) {
-                scene.children[i].position.x = Math.random() * 50 - 25 + touch2D.x;
-                scene.children[i].position.y = Math.random() * 50 - 25 + touch2D.y;
+                abScene.children[i].position.x = touch2D.x;
+                abScene.children[i].position.y = touch2D.y;
+                //abScene.children[i].position.z = -200;
                 // scene.children[i].position.z = Math.random() * 50 - 25 + v.z;
             }
         }
