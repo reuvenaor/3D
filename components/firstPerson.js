@@ -255,15 +255,15 @@ const firstPerson = (props) => {
         renderer.setPixelRatio(window.devicePixelRatio);
         renderer.setSize(window.innerWidth, window.innerHeight);
         setScene(scene);
-        stats = new Stats();
-        con.appendChild(stats.dom);
+        //stats = new Stats();
+        //con.appendChild(stats.dom);
         con.appendChild(renderer.domElement);
     }
 
     function animate() {
         requestAnimationFrame(animate);
         render();
-        stats.update();
+        //stats.update();
     }
 
     function stop() {
@@ -424,8 +424,8 @@ const firstPerson = (props) => {
                 {/* <p >gamma: {gammatxt}</p>
                 <p >alpha: {alphatxt}</p>
                 <p >beta: {betatxt}</p> */}
-                <p >v.x: {a}</p>
-                <p >v.y: {b}</p>
+                {/* <p >v.x: {a}</p>
+                <p >v.y: {b}</p> */}
                 {/* <p >v.z: {g}</p>
                 <p >radius: {radius}</p> */}
             </div>

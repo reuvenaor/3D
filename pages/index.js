@@ -1,10 +1,14 @@
 import { useEffect, useState } from 'react';
-import ThreeScene from '../components/threeScene';
+// import ThreeScene from '../components/threeScene';
 import Head from 'next/head';
 import FirstPerson from '../components/firstPerson';
+import { config } from 'react-spring';
+import { Parallax, ParallaxLayer } from '../node_modules/react-spring/renderprops-addons.js'
+import { Spring } from '../node_modules/react-spring/renderprops'
 
 function Index() {
 
+  let parallax;
   useEffect(() => {
     // WORK WITH API - date.js
     // async function getDate() {
@@ -19,8 +23,47 @@ function Index() {
       <Head>
         <title>Reuven 3D</title>
       </Head>
-      {/* <ThreeScene /> */}
-      <FirstPerson/>
+      <Parallax ref={ref => (parallax = ref)} pages={3}>
+        <ParallaxLayer offset={1} speed={1} style={{ backgroundColor: '#805E73' }} >
+          <FirstPerson />
+        </ParallaxLayer>
+        <ParallaxLayer offset={2} speed={1} style={{ backgroundColor: '#87BCDE' }} >
+          <FirstPerson />
+        </ParallaxLayer>
+
+        <ParallaxLayer offset={0} speed={0} factor={3} style={{ backgroundColor: '#87BCDE' }}  >
+          <FirstPerson />
+        </ParallaxLayer>
+        <ParallaxLayer offset={1.3} speed={0.3} style={{ pointerEvents: 'none' }}>
+          <FirstPerson />
+        </ParallaxLayer>
+
+        <ParallaxLayer offset={1} speed={0.8} style={{ opacity: 0.1 }}>
+          <FirstPerson />
+        </ParallaxLayer>
+
+        <ParallaxLayer offset={1.75} speed={0.5} style={{ opacity: 0.1 }}>
+          <FirstPerson />
+        </ParallaxLayer>
+
+
+        <ParallaxLayer offset={1} speed={0.2} style={{ opacity: 0.2 }}>
+          <FirstPerson />
+        </ParallaxLayer>
+
+        <ParallaxLayer offset={1.6} speed={-0.1} style={{ opacity: 0.4 }}>
+          <FirstPerson />
+        </ParallaxLayer>
+
+        <ParallaxLayer offset={2.6} speed={-0.4} style={{ opacity: 0.6 }}>
+          <FirstPerson />
+        </ParallaxLayer>
+
+        <ParallaxLayer offset={2.5} speed={-0.4} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', pointerEvents: 'none' }}>
+          <FirstPerson />
+        </ParallaxLayer>
+
+      </Parallax>
 
 
       <style jsx>{`
