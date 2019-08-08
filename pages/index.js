@@ -32,16 +32,27 @@ function Index() {
       <Parallax ref={ref => (parallax = ref)} pages={4} style={{ width: '100vw', maxWidth: '100vw', minWidth: '100vw' }}>
         <ParallaxLayer offset={0} speed={-1} style={{ backgroundColor: '#11BCDE' }} />
         <ParallaxLayer offset={0} speed={-6} style={{ backgroundColor: '#FFBCDE' }} />
-        <ParallaxLayer speed={6} style={{ backgroundColor: '#0000EE', opacity: 0.2 }} />
+        <ParallaxLayer speed={6} style={{ backgroundColor: '#0000EE', opacity: 0.2 }} >
+          <FirstPerson />
+        </ParallaxLayer>
 
-        <ParallaxLayer offset={1} speed={0} factor={3} style={{ width: '100vw', maxWidth: '100vw', minWidth: '100vw', backgroundColor: '#ffBCDE'  }}>
-          <BackTwo/>
+        <ParallaxLayer offset={0} speed={0} style={{ backgroundColor: '#0000EE', opacity: 0.2 }} >
+          <FirstPerson />
         </ParallaxLayer>
-        
+
+
+        <ParallaxLayer offset={1} speed={0} factor={3} style={{ width: '100vw', maxWidth: '100vw', minWidth: '100vw', backgroundColor: '#ffBCDE' }}>
+          <BackTwo />
+          
+        </ParallaxLayer>
+
         <ParallaxLayer offset={0} speed={3} factor={0} style={{ width: '100vw', maxWidth: '100vw', minWidth: '100vw' }}>
-          <BackOne/>
+          <BackOne />
+         
         </ParallaxLayer>
-        
+
+
+
 
         {/* <ParallaxLayer offset={1.3} speed={-0.3} style={{ pointerEvents: 'none' }}>
           <img src={url('satellite4')} style={{ width: '15%', marginLeft: '70%' }} />
