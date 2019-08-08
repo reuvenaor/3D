@@ -43,12 +43,16 @@ function Index() {
 
         <ParallaxLayer offset={1} speed={0} factor={3} style={{ width: '100vw', maxWidth: '100vw', minWidth: '100vw', backgroundColor: '#ffBCDE' }}>
           <BackTwo />
-          
+          <h1 style={{ position: 'absolute', color: 'white', bottom: 50, left: 50 }}>
+            {'Reuven Naor Full-stack Developer'}
+          </h1>
         </ParallaxLayer>
 
         <ParallaxLayer offset={0} speed={3} factor={0} style={{ width: '100vw', maxWidth: '100vw', minWidth: '100vw' }}>
           <BackOne />
-         
+          <h1 style={{ position: 'absolute', color: 'white', top: 50, left: 50 }}>
+            {'Hi,'}
+          </h1>
         </ParallaxLayer>
 
 
