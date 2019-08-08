@@ -216,6 +216,7 @@ const firstPerson = (props) => {
         var sphere = new THREE.SphereBufferGeometry(5, 64, 32);
 
         addLights();
+
         //WAVES VIEW
         geometry = new THREE.PlaneBufferGeometry(20000, 20000, worldWidth - 1, worldDepth - 1);
         geometry.rotateX(- Math.PI / 2);
@@ -237,7 +238,7 @@ const firstPerson = (props) => {
         // MeshLambertMaterial box
 
         for (var i = 0; i < NUM_OF_BALLS; i++) {
-            var object = new THREE.Mesh(sphere, new THREE.MeshLambertMaterial({ color: Math.random() * 0xffffff }));
+            var object = new THREE.Mesh(sphere, new THREE.MeshLambertMaterial({ color: 0x4D4D4D}));
             object.position.x = Math.random() * radius - radius;
             object.position.y = Math.random() * radius + radius;
             object.position.z = Math.random() * radius - radius;
