@@ -58,14 +58,16 @@ function Index() {
           <Flamingos />
         </ParallaxLayer>
 
-        <ParallaxLayer offset={0} speed={3} factor={0} style={{ width: '100vw', maxWidth: '100vw', minWidth: '100vw', alignItems: 'center', justifyContent: 'center' }}>
-          <Landscape />
-          <h1 style={{ position: 'absolute', color: 'white', top: 50, left: 50 }}>
-            {'Hi,'}
-          </h1>
+        <ParallaxLayer offset={0} speed={3} factor={0} style={{ width: '100vw', maxWidth: '100vw', minWidth: '100vw' }}>
+          <div style={{ width: '100vw', maxWidth: '100vw', minWidth: '100vw' , alignItems: 'center', justifyContent: 'center' }}>
+            <Landscape />
+            <h1 style={{ position: 'absolute', color: 'white', top: 50, left: 50 }}>
+              {'Hi,'}
+            </h1>
+          </div>
         </ParallaxLayer>
 
-        <ParallaxLayer offset={3} speed={-4} style={{ opacity: 0.2}}>
+        <ParallaxLayer offset={3} speed={-4} style={{ opacity: 0.2 }}>
           <Flamingos />
         </ParallaxLayer>
 
