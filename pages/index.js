@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 // import ThreeScene from '../components/threeScene';
 import Head from 'next/head';
+import React from 'react';
 import FirstPerson from '../components/firstPerson';
 import { config } from 'react-spring';
 import { Parallax, ParallaxLayer } from '../node_modules/react-spring/renderprops-addons.js';
@@ -33,52 +34,57 @@ function Index() {
       <Head>
         <title>Reuven 3D</title>
       </Head>
-      <Parallax ref={ref => (parallax = ref)} pages={4} style={{ width: '100vw', maxWidth: '100vw', minWidth: '100vw', alignItems: 'center', justifyContent: 'center' }}>
-        <ParallaxLayer offset={0} speed={-1} style={{ backgroundColor: '#11BCDE' }} />
+      <React.Fragment style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+
+        <Parallax ref={ref => (parallax = ref)} pages={4} style={{ width: '100vw', maxWidth: '100vw', minWidth: '100vw', alignItems: 'center', justifyContent: 'center' }}>
+          {/* <ParallaxLayer offset={0} speed={-1} style={{ backgroundColor: '#11BCDE' }} />
         <ParallaxLayer offset={0} speed={-6} style={{ backgroundColor: '#FFBCDE' }} />
-        {/* <ParallaxLayer offset={0} speed={1} style={{ backgroundColor: '#11BCDE' }} /> */}
+        <ParallaxLayer offset={0} speed={1} style={{ backgroundColor: '#11BCDE' }} />
         <ParallaxLayer offset={1} speed={6} style={{ backgroundColor: '#FFBCDE' }} />
         <ParallaxLayer offset={3} speed={0} style={{ backgroundColor: '#FFBCDE' }} />
 
-        <ParallaxLayer speed={6} style={{ backgroundColor: '#0000EE', opacity: 0.2 }} >
-        </ParallaxLayer>
+        <ParallaxLayer speed={6} style={{ backgroundColor: '#0000EE', opacity: 0.2 }} /> */}
 
-        <ParallaxLayer offset={0} speed={0} style={{ backgroundColor: '#0000EE', opacity: 0.2 }} >
-          <FirstPerson />
-        </ParallaxLayer>
+          {/* <ParallaxLayer offset={0} speed={0} factor={4}>
+         
+        </ParallaxLayer> */}
 
-        <ParallaxLayer offset={1} speed={0} factor={3} style={{ width: '100vw', maxWidth: '100vw', minWidth: '100vw', backgroundColor: '#11BCDE', opacity: 0.2 }}>
-          <Flamingos />
-          <h4 style={{ position: 'absolute', color: 'white', bottom: 50, left: 50 }}>
-            {'Reuven Naor Full-stack Developer'}
-          </h4>
-        </ParallaxLayer>
+          <ParallaxLayer offset={0} speed={0} style={{ opacity: 0.2 }} >
 
-        <ParallaxLayer offset={2} speed={2} >
-          <Flamingos />
-        </ParallaxLayer>
+          </ParallaxLayer>
 
-        <ParallaxLayer offset={0} speed={3} factor={0} style={{ width: '100vw', maxWidth: '100vw', minWidth: '100vw' }}>
-          <div style={{ width: '100vw', maxWidth: '100vw', minWidth: '100vw' , alignItems: 'center', justifyContent: 'center' }}>
-            <Landscape />
-            <h1 style={{ position: 'absolute', color: 'white', top: 50, left: 50 }}>
-              {'Hi,'}
-            </h1>
-          </div>
-        </ParallaxLayer>
+          <ParallaxLayer offset={1} speed={6} factor={1} style={{ width: '100vw', maxWidth: '100vw', minWidth: '100vw', opacity: 0.2 }}>
+            <Flamingos />
+            <h4 style={{ position: 'absolute', color: 'white', bottom: 50, left: 50 }}>
+              {'Reuven Naor Full-stack Developer'}
+            </h4>
+          </ParallaxLayer>
 
-        <ParallaxLayer offset={3} speed={-4} style={{ opacity: 0.2 }}>
-          <Flamingos />
-        </ParallaxLayer>
+          <ParallaxLayer offset={2} speed={2} >
+            <Flamingos />
+          </ParallaxLayer>
 
-        <ParallaxLayer offset={2} speed={1} factor={2} style={{ width: '100vw', maxWidth: '100vw', minWidth: '100vw' }}>
-          <Parashooter />
-        </ParallaxLayer>
+          <ParallaxLayer offset={0} speed={3} factor={0} style={{ width: '100vw', maxWidth: '100vw', minWidth: '100vw' }}>
+            <div style={{ width: '100vw', maxWidth: '100vw', minWidth: '100vw', alignItems: 'center', justifyContent: 'center' }}>
+              <Landscape />
+              <h1 style={{ position: 'absolute', color: 'white', top: 50, left: 50 }}>
+                {'Hi,'}
+              </h1>
+            </div>
+          </ParallaxLayer>
+
+          <ParallaxLayer offset={3} speed={-5} style={{ opacity: 1 }}>
+            <Flamingos />
+          </ParallaxLayer>
+
+          <ParallaxLayer offset={2} speed={1} factor={2} style={{ width: '100vw', maxWidth: '100vw', minWidth: '100vw' }}>
+            <Parashooter />
+          </ParallaxLayer>
 
 
 
 
-        {/* <ParallaxLayer offset={1.3} speed={-0.3} style={{ pointerEvents: 'none' }}>
+          {/* <ParallaxLayer offset={1.3} speed={-0.3} style={{ pointerEvents: 'none' }}>
           <img src={url('satellite4')} style={{ width: '15%', marginLeft: '70%' }} />
         </ParallaxLayer>
 
@@ -112,7 +118,14 @@ function Index() {
           <img src={url('earth')} style={{ width: '60%' }} />
         </ParallaxLayer> */}
 
-      </Parallax>
+
+        </Parallax>
+        <div style={{ width: '100vw', height: '100vh', margin: 0, maxWidth: '100vw', minWidth: '100vw' }}>
+          <FirstPerson />
+        </div>
+
+      </React.Fragment>
+
 
 
       <style jsx>{`

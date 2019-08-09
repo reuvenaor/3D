@@ -198,7 +198,7 @@ const firstPerson = (props) => {
 
     function init() {
         // raycaster = new THREE.Raycaster();
-        camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 2000);
+        camera = new THREE.PerspectiveCamera(120, window.innerWidth / window.innerHeight, 1, 2000);
         let radius = window.innerHeight / 2;
         setRadius(radius);
         camera.position.y = radius;    // this is RADIUS
@@ -208,17 +208,17 @@ const firstPerson = (props) => {
         controls.lookSpeed = 0.1;
         controls.activeLook = false;
         setControler(controls);
-        var light = new THREE.DirectionalLight(0xffffff, 1);
+        //var light = new THREE.DirectionalLight(0xffffff, 1);
         scene = new THREE.Scene();
-        scene.background = new THREE.Color(0xaaccff);
-        scene.fog = new THREE.FogExp2(0xaaccff, 0.0008);
+        scene.background = new THREE.Color(0xFFFFFF);
+        scene.fog = new THREE.FogExp2(0xFFFFFF, 0.0008);
 
-        var sphere = new THREE.SphereBufferGeometry(5, 64, 32);
+        var sphere = new THREE.SphereBufferGeometry(3, 32, 16);
 
         addLights();
 
         //WAVES VIEW
-        geometry = new THREE.PlaneBufferGeometry(20000, 20000, worldWidth - 1, worldDepth - 1);
+        geometry = new THREE.PlaneBufferGeometry(15000, 15000, worldWidth - 1, worldDepth - 1);
         geometry.rotateX(- Math.PI / 2);
         // WAVES MOVES AND TEXTURE
         position = geometry.attributes.position;
@@ -230,7 +230,7 @@ const firstPerson = (props) => {
 
         texture = new THREE.TextureLoader().load('https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/water.jpg'); // .setPath('../lib/water.jpg') // https://wallpaperstream.com/wallpapers/full/nebula/Carina-Nebula-Space-Stars.jpg
         texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
-        texture.repeat.set(5, 5);
+        texture.repeat.set(2, 2);
         material = new THREE.MeshBasicMaterial({ color: 0xffffff, map: texture });
         mesh = new THREE.Mesh(geometry, material);
         scene.add(mesh);
@@ -238,7 +238,7 @@ const firstPerson = (props) => {
         // MeshLambertMaterial box
 
         for (var i = 0; i < NUM_OF_BALLS; i++) {
-            var object = new THREE.Mesh(sphere, new THREE.MeshLambertMaterial({ color: 0x4D4D4D}));
+            var object = new THREE.Mesh(sphere, new THREE.MeshLambertMaterial({ color: 0xFFFFFF}));
             object.position.x = Math.random() * radius - radius;
             object.position.y = Math.random() * radius + radius;
             object.position.z = Math.random() * radius - radius;
@@ -358,7 +358,7 @@ const firstPerson = (props) => {
             width: '100vw',
             height: '100vh',
             display: 'block',
-            position: 'fixed',
+            //position: 'fixed',
             margin: 0
         }}
             //onTouchStart={touchScreen}
