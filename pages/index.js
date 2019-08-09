@@ -33,7 +33,7 @@ function Index() {
       <Head>
         <title>Reuven 3D</title>
       </Head>
-      <Parallax ref={ref => (parallax = ref)} pages={4} style={{ width: '100vw', maxWidth: '100vw', minWidth: '100vw' }}>
+      <Parallax ref={ref => (parallax = ref)} pages={4} style={{ width: '100vw', maxWidth: '100vw', minWidth: '100vw', alignItems: 'center', justifyContent: 'center' }}>
         <ParallaxLayer offset={0} speed={-1} style={{ backgroundColor: '#11BCDE' }} />
         <ParallaxLayer offset={0} speed={-6} style={{ backgroundColor: '#FFBCDE' }} />
         {/* <ParallaxLayer offset={0} speed={1} style={{ backgroundColor: '#11BCDE' }} /> */}
@@ -58,7 +58,7 @@ function Index() {
           <Flamingos />
         </ParallaxLayer>
 
-        <ParallaxLayer offset={0} speed={3} factor={0} style={{ width: '100vw', maxWidth: '100vw', minWidth: '100vw' }}>
+        <ParallaxLayer offset={0} speed={3} factor={0} style={{ width: '100vw', maxWidth: '100vw', minWidth: '100vw', alignItems: 'center', justifyContent: 'center' }}>
           <Landscape />
           <h1 style={{ position: 'absolute', color: 'white', top: 50, left: 50 }}>
             {'Hi,'}
