@@ -51,7 +51,7 @@ const firstPerson = (props) => {
             let quaternion = new THREE.Quaternion();
             quaternion.setFromEuler(eu);
 
-            let v = new THREE.Vector3(1, radius, radius);
+            let v = new THREE.Vector3(radius, radius, radius);
             // watching ground: 
             // let v = new THREE.Vector3(1, 1, 1); 
             v.applyQuaternion(quaternion);
@@ -74,7 +74,7 @@ const firstPerson = (props) => {
         scene = new THREE.Scene();
         //
         camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 1, 20000);
-        camera.position.set(1, radius, radius);
+        camera.position.set(radius, radius, radius);
         //
         light = new THREE.DirectionalLight(0xffffff, 0.8);
         scene.add(light);
