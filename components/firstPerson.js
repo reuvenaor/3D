@@ -212,7 +212,7 @@ const firstPerson = (props) => {
         addLights();
 
         //WAVES VIEW
-        geometry = new THREE.PlaneBufferGeometry(15000, 15000, worldWidth - 1, worldDepth - 1);
+        geometry = new THREE.PlaneBufferGeometry(10000, 10000, worldWidth - 1, worldDepth - 1);
         geometry.rotateX(- Math.PI / 2);
         // WAVES MOVES AND TEXTURE
         position = geometry.attributes.position;
@@ -221,10 +221,10 @@ const firstPerson = (props) => {
             let y = Math.sin(i / 2);
             position.setY(i, y);
         }
-        // https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/water.jpg
-        texture = new THREE.TextureLoader().load('../static/pexels-photo-728848.jpeg'); // .setPath('../lib/water.jpg') // https://wallpaperstream.com/wallpapers/full/nebula/Carina-Nebula-Space-Stars.jpg
+
+        texture = new THREE.TextureLoader().load('https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/water.jpg'); // .load(../static/img.jpg)
         texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
-        texture.repeat.set(2, 2);
+        //texture.repeat.set(5, 5);
         material = new THREE.MeshToonMaterial({ color: 0x8888EE, map: texture });
         mesh = new THREE.Mesh(geometry, material);
         scene.add(mesh);
