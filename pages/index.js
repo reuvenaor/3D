@@ -132,14 +132,11 @@ function Index() {
           left: 0;
           top: 0;
           width: '100vw';
-          //height: '100vh';
           margin: 0;
           padding: 0;
           overflow: hidden;
-          //display: grid;
           font-family: 'SF Pro Text', 'SF Pro Icons', 'Helvetica Neue',
            'Helvetica', 'Arial', sans-serif;
-          // hyphens: auto;
           text-align: center;
           align-items: center;
         }
