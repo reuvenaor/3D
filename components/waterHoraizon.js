@@ -77,8 +77,7 @@ const firstPerson = (props) => {
 
             console.log('contoler', controls);
             if (alpha && beta && gamma && controls) {
-                //controls.lookAt(v.y, v.x, v.z);
-                controls.position(v.y, v.x, v.z)
+                controls.lookAt(v.y, v.x, v.z)
             }
         }
     }
