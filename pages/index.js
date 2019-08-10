@@ -18,6 +18,28 @@ function Index() {
   const [scale, setScale] = useState(null);
   const [isLandscape, setLandscape] = useState(null);
 
+  function fullScreen() {
+
+    let isInFullScreen = (document.fullScreenElement && document.fullScreenElement !== null) ||    // alternative standard method  
+      (document.mozFullScreen || document.webkitIsFullScreen);
+
+    let docElm = document.documentElement;
+    if (!isInFullScreen) {
+
+      if (docElm.requestFullscreen) {
+        docElm.requestFullscreen();
+      }
+      else if (docElm.mozRequestFullScreen) {
+        docElm.mozRequestFullScreen();
+        alert("Mozilla entering fullscreen!");
+      }
+      else if (docElm.webkitRequestFullScreen) {
+        docElm.webkitRequestFullScreen();
+        alert("Webkit entering fullscreen!");
+      }
+    }
+  }
+
   useEffect(() => {
     setWindow(window);
     let scale = window.screen.availWidth / window.screen.availHeight;
@@ -27,6 +49,7 @@ function Index() {
     } else {
       setLandscape(true);
     }
+    //fullScreen();
     //console.log('window.height',window.screen.availHeight, window.screen.availWidth);
     // WORK WITH API - date.js
     // async function getDate() {
@@ -37,7 +60,7 @@ function Index() {
     // getDate();
   }, []);
   return (
-    <main>
+    <main onClick={fullScreen}>
       <Head>
         <title>Reuven 3D</title>
       </Head>
@@ -45,14 +68,10 @@ function Index() {
       <React.Fragment>
 
         <Parallax pages={4} style={{ height: '100%', width: '100%', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
-          {/* 
-          <div style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0, background: 'black', opacity: 0.5 }} >
-
-          </div> */}
 
           <ParallaxLayer offset={3} speed={0} factor={1}>
             {!isLandscape && win ?
-              <div style={{ transform: `translateY(${(1 - scale) * win.innerHeight * 0.6}px)` }} >
+              <div style={{ transform: `translateY(${(1 - scale) * win.innerHeight * 0.8}px)` }} >
                 <BackOne />
               </div>
               : <BackOne />}
@@ -68,7 +87,7 @@ function Index() {
 
           <ParallaxLayer offset={0} speed={3} factor={0} style={{ height: '100vh', maxHeight: '100vh', minHeight: '100vh' }}>
             {!isLandscape && win ?
-              <div style={{ transform: `translateY(${(1 - scale) * win.innerHeight * 0.7}px)` }} >
+              <div style={{ transform: `translateY(${(1 - scale) * win.innerHeight*0.8}px)` }} >
                 <Landscape />
               </div>
               : <Landscape />}
