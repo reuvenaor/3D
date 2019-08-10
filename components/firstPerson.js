@@ -420,7 +420,8 @@ const firstPerson = (props) => {
                 height: '10%',
                 top: '50%',
                 left: '50%',
-                zIndex: 3
+                zIndex: 3,
+
             }}>
                 {/* <p >gamma: {gammatxt}</p>
                 <p >alpha: {alphatxt}</p>
@@ -431,7 +432,7 @@ const firstPerson = (props) => {
                 <p >radius: {radius}</p> */}
             </div>
             <div
-                style={{ width: '100%', height: '100%' }}
+                style={{ width: '100%', height: '100%', margin: 0 }}
                 ref={(ref) => { con = ref }}
             ></div>
         </div>
