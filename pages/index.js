@@ -64,7 +64,7 @@ function Index() {
             <Flamingos />
           </ParallaxLayer>
 
-          <ParallaxLayer offset={1.8} speed={4} >
+          <ParallaxLayer offset={1.7} speed={5} >
             <Flamingos />
           </ParallaxLayer>
 
