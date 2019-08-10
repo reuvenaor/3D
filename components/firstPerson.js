@@ -20,7 +20,6 @@ const firstPerson = (props) => {
     const [a, setA] = useState(null);
     const [b, setB] = useState(null);
     const [g, setG] = useState(null);
-    const [absolute, setAbsolue] = useState(null);
     //
     let camera = null;
     let controls = null;;
@@ -92,7 +91,6 @@ const firstPerson = (props) => {
     function handleOrientation(event) {
         if (event) {
             event.preventDefault();
-            let absolute = event.absolute;
             let alpha = event.alpha; // > 180 ? event.alpha : 180;
             let beta = event.beta;
             let gamma = event.gamma;
@@ -128,7 +126,6 @@ const firstPerson = (props) => {
                 // setA(v.x);
                 // setB(v.y);
                 setG(v.z);
-                setAbsolue('' + absolute);
                 controls.lookAt(v.y, v.x, v.z);
                 // if (isTouched) {
                 //     for (var i = 3; i < NUM_OF_BALLS + 3; i++) {
@@ -323,6 +320,7 @@ const firstPerson = (props) => {
             display: 'block',
             //position: 'fixed',
             margin: 0,
+            padding: 0,
             overflow: 'hidden'
         }}
             //onTouchStart={touchScreen}
@@ -379,7 +377,7 @@ const firstPerson = (props) => {
                 ></span>
             </div> */}
             <div
-                style={{ width: '100%', height: '100%', margin: 0 }}
+                style={{ width: '100%', height: '100%', margin: 0, padding: 0 }}
                 ref={(ref) => { con = ref }}
             ></div>
         </div>
