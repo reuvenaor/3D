@@ -286,10 +286,10 @@ const firstPerson = (props) => {
     }
 
     function addLights() {
-        var light1 = new THREE.DirectionalLight(0xDDDDff, 0.5);
+        var light1 = new THREE.DirectionalLight(0xFFFFFF, 0.5);
         light1.position.set(1, 1, 1);
         scene.add(light1);
-        var light2 = new THREE.DirectionalLight(0xAAAAff, 1.5);
+        var light2 = new THREE.DirectionalLight(0xFFFFFF, 1.5);
         light2.position.set(0, - 1, 0);
         scene.add(light2);
     }
