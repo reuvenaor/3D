@@ -12,6 +12,10 @@ import Landscape from '../static/landscape';
 import BackOne from '../static/back1';
 import { setTimeout } from 'timers';
 
+import { OrbitControls } from '../lib/OrbitControls.js';
+import { Water } from '../lib/Water.js';
+import { Sky } from '../lib/Sky.js';
+
 function Index() {
 
   const cameraProspectiveY = 120;
