@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 //import * as THREE from 'three';
 import * as THREE from '../lib/three.module';
-import { OrbitControls } from '../lib/OrbitControls.js';
+import { FirstPersonControls } from '../lib/FirstPersonControls.js';
 import { Water } from '../lib/Water.js';
 import { Sky } from '../lib/Sky.js';
 
@@ -70,7 +70,7 @@ const firstPerson = (props) => {
             let quaternion = new THREE.Quaternion();
             quaternion.setFromEuler(eu);
 
-            let v = new THREE.Vector3(1, 1, 1);
+            let v = new THREE.Vector3(1, radius, radius);
             // watching ground: 
             // let v = new THREE.Vector3(1, 1, 1); 
             v.applyQuaternion(quaternion);
@@ -94,7 +94,7 @@ const firstPerson = (props) => {
         scene = new THREE.Scene();
         //
         camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 1, 20000);
-        camera.position.set(1, 1, 1);
+        camera.position.set(1, radius, 1);
         //
         light = new THREE.DirectionalLight(0xffffff, 0.8);
         scene.add(light);
@@ -147,12 +147,10 @@ const firstPerson = (props) => {
         }
         updateSun();
 
-        //
-        controls = new OrbitControls(camera, renderer.domElement);
-        controls.maxPolarAngle = Math.PI * 0.495;
-        controls.target.set(0, 10, 0);
-        controls.minDistance = 40.0;
-        controls.maxDistance = 200.0;
+        controls = new FirstPersonControls(camera);
+        controls.movementSpeed = 300;
+        controls.lookSpeed = 0.1;
+        controls.activeLook = false;
         controls.update();
 
         setRadius(radius);
