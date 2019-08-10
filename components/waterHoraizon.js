@@ -70,7 +70,7 @@ const firstPerson = (props) => {
             let quaternion = new THREE.Quaternion();
             quaternion.setFromEuler(eu);
 
-            let v = new THREE.Vector3(1, radius, radius);
+            let v = new THREE.Vector3(1, 1, 1);
             // watching ground: 
             // let v = new THREE.Vector3(1, 1, 1); 
             v.applyQuaternion(quaternion);
@@ -88,12 +88,12 @@ const firstPerson = (props) => {
         renderer.setPixelRatio(window.devicePixelRatio);
         renderer.setSize(window.innerWidth, window.innerHeight);
         con.appendChild(renderer.domElement);
-
+        let radius = window.innerHeight / 2;
         //
         scene = new THREE.Scene();
         //
         camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 1, 20000);
-        camera.position.set(30, 30, 100);
+        camera.position.set(1, 1, 1);
         //
         light = new THREE.DirectionalLight(0xffffff, 0.8);
         scene.add(light);
@@ -130,7 +130,6 @@ const firstPerson = (props) => {
             inclination: 0.49,
             azimuth: 0.205
         };
-        let radius = window.innerHeight / 2;
         var cubeCamera = new THREE.CubeCamera(0.1, 1, radius);
         cubeCamera.renderTarget.texture.generateMipmaps = true;
         cubeCamera.renderTarget.texture.minFilter = THREE.LinearMipmapLinearFilter;
