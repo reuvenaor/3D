@@ -205,9 +205,9 @@ const firstPerson = (props) => {
         setControler(controls);
         scene = new THREE.Scene();
         scene.background = new THREE.Color(0xEEEEEE);
-        scene.fog = new THREE.FogExp2(0x01013D, 0.004);
+        scene.fog = new THREE.FogExp2(0x01013D, 0.0008);
 
-        var sphere = new THREE.SphereBufferGeometry(3, 32, 16);
+        // var sphere = new THREE.SphereBufferGeometry(3, 32, 16);
 
         addLights();
 
@@ -225,7 +225,7 @@ const firstPerson = (props) => {
         texture = new THREE.TextureLoader().load('https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/water.jpg'); // .setPath('../lib/water.jpg') // https://wallpaperstream.com/wallpapers/full/nebula/Carina-Nebula-Space-Stars.jpg
         texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
         texture.repeat.set(2, 2);
-        material = new THREE.MeshBasicMaterial({ color: 0xEEEEFF, map: texture });
+        material = new THREE.MeshBasicMaterial({ color: 0x9999FF, map: texture });
         mesh = new THREE.Mesh(geometry, material);
         scene.add(mesh);
 
@@ -268,7 +268,7 @@ const firstPerson = (props) => {
         time = clock.getElapsedTime() * 10;
         let position = geometry.attributes.position;
         for (let i = 0; i < position.count; i++) {
-            let y = 35 * Math.sin(i / 5 + (time + i) / 7);
+            let y = 35 * Math.sin(i / 2 + (time + i) / 7);
             position.setY(i, y);
         }
 
