@@ -18,8 +18,8 @@ function Index() {
   const [win, setWindow] = useState(null);
   const [scale, setScale] = useState(null);
   const [isLandscape, setLandscape] = useState(null);
-
   let parallax;
+
   useEffect(() => {
     setWindow(window);
     let scale = window.screen.availWidth / window.screen.availHeight;
@@ -50,7 +50,7 @@ function Index() {
 
           <ParallaxLayer offset={3} speed={0} factor={1}>
             {!isLandscape && win ?
-              <div style={{ transform: `translateY(${(1 - scale) * win.innerHeight * 0.7}px)` }} >
+              <div style={{ transform: `translateY(${(1 - scale) * win.innerHeight * 0.6}px)` }} >
                 <BackOne />
               </div>
               : <BackOne />}
@@ -79,10 +79,18 @@ function Index() {
           </ParallaxLayer>
 
           <ParallaxLayer offset={3} speed={-5} style={{ opacity: 1 }}>
-            <h4 style={{ position: 'absolute', color: 'black', top: 30, left: 30 }}>
+            <h3 style={{ position: 'absolute', color: 'black', top: 30, left: 30 }}>
               {'Reuven Naor Full-stack Developer'}
-            </h4>
+            </h3>
           </ParallaxLayer>
+
+          <ParallaxLayer offset={3.1} speed={-10} style={{ opacity: 1 }}>
+            <p style={{ position: 'absolute', color: 'black', top: 30, left: 30 }}>
+              {'Images by Gordon Johnson from Pixabay'}
+            </p>
+          </ParallaxLayer>
+
+          
 
           <ParallaxLayer offset={2} speed={0.5} factor={2} style={{ width: '100vw', maxWidth: '100vw', minWidth: '100vw' }}>
             <Parashooter />
@@ -106,15 +114,9 @@ function Index() {
           margin: 0;
           padding: 0;
           //display: grid;
-          // font-family: 'SF Pro Text', 'SF Pro Icons', 'Helvetica Neue',
-          //  'Helvetica', 'Arial', sans-serif;
+          font-family: 'SF Pro Text', 'SF Pro Icons', 'Helvetica Neue',
+           'Helvetica', 'Arial', sans-serif;
           // hyphens: auto;
-          // line-height: 1.65;
-          // margin: 0 auto;
-
-          // max-width: 90%;
-          // min-height: 90%;
-          // padding: 72px 0;
           text-align: center;
           align-items: center;
         }
