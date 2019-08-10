@@ -64,7 +64,7 @@ function Index() {
             <Flamingos />
           </ParallaxLayer>
 
-          <ParallaxLayer offset={2} speed={3} >
+          <ParallaxLayer offset={1.8} speed={3} >
             <Flamingos />
           </ParallaxLayer>
 
@@ -88,7 +88,7 @@ function Index() {
             </h4>
           </ParallaxLayer>
 
-          <ParallaxLayer offset={2} speed={1} factor={2} style={{ width: '100vw', maxWidth: '100vw', minWidth: '100vw' }}>
+          <ParallaxLayer offset={2} speed={0.5} factor={2} style={{ width: '100vw', maxWidth: '100vw', minWidth: '100vw' }}>
             <Parashooter />
           </ParallaxLayer>
 
