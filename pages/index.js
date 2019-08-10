@@ -65,7 +65,7 @@ function Index() {
             <FirstPerson cameraProspectiveY={cameraProspectiveY}/>
           </ParallaxLayer>
 
-          <ParallaxLayer offset={0.998} speed={0} style={{ opacity: 0.4, margin: 0 }} >
+          <ParallaxLayer offset={1} speed={0} style={{ opacity: 0.4, margin: 0 }} >
             <FirstPerson cameraProspectiveY={-cameraProspectiveY}/>
           </ParallaxLayer>
 
@@ -73,7 +73,7 @@ function Index() {
             <FirstPerson cameraProspectiveY={cameraProspectiveY}/>
           </ParallaxLayer>
 
-          <ParallaxLayer offset={2.998} speed={0} style={{ opacity: 0.4, margin: 0 }} >
+          <ParallaxLayer offset={3} speed={0} style={{ opacity: 0.4, margin: 0 }} >
             <FirstPerson cameraProspectiveY={-cameraProspectiveY}/>
           </ParallaxLayer>
 
