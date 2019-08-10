@@ -358,7 +358,7 @@ const firstPerson = (props) => {
             width: '100vw',
             height: '100vh',
             display: 'block',
-            position: 'fixed',
+            //position: 'fixed',
             margin: 0
         }}
             //onTouchStart={touchScreen}
@@ -414,23 +414,6 @@ const firstPerson = (props) => {
                     onMouseUp={onRightEnd}
                 ></span>
             </div> */}
-            <div style={{
-                position: 'absolute',
-                width: 100,
-                height: '10%',
-                top: '50%',
-                left: '50%',
-                zIndex: 3,
-
-            }}>
-                {/* <p >gamma: {gammatxt}</p>
-                <p >alpha: {alphatxt}</p>
-                <p >beta: {betatxt}</p> */}
-                {/* <p >v.x: {a}</p>
-                <p >v.y: {b}</p> */}
-                {/* <p >v.z: {g}</p>
-                <p >radius: {radius}</p> */}
-            </div>
             <div
                 style={{ width: '100%', height: '100%', margin: 0 }}
                 ref={(ref) => { con = ref }}
