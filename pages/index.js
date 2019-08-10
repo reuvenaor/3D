@@ -107,9 +107,8 @@ function Index() {
 
 
 </Parallax>
- <div style={{ margin: 0}}>
+
  <FirstPerson cameraProspectiveY={cameraProspectiveY}/>
-</div> 
 
 </React.Fragment>
 
