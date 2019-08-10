@@ -221,8 +221,8 @@ const firstPerson = (props) => {
             let y = Math.sin(i / 2);
             position.setY(i, y);
         }
-
-        texture = new THREE.TextureLoader().load('https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/water.jpg'); // .setPath('../lib/water.jpg') // https://wallpaperstream.com/wallpapers/full/nebula/Carina-Nebula-Space-Stars.jpg
+        // https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/water.jpg
+        texture = new THREE.TextureLoader().load('../static/pexels-photo-728848.jpeg'); // .setPath('../lib/water.jpg') // https://wallpaperstream.com/wallpapers/full/nebula/Carina-Nebula-Space-Stars.jpg
         texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
         texture.repeat.set(2, 2);
         material = new THREE.MeshToonMaterial({ color: 0x8888EE, map: texture });
