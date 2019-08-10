@@ -11,10 +11,9 @@ import Flamingos from '../static/flamingos';
 import Landscape from '../static/landscape';
 import BackOne from '../static/back1';
 import { setTimeout } from 'timers';
+import WaterHoraizon from '../components/waterHoraizon';
 
-import { OrbitControls } from '../lib/OrbitControls.js';
-import { Water } from '../lib/Water.js';
-import { Sky } from '../lib/Sky.js';
+
 
 function Index() {
 
@@ -134,7 +133,7 @@ function Index() {
 
         </Parallax>
 
-        <FirstPerson cameraProspectiveY={cameraProspectiveY} />
+        <WaterHoraizon cameraProspectiveY={cameraProspectiveY} />
 
       </React.Fragment>
 

@@ -1,49 +1,36 @@
 import React, { useEffect, useState } from 'react';
-import * as THREE from 'three'; 
-// import * as THREE from '../lib/three.module';
-import { FirstPersonControls } from '../lib/FirstPersonControls';
+//import * as THREE from 'three';
+import * as THREE from '../lib/three.module';
 import { OrbitControls } from '../Lib/OrbitControls.js';
+import { Water } from '../lib/Water.js';
+import { Sky } from '../lib/Sky.js';
 
 const firstPerson = (props) => {
 
-    const NUM_OF_BALLS = 30;
     const [win, setWindow] = useState(null);
-    const [abScene, setScene] = useState(null);
-    const [gammatxt, setGamma] = useState(0)
-    const [alphatxt, setAlpha] = useState(0);
-    const [betatxt, setBeta] = useState(0);
     const [contoler, setControler] = useState(null);
     const [radius, setRadius] = useState(null)
-    const [a, setA] = useState(null);
-    const [b, setB] = useState(null);
-    const [g, setG] = useState(null);
     //
     let camera = null;
-    let controls = null;;
-    let scene = null;;
-    let renderer = null;;
-    let stats = null;;
-    let mesh = null;;
-    let geometry = null;;
-    let material = null;;
+    let controls = null;
+    let water = null;
+    let scene = null;
+    let renderer = null;
+    let con = null;
+    let light = null;
+    let sphere = null;
+    let stats = null;
+    let mesh = null;
+    let geometry = null;
+    let material = null;
     let clock = null;;
     let worldWidth = 200;
     let worldDepth = 128;
-
-    // container - view wrap
-    let con = null;
-
+    
     let position = null;
     let texture = null;
     let delta = null;
     let time = null;
-    let wraper = null;
-    let btnForward = null;
-    let btnLeft = null;
-    let btnRight = null;
-
-    // let raycaster = null;
-    let isTouched = false;
 
 
     useEffect(() => {
@@ -52,38 +39,12 @@ const firstPerson = (props) => {
         window.addEventListener('resize', onWindowResize, false);
         window.addEventListener("deviceorientation", handleOrientation, true);
 
-        window.addEventListener('touchstart', handleTouchStart, true);
-        window.addEventListener('touchend', handleTouchEnd, true)
-
         animate();
 
-        // console.log(raycaster);
-
-        console.log(controls);
-        console.log('scene', scene);
         return () => {
             stop();
         }
     }, []);
-
-    function handleTouchStart(event) {
-        let x = event.touches[0].clientX;
-        let y = event.touches[0].clientY;
-        let touch2D = new THREE.Vector2();
-        touch2D.x = (x / window.innerWidth) * 2 - 1;
-        touch2D.y = - (y / window.innerHeight) * 2 + 1;
-        // touch2D.x = x;
-        // touch2D.y = - y;
-        setA(touch2D.x);
-        setB(touch2D.y);
-
-        isTouched = touch2D;
-    };
-
-    function handleTouchEnd(event) {
-        isTouched = false;
-        //setIsTouch(false);
-    }
 
     function handleOrientation(event) {
         if (event) {
@@ -135,47 +96,6 @@ const firstPerson = (props) => {
         }
     }
 
-    function onRight(event) {
-        event.preventDefault();
-        if (contoler) {
-            contoler.moveRight = true;
-        }
-    }
-
-    function onRightEnd(event) {
-        event.preventDefault();
-        if (contoler) {
-            contoler.moveRight = false;
-        }
-    }
-
-    function onLeft(event) {
-        event.preventDefault();
-        if (contoler) {
-            contoler.moveLeft = true;
-        }
-    }
-
-    function onLeftEnd(event) {
-        event.preventDefault();
-        if (contoler) {
-            contoler.moveLeft = false;
-        }
-    }
-
-    function onForward(event) {
-        event.preventDefault();
-        if (contoler) {
-            contoler.moveForward = true;
-        }
-    }
-
-    function onForwardEnd(event) {
-        if (contoler) {
-            //contoler.moveLeft = false;
-            contoler.moveForward = false;
-        }
-    }
 
     function onWindowResize() {
         camera.aspect = window.innerWidth / window.innerHeight;
@@ -186,70 +106,86 @@ const firstPerson = (props) => {
 
 
     function init() {
-        // raycaster = new THREE.Raycaster();
-        camera = new THREE.PerspectiveCamera(props.cameraProspectiveY, window.innerWidth / window.innerHeight, 1, 2000);
-        let radius = window.innerHeight / 2;
-        setRadius(radius);
-        camera.position.y = radius;    // this is RADIUS
-        clock = new THREE.Clock();
-        controls = new FirstPersonControls(camera);
-        controls.movementSpeed = 1000;
-        controls.lookSpeed = 0.1;
-        controls.activeLook = false;
-        setControler(controls);
-        scene = new THREE.Scene();
-        scene.background = new THREE.Color(0xEEEEEE);
-        scene.fog = new THREE.FogExp2(0x05053D, 0.0008);
 
-        // var sphere = new THREE.SphereBufferGeometry(3, 32, 16);
-
-        addLights();
-
-        //WAVES VIEW
-        geometry = new THREE.PlaneBufferGeometry(10000, 10000, worldWidth - 1, worldDepth - 1);
-        geometry.rotateX(- Math.PI / 2);
-        // WAVES MOVES AND TEXTURE
-        position = geometry.attributes.position;
-        position.dynamic = true;
-        for (let i = 0; i < position.count; i++) {
-            let y = Math.sin(i / 2);
-            position.setY(i, y);
-        }
-
-        texture = new THREE.TextureLoader().load('https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/water.jpg'); // .load(../static/img.jpg)
-        texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
-        //texture.repeat.set(5, 5);
-        material = new THREE.MeshToonMaterial({ color: 0x8888EE, map: texture });
-        mesh = new THREE.Mesh(geometry, material);
-        scene.add(mesh);
-
-        // MeshLambertMaterial box
-
-        // for (var i = 0; i < NUM_OF_BALLS; i++) {
-        //     var object = new THREE.Mesh(sphere, new THREE.MeshPhongMaterial({color: '0xFFFFFF'}));
-        //     object.receiveShadow = true;
-        //     object.position.x = Math.random() * radius - radius;
-        //     object.position.y = Math.random() * radius + radius;
-        //     object.position.z = Math.random() * radius - radius;
-        //     //object.rotation.x = Math.random() * -1000 * Math.PI /2;
-        //     object.rotation.z = Math.random() * 1000 * Math.PI;
-        //     scene.add(object);
-        // }
-
-        // RENDERS & APPENDS
-        renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer = new THREE.WebGLRenderer();
         renderer.setPixelRatio(window.devicePixelRatio);
         renderer.setSize(window.innerWidth, window.innerHeight);
-        setScene(scene);
-        //stats = new Stats();
-        //con.appendChild(stats.dom);
         con.appendChild(renderer.domElement);
+
+        //
+
+
+        scene = new THREE.Scene();
+        //
+        camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 1, 20000);
+        camera.position.set(30, 30, 100);
+        //
+        light = new THREE.DirectionalLight(0xffffff, 0.8);
+        scene.add(light);
+        // Water
+        var waterGeometry = new THREE.PlaneBufferGeometry(10000, 10000);
+        water = new Water(
+            waterGeometry,
+            {
+                textureWidth: 512,
+                textureHeight: 512,
+                waterNormals: new THREE.TextureLoader().load('textures/waternormals.jpg', function (texture) {
+                    texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+                }),
+                alpha: 1.0,
+                sunDirection: light.position.clone().normalize(),
+                sunColor: 0xffffff,
+                waterColor: 0x001e0f,
+                distortionScale: 3.7,
+                fog: scene.fog !== undefined
+            }
+        );
+        water.rotation.x = - Math.PI / 2;
+        scene.add(water);
+        // Skybox
+        var sky = new Sky();
+        var uniforms = sky.material.uniforms;
+        uniforms['turbidity'].value = 10;
+        uniforms['rayleigh'].value = 2;
+        uniforms['luminance'].value = 1;
+        uniforms['mieCoefficient'].value = 0.005;
+        uniforms['mieDirectionalG'].value = 0.8;
+        var parameters = {
+            distance: 400,
+            inclination: 0.49,
+            azimuth: 0.205
+        };
+        var cubeCamera = new THREE.CubeCamera(0.1, 1, 512);
+        cubeCamera.renderTarget.texture.generateMipmaps = true;
+        cubeCamera.renderTarget.texture.minFilter = THREE.LinearMipmapLinearFilter;
+        scene.background = cubeCamera.renderTarget;
+        function updateSun() {
+            var theta = Math.PI * (parameters.inclination - 0.5);
+            var phi = 2 * Math.PI * (parameters.azimuth - 0.5);
+            light.position.x = parameters.distance * Math.cos(phi);
+            light.position.y = parameters.distance * Math.sin(phi) * Math.sin(theta);
+            light.position.z = parameters.distance * Math.sin(phi) * Math.cos(theta);
+            sky.material.uniforms['sunPosition'].value = light.position.copy(light.position);
+            water.material.uniforms['sunDirection'].value.copy(light.position).normalize();
+            cubeCamera.update(renderer, sky);
+        }
+        updateSun();
+
+        //
+        controls = new OrbitControls(camera, renderer.domElement);
+        controls.maxPolarAngle = Math.PI * 0.495;
+        controls.target.set(0, 10, 0);
+        controls.minDistance = 40.0;
+        controls.maxDistance = 200.0;
+        controls.update();
+
+        setRadius(radius);
+        setControler(controls);
     }
 
     function animate() {
         requestAnimationFrame(animate);
         render();
-        //stats.update();
     }
 
     function stop() {
@@ -258,121 +194,27 @@ const firstPerson = (props) => {
     }
 
     function render() {
-        delta = clock.getDelta();
-        time = clock.getElapsedTime() * 10;
-        let position = geometry.attributes.position;
-        for (let i = 0; i < position.count; i++) {
-            let y = 30 * Math.sin(i / 5 + (time + i) / 7);
-            position.setY(i, y);
+        var time = performance.now() * 0.001;
+        if (sphere) {
+            sphere.position.y = Math.sin(time) * 20 + 5;
+            sphere.rotation.x = time * 0.5;
+            sphere.rotation.z = time * 0.51;
         }
 
-        // for (var i = 3; i < NUM_OF_BALLS + 3; i++) {
-        //     scene.children[i].position.x += 0.05;
-        //     scene.children[i].position.y -= 0.1;
-        //     scene.children[i].position.z -= 0.1;
-        //     scene.children[i].rotation.x += Math.random() * 10 * Math.PI;
-        //     scene.children[i].rotation.z += Math.random() * 10 * Math.PI;
-        // }
-
-        position.needsUpdate = true;
-        controls.update(delta);
+        water.material.uniforms['time'].value += 1.0 / 60.0;
         renderer.render(scene, camera);
     }
-
-    function addLights() {
-        var light1 = new THREE.DirectionalLight(0xFFFFFF, 0.5);
-        light1.position.set(1, 1, 1);
-        scene.add(light1);
-        var light2 = new THREE.DirectionalLight(0xFFFFFF, 1.5);
-        light2.position.set(0, - 1, 0);
-        scene.add(light2);
-    }
-
-
-
-    // function touchScreen(event) {
-    //     event.preventDefault();
-    //     if (event.touches && radius && abScene) {
-    //         let x = event.touches[0].clientX;
-    //         let y = event.touches[0].clientY;
-    //         let touch2D = new THREE.Vector2();
-    //         touch2D.x = ( x / window.innerWidth ) * 2 - 1;
-    //         touch2D.y = - ( y / window.innerHeight ) * 2 + 1;
-    //         setA(touch2D.x);
-    //         setB(touch2D.y);
-    //         for (var i = 3; i < NUM_OF_BALLS + 3; i++) {
-    //             abScene.children[i].position.x = touch2D.x;
-    //             abScene.children[i].position.y = touch2D.y;
-    //             //abScene.children[i].position.z = -200;
-    //             // scene.children[i].position.z = Math.random() * 50 - 25 + v.z;
-    //         }
-    //     }
-    // }
-
 
     return (
         <div style={{
             width: '100vw',
             height: '100vh',
             display: 'block',
-            //position: 'fixed',
             margin: 0,
             padding: 0,
             overflow: 'hidden'
         }}
-            //onTouchStart={touchScreen}
-            ref={(ref) => { wraper = ref }}
         >
-
-            {/* <div style={{
-                position: 'absolute',
-                bottom: '20%',
-                left: '25%',
-                width: '50%',
-                height: '20%',
-                display: 'flex',
-                background: 'grey',
-                alignItems: 'center',
-                justifyContent: 'space-around', //space-between
-                zIndex: 1
-            }}>
-                <span
-                    style={{
-                        width: '32%',
-                        height: '30%',
-                        background: 'green',
-                    }}
-                    onTouchStart={onLeft} // onTouchMove
-                    onTouchEnd={onLeftEnd}
-                    onMouseDown={onLeft}
-                    onMouseUp={onLeftEnd}
-                    ref={(ref) => { btnLeft = ref }}
-                ></span>
-                <span style={{
-                    width: '32%',
-                    height: '30%',
-                    background: 'green',
-                    zIndex: 2,
-                    overflow: 'hidden'
-                }}
-                    ref={(ref) => { btnForward = ref }}
-                    onTouchStart={onForward}
-                    onTouchEnd={onForwardEnd}
-                    onMouseDown={onForward}
-                    onMouseUp={onForwardEnd}
-                ></span>
-                <span style={{
-                    width: '32%',
-                    height: '30%',
-                    background: 'green',
-                }}
-                    ref={(ref) => { btnRight = ref }}
-                    onTouchStart={onRight}
-                    onTouchEnd={onRightEnd}
-                    onMouseDown={onRight}
-                    onMouseUp={onRightEnd}
-                ></span>
-            </div> */}
             <div
                 style={{ width: '100%', height: '100%', margin: 0, padding: 0 }}
                 ref={(ref) => { con = ref }}
