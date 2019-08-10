@@ -49,68 +49,55 @@ function Index() {
 
       <React.Fragment>
 
-<Parallax ref={ref => (parallax = ref)} pages={4} style={{ width: '100vw', maxWidth: '100vw', minWidth: '100vw', alignItems: 'center', justifyContent: 'center' }}>
+        <Parallax ref={ref => (parallax = ref)} pages={4} style={{ width: '100vw', maxWidth: '100vw', minWidth: '100vw', alignItems: 'center', justifyContent: 'center' }}>
 
-  {/* <ParallaxLayer offset={0} speed={0} style={{ opacity: 0.4, margin: 0 }} >
-    <FirstPerson cameraProspectiveY={cameraProspectiveY}/>
-  </ParallaxLayer>
+          <ParallaxLayer offset={3} speed={0} factor={1}>
+            {!isLandscape && win ?
+              <div style={{ transform: `translateY(${(1 - scale) * win.innerHeight * 0.7}px)` }} >
+                <BackOne />
+              </div>
+              : <BackOne />}
 
-  <ParallaxLayer offset={1} speed={0} style={{ opacity: 0.4, margin: 0 }} >
-    <FirstPerson cameraProspectiveY={-cameraProspectiveY}/>
-  </ParallaxLayer>
+          </ParallaxLayer>
 
-  <ParallaxLayer offset={2} speed={0} style={{ opacity: 0.4, margin: 0 }} >
-    <FirstPerson cameraProspectiveY={cameraProspectiveY}/>
-  </ParallaxLayer>
+          <ParallaxLayer offset={1} speed={2} factor={1} style={{ width: '100vw', maxWidth: '100vw', minWidth: '100vw' }}>
+            <Flamingos />
+          </ParallaxLayer>
 
-  <ParallaxLayer offset={3} speed={0} style={{ opacity: 0.4, margin: 0 }} >
-    <FirstPerson cameraProspectiveY={-cameraProspectiveY}/>
-  </ParallaxLayer> */}
+          <ParallaxLayer offset={2} speed={3} >
+            <Flamingos />
+          </ParallaxLayer>
 
-  <ParallaxLayer offset={3} speed={0} factor={1}>
-  {!isLandscape && win ?
-      <div style={{ transform: `translateY(${(1 - scale) * win.innerHeight * 0.7}px)` }} >
-        <BackOne />
-      </div>
-      : <BackOne />}
-    
-  </ParallaxLayer>
+          <ParallaxLayer offset={0} speed={3} factor={0} style={{ height: '100vh', maxHeight: '100vh', minHeight: '100vh' }}>
+            {!isLandscape && win ?
+              <div style={{ transform: `translateY(${(1 - scale) * win.innerHeight * 0.7}px)` }} >
+                <Landscape />
+              </div>
+              : <Landscape />}
+          </ParallaxLayer>
 
-  <ParallaxLayer offset={1} speed={2} factor={1} style={{ width: '100vw', maxWidth: '100vw', minWidth: '100vw'}}>
-    <Flamingos />
-  </ParallaxLayer>
+          <ParallaxLayer offset={0} speed={5} >
+            <h1 style={{ position: 'absolute', color: 'black', top: 30, left: 30 }}>
+              {'Hi,'}
+            </h1>
+          </ParallaxLayer>
 
-  <ParallaxLayer offset={2} speed={2} >
-    <Flamingos />
-  </ParallaxLayer>
+          <ParallaxLayer offset={3} speed={-5} style={{ opacity: 1 }}>
+            <h4 style={{ position: 'absolute', color: 'white', bottom: 20, left: 20 }}>
+              {'Reuven Naor Full-stack Developer'}
+            </h4>
+          </ParallaxLayer>
 
-  <ParallaxLayer offset={0} speed={3} factor={0} style={{ height: '100vh', maxHeight: '100vh', minHeight: '100vh' }}>
-    {!isLandscape && win ?
-      <div style={{ transform: `translateY(${(1 - scale) * win.innerHeight * 0.7}px)` }} >
-        <Landscape />
-      </div>
-      : <Landscape />}
-    <h1 style={{ position: 'absolute', color: 'white', top: 50, left: 50 }}>
-      {'Hi,'}
-    </h1>
-  </ParallaxLayer>
-
-  <ParallaxLayer offset={3} speed={-5} style={{ opacity: 1 }}>
-    <h4 style={{ position: 'absolute', color: 'white', bottom: 20, left: 20 }}>
-      {'Reuven Naor Full-stack Developer'}
-    </h4>
-  </ParallaxLayer>
-
-  <ParallaxLayer offset={2} speed={1} factor={2} style={{ width: '100vw', maxWidth: '100vw', minWidth: '100vw' }}>
-    <Parashooter />
-  </ParallaxLayer>
+          <ParallaxLayer offset={2} speed={1} factor={2} style={{ width: '100vw', maxWidth: '100vw', minWidth: '100vw' }}>
+            <Parashooter />
+          </ParallaxLayer>
 
 
-</Parallax>
+        </Parallax>
 
- <FirstPerson cameraProspectiveY={cameraProspectiveY}/>
+        <FirstPerson cameraProspectiveY={cameraProspectiveY} />
 
-</React.Fragment>
+      </React.Fragment>
 
 
       <style jsx>{`
@@ -144,67 +131,3 @@ function Index() {
 }
 
 export default Index;
-
-
-{/* <React.Fragment>
-
-<Parallax ref={ref => (parallax = ref)} pages={4} style={{ width: '100vw', maxWidth: '100vw', minWidth: '100vw', alignItems: 'center', justifyContent: 'center' }}>
-
-  <ParallaxLayer offset={0} speed={0} style={{ opacity: 0.4, margin: 0 }} >
-    <FirstPerson cameraProspectiveY={cameraProspectiveY}/>
-  </ParallaxLayer>
-
-  <ParallaxLayer offset={1} speed={0} style={{ opacity: 0.4, margin: 0 }} >
-    <FirstPerson cameraProspectiveY={-cameraProspectiveY}/>
-  </ParallaxLayer>
-
-  <ParallaxLayer offset={2} speed={0} style={{ opacity: 0.4, margin: 0 }} >
-    <FirstPerson cameraProspectiveY={cameraProspectiveY}/>
-  </ParallaxLayer>
-
-  <ParallaxLayer offset={3} speed={0} style={{ opacity: 0.4, margin: 0 }} >
-    <FirstPerson cameraProspectiveY={-cameraProspectiveY}/>
-  </ParallaxLayer>
-
-  <ParallaxLayer offset={3} speed={0} factor={1}>
-  {!isLandscape && win ?
-      <div style={{ transform: `translateY(${(1 - scale) * win.innerHeight * 0.7}px)` }} >
-        <BackOne />
-      </div>
-      : <BackOne />}
-    
-  </ParallaxLayer>
-
-  <ParallaxLayer offset={1} speed={2} factor={1} style={{ width: '100vw', maxWidth: '100vw', minWidth: '100vw'}}>
-    <Flamingos />
-  </ParallaxLayer>
-
-  <ParallaxLayer offset={2} speed={2} >
-    <Flamingos />
-  </ParallaxLayer>
-
-  <ParallaxLayer offset={0} speed={3} factor={0} style={{ height: '100vh', maxHeight: '100vh', minHeight: '100vh' }}>
-    {!isLandscape && win ?
-      <div style={{ transform: `translateY(${(1 - scale) * win.innerHeight * 0.7}px)` }} >
-        <Landscape />
-      </div>
-      : <Landscape />}
-    <h1 style={{ position: 'absolute', color: 'white', top: 50, left: 50 }}>
-      {'Hi,'}
-    </h1>
-  </ParallaxLayer>
-
-  <ParallaxLayer offset={3} speed={-5} style={{ opacity: 1 }}>
-    <h4 style={{ position: 'absolute', color: 'white', bottom: 20, left: 20 }}>
-      {'Reuven Naor Full-stack Developer'}
-    </h4>
-  </ParallaxLayer>
-
-  <ParallaxLayer offset={2} speed={1} factor={2} style={{ width: '100vw', maxWidth: '100vw', minWidth: '100vw' }}>
-    <Parashooter />
-  </ParallaxLayer>
-
-
-</Parallax>
-
-</React.Fragment> */}

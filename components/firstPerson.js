@@ -46,11 +46,6 @@ const firstPerson = (props) => {
     let btnLeft = null;
     let btnRight = null;
 
-    let light1 = null;
-    let light2 = null;
-    let light3 = null;
-    let light4 = null;
-
     // let raycaster = null;
     let isTouched = false;
 
@@ -135,13 +130,13 @@ const firstPerson = (props) => {
                 setG(v.z);
                 setAbsolue('' + absolute);
                 controls.lookAt(v.y, v.x, v.z);
-                if (isTouched) {
-                    for (var i = 3; i < NUM_OF_BALLS + 3; i++) {
-                        scene.children[i].position.x = Math.random() * 50 - 25 + v.x + isTouched.x;
-                        scene.children[i].position.y = Math.random() * 50 - 25 + v.y + isTouched.y;
-                        scene.children[i].position.z = Math.random() * 50 - 25 + v.z;
-                    }
-                }
+                // if (isTouched) {
+                //     for (var i = 3; i < NUM_OF_BALLS + 3; i++) {
+                //         scene.children[i].position.x = Math.random() * 50 - 25 + v.x + isTouched.x;
+                //         scene.children[i].position.y = Math.random() * 50 - 25 + v.y + isTouched.y;
+                //         scene.children[i].position.z = Math.random() * 50 - 25 + v.z;
+                //     }
+                // }
             }
         }
     }
@@ -208,10 +203,9 @@ const firstPerson = (props) => {
         controls.lookSpeed = 0.1;
         controls.activeLook = false;
         setControler(controls);
-        //var light = new THREE.DirectionalLight(0xffffff, 1);
         scene = new THREE.Scene();
-        scene.background = new THREE.Color(0xFFFFFF);
-        scene.fog = new THREE.FogExp2(0xFFFFFF, 0.0008);
+        scene.background = new THREE.Color(0xEEEEEE);
+        scene.fog = new THREE.FogExp2(0x01013D, 0.004);
 
         var sphere = new THREE.SphereBufferGeometry(3, 32, 16);
 
@@ -231,25 +225,22 @@ const firstPerson = (props) => {
         texture = new THREE.TextureLoader().load('https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/water.jpg'); // .setPath('../lib/water.jpg') // https://wallpaperstream.com/wallpapers/full/nebula/Carina-Nebula-Space-Stars.jpg
         texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
         texture.repeat.set(2, 2);
-        material = new THREE.MeshBasicMaterial({ color: 0xffffff, map: texture });
+        material = new THREE.MeshToonMaterial({ color: 0x151588, map: texture });
         mesh = new THREE.Mesh(geometry, material);
         scene.add(mesh);
 
         // MeshLambertMaterial box
 
-        for (var i = 0; i < NUM_OF_BALLS; i++) {
-            var object = new THREE.Mesh(sphere, new THREE.MeshLambertMaterial({ color: 0xFFFFFF}));
-            object.position.x = Math.random() * radius - radius;
-            object.position.y = Math.random() * radius + radius;
-            object.position.z = Math.random() * radius - radius;
-            // object.rotation.x = Math.random() * 1000 * Math.PI;
-            // object.rotation.y = Math.random() * 1000 * Math.PI;
-            // object.rotation.z = Math.random() * 1000 * Math.PI;
-            // object.scale.x = Math.random() + 0.5;
-            // object.scale.y = Math.random() + 0.5;
-            // object.scale.z = Math.random() + 0.5;
-            scene.add(object);
-        }
+        // for (var i = 0; i < NUM_OF_BALLS; i++) {
+        //     var object = new THREE.Mesh(sphere, new THREE.MeshPhongMaterial({color: '0xFFFFFF'}));
+        //     object.receiveShadow = true;
+        //     object.position.x = Math.random() * radius - radius;
+        //     object.position.y = Math.random() * radius + radius;
+        //     object.position.z = Math.random() * radius - radius;
+        //     //object.rotation.x = Math.random() * -1000 * Math.PI /2;
+        //     object.rotation.z = Math.random() * 1000 * Math.PI;
+        //     scene.add(object);
+        // }
 
         // RENDERS & APPENDS
         renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -281,28 +272,13 @@ const firstPerson = (props) => {
             position.setY(i, y);
         }
 
-        for (var i = 3; i < NUM_OF_BALLS + 3; i++) {
-            scene.children[i].position.x += 0.05;
-            scene.children[i].position.y -= 0.1;
-            scene.children[i].position.z -= 0.1;
-            //scene.children[i].rotation.x += Math.random() * 2 * Math.PI;
-            scene.children[i].rotation.z += 0.2;
-
-        }
-
-
-        // light1.position.x = Math.sin( time * 0.7 ) * 30;
-        // light1.position.y = Math.cos( time * 0.5 ) * 40;
-        // light1.position.z = Math.cos( time * 0.3 ) * 30;
-        // light2.position.x = Math.cos( time * 0.3 ) * 30;
-        // light2.position.y = Math.sin( time * 0.5 ) * 40;
-        // light2.position.z = Math.sin( time * 0.7 ) * 30;
-        // light3.position.x = Math.sin( time * 0.7 ) * 30;
-        // light3.position.y = Math.cos( time * 0.3 ) * 40;
-        // light3.position.z = Math.sin( time * 0.5 ) * 30;
-        // light4.position.x = Math.sin( time * 0.3 ) * 30;
-        // light4.position.y = Math.cos( time * 0.7 ) * 40;
-        // light4.position.z = Math.sin( time * 0.5 ) * 30;
+        // for (var i = 3; i < NUM_OF_BALLS + 3; i++) {
+        //     scene.children[i].position.x += 0.05;
+        //     scene.children[i].position.y -= 0.1;
+        //     scene.children[i].position.z -= 0.1;
+        //     scene.children[i].rotation.x += Math.random() * 10 * Math.PI;
+        //     scene.children[i].rotation.z += Math.random() * 10 * Math.PI;
+        // }
 
         position.needsUpdate = true;
         controls.update(delta);
@@ -310,25 +286,12 @@ const firstPerson = (props) => {
     }
 
     function addLights() {
-        var light1 = new THREE.DirectionalLight(0xffffff, 0.5);
+        var light1 = new THREE.DirectionalLight(0xDDDDff, 0.5);
         light1.position.set(1, 1, 1);
         scene.add(light1);
-        var light2 = new THREE.DirectionalLight(0xffffff, 1.5);
+        var light2 = new THREE.DirectionalLight(0xAAAAff, 1.5);
         light2.position.set(0, - 1, 0);
         scene.add(light2);
-
-        // light1 = new THREE.PointLight( 0xff0040, 2, 50 );
-        // light1.add( new THREE.Mesh( sphere, new THREE.MeshBasicMaterial( { color: 0xff0040 } ) ) );
-        // scene.add( light1 );
-        // light2 = new THREE.PointLight( 0x0040ff, 2, 50 );
-        // light2.add( new THREE.Mesh( sphere, new THREE.MeshBasicMaterial( { color: 0x0040ff } ) ) );
-        // scene.add( light2 );
-        // light3 = new THREE.PointLight( 0x80ff80, 2, 50 );
-        // light3.add( new THREE.Mesh( sphere, new THREE.MeshBasicMaterial( { color: 0x80ff80 } ) ) );
-        // scene.add( light3 );
-        // light4 = new THREE.PointLight( 0xffaa00, 2, 50 );
-        // light4.add( new THREE.Mesh( sphere, new THREE.MeshBasicMaterial( { color: 0xffaa00 } ) ) );
-        // scene.add( light4 );
     }
 
 
