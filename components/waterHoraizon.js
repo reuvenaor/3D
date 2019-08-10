@@ -7,10 +7,6 @@ import { Sky } from '../lib/Sky.js';
 
 const firstPerson = (props) => {
 
-    const [win, setWindow] = useState(null);
-    const [contoler, setControler] = useState(null);
-    const [radius, setRadius] = useState(null)
-    //
     let camera = null;
     let controls = null;
     let water = null;
@@ -19,22 +15,8 @@ const firstPerson = (props) => {
     let con = null;
     let light = null;
     let sphere = null;
-    let stats = null;
-    let mesh = null;
-    let geometry = null;
-    let material = null;
-    let clock = null;;
-    let worldWidth = 200;
-    let worldDepth = 128;
-    
-    let position = null;
-    let texture = null;
-    let delta = null;
-    let time = null;
-
 
     useEffect(() => {
-        setWindow(window);
         init();
         window.addEventListener('resize', onWindowResize, false);
         window.addEventListener("deviceorientation", handleOrientation, true);
@@ -65,7 +47,6 @@ const firstPerson = (props) => {
 
             // WITH EULER:
             let eu = new THREE.Euler(art, brt, grt);
-            // let v = new THREE.Vector3(1, 1, 1); 
             // WITH quaternion:
             let quaternion = new THREE.Quaternion();
             quaternion.setFromEuler(eu);
@@ -93,7 +74,7 @@ const firstPerson = (props) => {
         scene = new THREE.Scene();
         //
         camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 1, 20000);
-        camera.position.set(1, radius, 1);
+        camera.position.set(1, radius, radius);
         //
         light = new THREE.DirectionalLight(0xffffff, 0.8);
         scene.add(light);
@@ -151,9 +132,6 @@ const firstPerson = (props) => {
         controls.lookSpeed = 0.1;
         controls.activeLook = false;
         controls.update();
-
-        setRadius(radius);
-        setControler(controls);
     }
 
     function animate() {
