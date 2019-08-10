@@ -31,6 +31,9 @@ class MyDocument extends Document {
                         left: 0;
                         top: 0;
                     }
+                    ::-webkit-scrollbar {
+                        display: none;
+                    }
                     `}</style>
             </Html>
 

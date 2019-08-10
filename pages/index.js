@@ -45,7 +45,7 @@ function Index() {
       <React.Fragment>
 
         <Parallax pages={4} style={{ height: '100%', width: '100%', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
-{/* 
+          {/* 
           <div style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0, background: 'black', opacity: 0.5 }} >
 
           </div> */}
@@ -105,6 +105,9 @@ function Index() {
 
 
       <style jsx>{`
+          ::-webkit-scrollbar {
+            display: none;
+        }
         main {
           align-content: center;
           left: 0;
