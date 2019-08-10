@@ -77,33 +77,10 @@ const firstPerson = (props) => {
 
             console.log('contoler', controls);
             if (alpha && beta && gamma && controls) {
-                //controls.activeLook = true;
-                setGamma(gamma);
-                setAlpha(alpha);
-                setBeta(beta);
-                // setA(v.x);
-                // setB(v.y);
-                setG(v.z);
                 controls.lookAt(v.y, v.x, v.z);
-                // if (isTouched) {
-                //     for (var i = 3; i < NUM_OF_BALLS + 3; i++) {
-                //         scene.children[i].position.x = Math.random() * 50 - 25 + v.x + isTouched.x;
-                //         scene.children[i].position.y = Math.random() * 50 - 25 + v.y + isTouched.y;
-                //         scene.children[i].position.z = Math.random() * 50 - 25 + v.z;
-                //     }
-                // }
             }
         }
     }
-
-
-    function onWindowResize() {
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        controls.handleResize();
-    }
-
 
     function init() {
 
@@ -113,8 +90,6 @@ const firstPerson = (props) => {
         con.appendChild(renderer.domElement);
 
         //
-
-
         scene = new THREE.Scene();
         //
         camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 1, 20000);
@@ -129,7 +104,7 @@ const firstPerson = (props) => {
             {
                 textureWidth: 512,
                 textureHeight: 512,
-                waterNormals: new THREE.TextureLoader().load('textures/waternormals.jpg', function (texture) {
+                waterNormals: new THREE.TextureLoader().load('../static/waternormals.jpg', function (texture) {
                     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
                 }),
                 alpha: 1.0,
@@ -155,7 +130,8 @@ const firstPerson = (props) => {
             inclination: 0.49,
             azimuth: 0.205
         };
-        var cubeCamera = new THREE.CubeCamera(0.1, 1, 512);
+        let radius = window.innerHeight / 2;
+        var cubeCamera = new THREE.CubeCamera(0.1, 1, radius);
         cubeCamera.renderTarget.texture.generateMipmaps = true;
         cubeCamera.renderTarget.texture.minFilter = THREE.LinearMipmapLinearFilter;
         scene.background = cubeCamera.renderTarget;
@@ -186,6 +162,16 @@ const firstPerson = (props) => {
     function animate() {
         requestAnimationFrame(animate);
         render();
+    }
+
+    
+    function onWindowResize() {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        if (controls.handleResize) {
+            controls.handleResize();
+        }
     }
 
     function stop() {
