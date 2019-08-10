@@ -77,7 +77,8 @@ const firstPerson = (props) => {
 
             console.log('contoler', controls);
             if (alpha && beta && gamma && controls) {
-                controls.lookAt(v.y, v.x, v.z);
+                //controls.lookAt(v.y, v.x, v.z);
+                controls.position(v.y, v.x, v.z)
             }
         }
     }
@@ -185,7 +186,6 @@ const firstPerson = (props) => {
             sphere.rotation.x = time * 0.5;
             sphere.rotation.z = time * 0.51;
         }
-
         water.material.uniforms['time'].value += 1.0 / 60.0;
         renderer.render(scene, camera);
     }
