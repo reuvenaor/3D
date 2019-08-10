@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 //import * as THREE from 'three';
 import * as THREE from '../lib/three.module';
-import { OrbitControls } from '../Lib/OrbitControls.js';
+import { OrbitControls } from '../lib/OrbitControls.js';
 import { Water } from '../lib/Water.js';
 import { Sky } from '../lib/Sky.js';
 
