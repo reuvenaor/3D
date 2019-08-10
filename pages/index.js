@@ -3,29 +3,28 @@ import { useEffect, useState } from 'react';
 import Head from 'next/head';
 import React from 'react';
 import FirstPerson from '../components/firstPerson';
-//import { config } from 'react-spring';
+import { config } from 'react-spring';
 import { Parallax, ParallaxLayer } from '../node_modules/react-spring/renderprops-addons.js';
-//import { Spring } from '../node_modules/react-spring/renderprops';
+import { Spring } from '../node_modules/react-spring/renderprops';
 import Parashooter from '../static/parashooter';
 import Flamingos from '../static/flamingos';
 import Landscape from '../static/landscape';
 import BackOne from '../static/back1';
+import { setTimeout } from 'timers';
 
 function Index() {
 
   const cameraProspectiveY = 120;
   const [win, setWindow] = useState(null);
   const [scale, setScale] = useState(null);
-  const [isLandscape, setLandscape] = useState(null);
+  const [isLandscape, setLandscape] = useState(false);
+  const [loader, setLoader] = useState(false);
 
   function fullScreen() {
-
     let isInFullScreen = (document.fullScreenElement && document.fullScreenElement !== null) ||    // alternative standard method  
       (document.mozFullScreen || document.webkitIsFullScreen);
-
     let docElm = document.documentElement;
     if (!isInFullScreen) {
-
       if (docElm.requestFullscreen) {
         docElm.requestFullscreen();
       }
@@ -41,6 +40,7 @@ function Index() {
   }
 
   useEffect(() => {
+    setLoader(true);
     setWindow(window);
     let scale = window.screen.availWidth / window.screen.availHeight;
     setScale(scale);
@@ -48,6 +48,12 @@ function Index() {
       setLandscape(false);
     } else {
       setLandscape(true);
+    }
+    const timer = setTimeout(() => {
+      setLoader(false);
+    }, 500);
+    return () => {
+      clearTimeout(timer);
     }
     //fullScreen();
     //console.log('window.height',window.screen.availHeight, window.screen.availWidth);
@@ -59,6 +65,7 @@ function Index() {
     // }
     // getDate();
   }, []);
+
   return (
     <main onClick={fullScreen}>
       <Head>
@@ -66,7 +73,13 @@ function Index() {
       </Head>
 
       <React.Fragment>
-
+        {loader ? <div style={{ width: '100vw', height: '100vw', position: 'absolute', margin: 0, top: 0, left: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#eee', zIndex: 2 }}>
+          <Spring
+            from={{ number: 10 }}
+            to={{ number: 101 }}>
+            {props => <center><h2>{props.number}</h2></center>}
+          </Spring>
+        </div> : null}
         <Parallax pages={4} style={{ height: '100%', width: '100%', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
 
           <ParallaxLayer offset={3} speed={0} >
@@ -87,7 +100,7 @@ function Index() {
 
           <ParallaxLayer offset={0} speed={3} style={{ height: '100vh', maxHeight: '100vh', minHeight: '100vh' }}>
             {!isLandscape && win ?
-              <div style={{ transform: `translateY(${(1 - scale) * win.innerHeight*0.8}px)` }} >
+              <div style={{ transform: `translateY(${(1 - scale) * win.innerHeight * 0.8}px)` }} >
                 <Landscape />
               </div>
               : <Landscape />}
