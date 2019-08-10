@@ -8,7 +8,6 @@ import { Parallax, ParallaxLayer } from '../node_modules/react-spring/renderprop
 import { Spring } from '../node_modules/react-spring/renderprops';
 import Parashooter from '../static/parashooter';
 import Flamingos from '../static/flamingos';
-import Silhouette from '../static/silhouette';
 import Landscape from '../static/landscape';
 import BackOne from '../static/back1';
 
@@ -89,8 +88,6 @@ function Index() {
               {'Images by Gordon Johnson from Pixabay'}
             </p>
           </ParallaxLayer>
-
-          
 
           <ParallaxLayer offset={2} speed={0.5} factor={2} style={{ width: '100vw', maxWidth: '100vw', minWidth: '100vw' }}>
             <Parashooter />
