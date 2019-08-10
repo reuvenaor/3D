@@ -11,9 +11,6 @@ import Flamingos from '../static/flamingos';
 import Silhouette from '../static/silhouette';
 import Landscape from '../static/landscape';
 import BackOne from '../static/back1';
-import BackTwo from '../static/back2';
-
-
 
 function Index() {
 
@@ -57,7 +54,6 @@ function Index() {
                 <BackOne />
               </div>
               : <BackOne />}
-
           </ParallaxLayer>
 
           <ParallaxLayer offset={1} speed={2} factor={1} style={{ width: '100vw', maxWidth: '100vw', minWidth: '100vw' }}>
@@ -83,7 +79,7 @@ function Index() {
           </ParallaxLayer>
 
           <ParallaxLayer offset={3} speed={-5} style={{ opacity: 1 }}>
-            <h4 style={{ position: 'absolute', color: 'white', bottom: 20, left: 20 }}>
+            <h4 style={{ position: 'absolute', color: 'black', top: 30, left: 30 }}>
               {'Reuven Naor Full-stack Developer'}
             </h4>
           </ParallaxLayer>
