@@ -51,7 +51,7 @@ function Index() {
     }
     const timer = setTimeout(() => {
       setLoader(false);
-    }, 500);
+    }, 2000);
     return () => {
       clearTimeout(timer);
     }
@@ -73,12 +73,13 @@ function Index() {
       </Head>
 
       <React.Fragment>
-        {loader ? <div style={{ width: '100vw', height: '100vw', position: 'absolute', margin: 0, top: 0, left: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#eee', zIndex: 2 }}>
-          <Spring
-            from={{ number: 10 }}
-            to={{ number: 101 }}>
-            {props => <center><h2>{props.number}</h2></center>}
-          </Spring>
+        {loader ? <div style={{ width: '100vw', height: '100vh', position: 'absolute', margin: 0, top: 0, left: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#eee', zIndex: 100 }}>
+          <div className="lds-ring">
+            <div/>
+            <div/>
+            <div/>
+            <div/>
+          </div>
         </div> : null}
         <Parallax pages={4} style={{ height: '100%', width: '100%', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
 
@@ -155,6 +156,41 @@ function Index() {
         }
         p {
           font-size: 16px;
+        }
+        .lds-ring {
+          display: inline-block;
+          position: relative;
+          width: 64px;
+          height: 64px;
+        }
+        .lds-ring div {
+          box-sizing: border-box;
+          display: block;
+          position: absolute;
+          width: 51px;
+          height: 51px;
+          margin: 6px;
+          border: 6px solid #000;
+          border-radius: 50%;
+          animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+          border-color: #000 transparent transparent transparent;
+        }
+        .lds-ring div:nth-child(1) {
+          animation-delay: -0.45s;
+        }
+        .lds-ring div:nth-child(2) {
+          animation-delay: -0.3s;
+        }
+        .lds-ring div:nth-child(3) {
+          animation-delay: -0.15s;
+        }
+        @keyframes lds-ring {
+          0% {
+            transform: rotate(0deg);
+          }
+          100% {
+            transform: rotate(360deg);
+          }
         }
       `}</style>
     </main>
