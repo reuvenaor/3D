@@ -1,6 +1,7 @@
 
 const back2 = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" id="Layer_1" x="0px" y="0px" width={'2160px'} height={'6000px'}  >
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" id="Layer_1" x="0px" y="0px"
+    enableBackground="new 0 0 2160 6000" viewBox="0 0 2160 6000" >
         <g>
             <path d="M307.171,1287.64c-0.205-0.082-0.394-0.159-0.541-0.218C306.816,1287.515,306.995,1287.583,307.171,1287.64z" />
             <polygon points="827.501,1595.662 827.503,1595.661 827.5,1595.661 " />

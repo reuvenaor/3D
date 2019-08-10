@@ -198,7 +198,7 @@ const firstPerson = (props) => {
 
     function init() {
         // raycaster = new THREE.Raycaster();
-        camera = new THREE.PerspectiveCamera(120, window.innerWidth / window.innerHeight, 1, 2000);
+        camera = new THREE.PerspectiveCamera(props.cameraProspectiveY, window.innerWidth / window.innerHeight, 1, 2000);
         let radius = window.innerHeight / 2;
         setRadius(radius);
         camera.position.y = radius;    // this is RADIUS
@@ -358,7 +358,7 @@ const firstPerson = (props) => {
             width: '100vw',
             height: '100vh',
             display: 'block',
-            //position: 'fixed',
+            position: 'fixed',
             margin: 0
         }}
             //onTouchStart={touchScreen}
