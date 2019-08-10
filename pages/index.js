@@ -69,7 +69,7 @@ function Index() {
 
         <Parallax pages={4} style={{ height: '100%', width: '100%', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
 
-          <ParallaxLayer offset={3} speed={0} factor={1}>
+          <ParallaxLayer offset={3} speed={0} >
             {!isLandscape && win ?
               <div style={{ transform: `translateY(${(1 - scale) * win.innerHeight * 0.8}px)` }} >
                 <BackOne />
@@ -77,15 +77,15 @@ function Index() {
               : <BackOne />}
           </ParallaxLayer>
 
-          <ParallaxLayer offset={1} speed={2} factor={1} style={{ width: '100vw', maxWidth: '100vw', minWidth: '100vw' }}>
+          <ParallaxLayer offset={1} speed={2} style={{ width: '100vw', maxWidth: '100vw', minWidth: '100vw' }}>
             <Flamingos />
           </ParallaxLayer>
 
-          <ParallaxLayer offset={1.7} speed={5} >
+          <ParallaxLayer offset={1.7} speed={4} >
             <Flamingos />
           </ParallaxLayer>
 
-          <ParallaxLayer offset={0} speed={3} factor={0} style={{ height: '100vh', maxHeight: '100vh', minHeight: '100vh' }}>
+          <ParallaxLayer offset={0} speed={3} style={{ height: '100vh', maxHeight: '100vh', minHeight: '100vh' }}>
             {!isLandscape && win ?
               <div style={{ transform: `translateY(${(1 - scale) * win.innerHeight*0.8}px)` }} >
                 <Landscape />
@@ -99,13 +99,13 @@ function Index() {
             </h1>
           </ParallaxLayer>
 
-          <ParallaxLayer offset={3} speed={-5} style={{ opacity: 1 }}>
+          <ParallaxLayer offset={3.1} speed={-2} style={{ opacity: 1 }}>
             <h3 style={{ position: 'absolute', color: 'black', top: 30, left: 30 }}>
               {'Reuven Naor Full-stack Developer'}
             </h3>
           </ParallaxLayer>
 
-          <ParallaxLayer offset={3.1} speed={-10} style={{ opacity: 1 }}>
+          <ParallaxLayer offset={3.2} speed={-3} style={{ opacity: 1 }}>
             <p style={{ position: 'absolute', color: 'black', top: 30, left: 30 }}>
               {'Images by Gordon Johnson from Pixabay'}
             </p>
