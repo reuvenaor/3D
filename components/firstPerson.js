@@ -268,7 +268,7 @@ const firstPerson = (props) => {
         time = clock.getElapsedTime() * 10;
         let position = geometry.attributes.position;
         for (let i = 0; i < position.count; i++) {
-            let y = window.innerHeight / 10 * Math.sin(i / 4 + (time + i) / 7);
+            let y = 36 * Math.sin(i / 4 + (time + i) / 7);
             position.setY(i, y);
         }
 
