@@ -322,7 +322,8 @@ const firstPerson = (props) => {
             height: '100vh',
             display: 'block',
             //position: 'fixed',
-            margin: 0
+            margin: 0,
+            overflow: 'hidden'
         }}
             //onTouchStart={touchScreen}
             ref={(ref) => { wraper = ref }}

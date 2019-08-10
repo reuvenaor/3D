@@ -21,6 +21,7 @@ class MyDocument extends Document {
                     * {
                         align-content: center;
                         box-sizing: border-box;
+                        overflow: hidden;
                     }
                     body {
                         width: 100vw;

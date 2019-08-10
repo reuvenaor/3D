@@ -17,7 +17,6 @@ function Index() {
   const [win, setWindow] = useState(null);
   const [scale, setScale] = useState(null);
   const [isLandscape, setLandscape] = useState(null);
-  let parallax;
 
   useEffect(() => {
     setWindow(window);
@@ -45,7 +44,11 @@ function Index() {
 
       <React.Fragment>
 
-        <Parallax ref={ref => (parallax = ref)} pages={4} style={{ width: '100vw', maxWidth: '100vw', minWidth: '100vw', alignItems: 'center', justifyContent: 'center' }}>
+        <Parallax pages={4} style={{ height: '100%', width: '100%', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+{/* 
+          <div style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0, background: 'black', opacity: 0.5 }} >
+
+          </div> */}
 
           <ParallaxLayer offset={3} speed={0} factor={1}>
             {!isLandscape && win ?
@@ -110,6 +113,7 @@ function Index() {
           //height: '100vh';
           margin: 0;
           padding: 0;
+          overflow: hidden;
           //display: grid;
           font-family: 'SF Pro Text', 'SF Pro Icons', 'Helvetica Neue',
            'Helvetica', 'Arial', sans-serif;
