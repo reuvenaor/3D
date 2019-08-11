@@ -55,7 +55,7 @@ const firstPerson = (props) => {
             v.applyQuaternion(quaternion);
 
 
-            controls.lookAt(v.y, v.x, -v.z);
+            controls.lookAt(-v.y, v.x, -v.z);
             controls.update();
 
         }
