@@ -22,9 +22,9 @@ const firstPerson = (props) => {
 
         animate();
 
-        // return () => {
-        //     stop();
-        // }
+        return () => {
+            stop();
+        }
     }, []);
 
     function handleOrientation(event) {
@@ -150,8 +150,10 @@ const firstPerson = (props) => {
     }
 
     function stop() {
-        con.removeChild(renderer.domElement);
-        cancelAnimationFrame(con);
+        if (con) {
+            con.removeChild(renderer.domElement);
+            cancelAnimationFrame(con);
+        }
     }
 
     function render() {
@@ -178,5 +180,5 @@ const firstPerson = (props) => {
 
 
 }
-export default firstPerson;
+export default React.memo(firstPerson);
 

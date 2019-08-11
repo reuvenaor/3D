@@ -10,6 +10,7 @@ import Landscape from '../static/landscape';
 import BackOne from '../static/back1';
 import WaterHoraizon from '../components/waterHoraizon';
 import Loader from '../components/loader';
+import Spinner from '../components/spinner';
 
 
 
@@ -20,6 +21,7 @@ function Index() {
   const [scale, setScale] = useState(null);
   const [isLandscape, setLandscape] = useState(false);
   const [loader, setLoader] = useState(false);
+  const [activeView, setActiveView] = useState(false);
 
   function fullScreen() {
     let isInFullScreen = (document.fullScreenElement && document.fullScreenElement !== null) ||    // alternative standard method  
@@ -56,7 +58,7 @@ function Index() {
     return () => {
       clearTimeout(timer);
     }
-    
+
     //console.log('window.height',window.screen.availHeight, window.screen.availWidth);
     // WORK WITH API - date.js
     // async function getDate() {
@@ -67,8 +69,13 @@ function Index() {
     // getDate();
   }, []);
 
+  function onActiveView() {
+    fullScreen();
+    setActiveView(!activeView);
+  }
+
   return (
-    <main onClick={fullScreen}>
+    <main>
       <Head>
         <title>Reuven 3D</title>
       </Head>
@@ -96,18 +103,13 @@ function Index() {
             <Flamingos />
           </ParallaxLayer>
 
-          <ParallaxLayer offset={0} speed={3} factor={2} style={{ height: '100vh', maxHeight: '100vh', minHeight: '100vh' }}>
-            {/* {!isLandscape && win ?
-              <div style={{ transform: `translateY(${(1 - scale) * win.innerHeight * 0.8}px)` }} >
-                <Landscape />
-              </div>
-              : <Landscape />} */}
-          </ParallaxLayer>
-
           <ParallaxLayer offset={0} speed={-5} >
-            <h1 style={{ position: 'absolute', color: 'black', top: 30, left: 30 }}>
+            <h1 style={{ color: 'black', }}>
               {'Hi,'}
             </h1>
+            <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}} onClick={onActiveView}>
+              <Spinner /><span>{'Active View'}</span>
+            </div>
           </ParallaxLayer>
 
           <ParallaxLayer offset={3.1} speed={-2} style={{ opacity: 1 }}>
@@ -129,12 +131,15 @@ function Index() {
 
         </Parallax>
 
-        <WaterHoraizon />
+        <WaterHoraizon activeView={activeView}/>
 
       </React.Fragment>
 
 
       <style jsx>{`
+      * {
+        text-align: center
+      }
           ::-webkit-scrollbar {
             display: none;
         }
@@ -154,6 +159,7 @@ function Index() {
         p {
           font-size: 16px;
         }
+      }
         
       `}</style>
     </main>

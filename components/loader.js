@@ -16,7 +16,6 @@ const loader = (propd) => (
           opacity: 1;
           border-radius: 50%;
           animation: lds-ripple 1.2s cubic-bezier(0, 0.2, 0.8, 1) infinite;
-
         }
         .lds-ripple div:nth-child(2) {
           animation-delay: -0.5s;
