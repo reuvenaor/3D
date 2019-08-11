@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 //import * as THREE from 'three';
 import * as THREE from '../lib/three.module';
 import { FirstPersonControls } from '../lib/FirstPersonControls.js';
@@ -14,7 +14,6 @@ const firstPerson = (props) => {
     let renderer = null;
     let con = null;
     let light = null;
-    let [orientVector, setOrientVector] = useState(null);
 
     useEffect(() => {
         init();
@@ -29,9 +28,9 @@ const firstPerson = (props) => {
     }, []);
 
     function handleOrientation(event) {
-        if (orientVector && controls) {
+        if (controls && event.alpha || event.beta || event.gamma) {
             event.preventDefault();
-            // to rad:
+
             let ar = event.alpha * Math.PI / 180;
             let br = event.beta * Math.PI / 180;
             let gr = event.gamma * Math.PI / 180;
@@ -40,34 +39,36 @@ const firstPerson = (props) => {
             let brt = br >= 0 ? br : br;
             let grt = gr >= 0 ? gr : gr;
 
+            let radius = window.innerHeight / 2;
+            //let radiusW = window.innerWidth / 2;
+
             // WITH EULER:
             let eu = new THREE.Euler(art, brt, grt);
             // WITH quaternion:
             let quaternion = new THREE.Quaternion();
             quaternion.setFromEuler(eu);
 
-            orientVector.applyQuaternion(quaternion);
+            let v = new THREE.Vector3(1, radius, radius);
+            // watching ground: 
+            // let v = new THREE.Vector3(1, 1, 1); 
+            // let v = new THREE.Vector3(radiusW, radius, radius);
+            v.applyQuaternion(quaternion);
 
-            controls.lookAt(orientVector.y, orientVector.x, orientVector.z);
-            //controls.update();
+
+            controls.lookAt(v.y, v.x, v.z);
+            controls.update();
 
         }
     }
 
     function init() {
-        let radius = window.innerHeight / 2;
 
         renderer = new THREE.WebGLRenderer();
         renderer.setPixelRatio(window.devicePixelRatio);
         renderer.setSize(window.innerWidth, window.innerHeight);
         con.appendChild(renderer.domElement);
-
-        // watching ground: 
-        // let v = new THREE.Vector3(1, 1, 1); 
-        //also work:
-        //let radiusW = window.innerWidth / 2;
-        // let v = new THREE.Vector3(radiusW, radius, radius);
-        setOrientVector(new THREE.Vector3(1, radius, radius));
+        let radius = window.innerHeight / 2;
+        // let radiusW = window.innerWidth / 2;
         //
         scene = new THREE.Scene();
         //
@@ -154,6 +155,12 @@ const firstPerson = (props) => {
     }
 
     function render() {
+        var time = performance.now() * 0.001;
+        // if (sphere) {
+        //     sphere.position.y = Math.sin(time) * 20 + 5;
+        //     sphere.rotation.x = time * 0.5;
+        //     sphere.rotation.z = time * 0.51;
+        // }
         water.material.uniforms['time'].value += 1.0 / 60.0;
         renderer.render(scene, camera);
     }
