@@ -51,7 +51,7 @@ const firstPerson = (props) => {
             let quaternion = new THREE.Quaternion();
             quaternion.setFromEuler(eu);
 
-            let v = new THREE.Vector3(1, radius, radius);
+            let v = new THREE.Vector3(1, radius, -radius);
             // watching ground: 
             // let v = new THREE.Vector3(1, 1, 1); 
             v.applyQuaternion(quaternion);
@@ -59,7 +59,7 @@ const firstPerson = (props) => {
             console.log('contoler', controls);
             if (alpha && beta && gamma && controls) {
                 controls.lookAt(v.y, v.x, v.z);
-                 controls.update();
+                controls.update();
             }
         }
     }
