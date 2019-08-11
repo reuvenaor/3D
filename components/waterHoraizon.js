@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 //import * as THREE from 'three';
 import * as THREE from '../lib/three.module';
 import { FirstPersonControls } from '../lib/FirstPersonControls.js';

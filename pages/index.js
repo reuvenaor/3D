@@ -1,17 +1,15 @@
 import { useEffect, useState } from 'react';
-// import ThreeScene from '../components/threeScene';
 import Head from 'next/head';
 import React from 'react';
-import FirstPerson from '../components/firstPerson';
-import { config } from 'react-spring';
+//import { config } from 'react-spring';
 import { Parallax, ParallaxLayer } from '../node_modules/react-spring/renderprops-addons.js';
-import { Spring } from '../node_modules/react-spring/renderprops';
+//import { Spring } from '../node_modules/react-spring/renderprops';
 import Parashooter from '../static/parashooter';
 import Flamingos from '../static/flamingos';
 import Landscape from '../static/landscape';
 import BackOne from '../static/back1';
-import { setTimeout } from 'timers';
 import WaterHoraizon from '../components/waterHoraizon';
+import Loader from '../components/loader';
 
 
 
@@ -77,10 +75,8 @@ function Index() {
 
       <React.Fragment>
         {loader ? <div style={{ width: '100vw', height: '100vh', position: 'absolute', margin: 0, top: 0, left: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#eee', zIndex: 100 }}>
-          <div className="lds-ripple"><div>
-            </div>
-            <div></div>
-            </div>
+          <Loader />
+          <WaterHoraizon />
         </div> : null}
         <Parallax pages={4} style={{ height: '100%', width: '100%', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
 
@@ -133,7 +129,7 @@ function Index() {
 
         </Parallax>
 
-        <WaterHoraizon cameraProspectiveY={cameraProspectiveY} />
+        <WaterHoraizon />
 
       </React.Fragment>
 
@@ -157,38 +153,6 @@ function Index() {
         }
         p {
           font-size: 16px;
-        }
-        .lds-ripple {
-          display: inline-block;
-          position: relative;
-          width: 128px;
-          height: 128px;
-        }
-        .lds-ripple div {
-          position: absolute;
-          border: 8px solid #000;
-          opacity: 1;
-          border-radius: 50%;
-          animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
-        }
-        .lds-ripple div:nth-child(2) {
-          animation-delay: -0.5s;
-        }
-        @keyframes lds-ripple {
-          0% {
-            top: 56px;
-            left: 56px;
-            width: 0;
-            height: 0;
-            opacity: 1;
-          }
-          100% {
-            top: -1px;
-            left: -1px;
-            width: 116px;
-            height: 116px;
-            opacity: 0;
-          }
         }
         
       `}</style>
