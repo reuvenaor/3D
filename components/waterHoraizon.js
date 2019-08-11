@@ -57,9 +57,9 @@ const firstPerson = (props) => {
             v.applyQuaternion(quaternion);
 
             console.log('contoler', controls);
-            if (alpha && beta && gamma && controls) {
-                controls.lookAt(v.y, v.x, v.z)
-            }
+            // if (alpha && beta && gamma && controls) {
+            //     controls.lookAt(v.y, v.x, v.z)
+            // }
         }
     }
 
