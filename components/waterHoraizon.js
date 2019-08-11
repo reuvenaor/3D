@@ -155,12 +155,6 @@ const firstPerson = (props) => {
     }
 
     function render() {
-        var time = performance.now() * 0.001;
-        // if (sphere) {
-        //     sphere.position.y = Math.sin(time) * 20 + 5;
-        //     sphere.rotation.x = time * 0.5;
-        //     sphere.rotation.z = time * 0.51;
-        // }
         water.material.uniforms['time'].value += 1.0 / 60.0;
         renderer.render(scene, camera);
     }
