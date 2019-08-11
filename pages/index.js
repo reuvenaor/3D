@@ -56,7 +56,7 @@ function Index() {
     return () => {
       clearTimeout(timer);
     }
-    //fullScreen();
+    
     //console.log('window.height',window.screen.availHeight, window.screen.availWidth);
     // WORK WITH API - date.js
     // async function getDate() {
@@ -88,23 +88,23 @@ function Index() {
               : <BackOne />}
           </ParallaxLayer>
 
-          <ParallaxLayer offset={1} speed={2} style={{ width: '100vw', maxWidth: '100vw', minWidth: '100vw' }}>
+          <ParallaxLayer offset={1} speed={2} factor={1} style={{ width: '100vw', maxWidth: '100vw', minWidth: '100vw' }}>
             <Flamingos />
           </ParallaxLayer>
 
-          <ParallaxLayer offset={1.7} speed={4} >
+          <ParallaxLayer offset={1.7} factor={1} speed={4} >
             <Flamingos />
           </ParallaxLayer>
 
-          <ParallaxLayer offset={0} speed={3} style={{ height: '100vh', maxHeight: '100vh', minHeight: '100vh' }}>
-            {!isLandscape && win ?
+          <ParallaxLayer offset={0} speed={3} factor={2} style={{ height: '100vh', maxHeight: '100vh', minHeight: '100vh' }}>
+            {/* {!isLandscape && win ?
               <div style={{ transform: `translateY(${(1 - scale) * win.innerHeight * 0.8}px)` }} >
                 <Landscape />
               </div>
-              : <Landscape />}
+              : <Landscape />} */}
           </ParallaxLayer>
 
-          <ParallaxLayer offset={0} speed={5} >
+          <ParallaxLayer offset={0} speed={-5} >
             <h1 style={{ position: 'absolute', color: 'black', top: 30, left: 30 }}>
               {'Hi,'}
             </h1>
@@ -117,7 +117,7 @@ function Index() {
           </ParallaxLayer>
 
           <ParallaxLayer offset={3.2} speed={-3} style={{ opacity: 1 }}>
-            <p style={{ position: 'absolute', color: 'black', top: 30, left: 30 }}>
+            <p style={{ position: 'absolute', color: 'black', top: 32, left: 30 }}>
               {'Images by Gordon Johnson from Pixabay'}
             </p>
           </ParallaxLayer>
