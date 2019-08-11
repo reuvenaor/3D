@@ -14,7 +14,7 @@ const firstPerson = (props) => {
     let renderer = null;
     let con = null;
     let light = null;
-    const [orientVector, setOrientVector] = useState(null);
+    let [orientVector, setOrientVector] = useState(null);
 
     useEffect(() => {
         init();
