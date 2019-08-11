@@ -57,9 +57,10 @@ const firstPerson = (props) => {
             v.applyQuaternion(quaternion);
 
             console.log('contoler', controls);
-            // if (alpha && beta && gamma && controls) {
-            //     controls.lookAt(v.y, v.x, v.z)
-            // }
+            if (alpha && beta && gamma && controls) {
+                controls.lookAt(v.y, v.x, v.z);
+                 controls.update();
+            }
         }
     }
 
@@ -111,7 +112,7 @@ const firstPerson = (props) => {
             inclination: 0.49,
             azimuth: 0.205
         };
-        var cubeCamera = new THREE.CubeCamera(0.1, 1, radius);
+        var cubeCamera = new THREE.CubeCamera(0.1, 1, 512);
         cubeCamera.renderTarget.texture.generateMipmaps = true;
         cubeCamera.renderTarget.texture.minFilter = THREE.LinearMipmapLinearFilter;
         scene.background = cubeCamera.renderTarget;
