@@ -44,6 +44,7 @@ const firstPerson = (props) => {
             let grt = gr >= 0 ? gr : gr;
 
             let radius = window.innerHeight / 2;
+            let radiusW = window.innerWidth / 2;
 
             // WITH EULER:
             let eu = new THREE.Euler(art, brt, grt);
@@ -51,7 +52,7 @@ const firstPerson = (props) => {
             let quaternion = new THREE.Quaternion();
             quaternion.setFromEuler(eu);
 
-            let v = new THREE.Vector3(art, brt, grt);
+            let v = new THREE.Vector3(radiusW, radius, radius);
             // watching ground: 
             // let v = new THREE.Vector3(1, 1, 1); 
             v.applyQuaternion(quaternion);
