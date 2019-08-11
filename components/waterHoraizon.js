@@ -48,7 +48,7 @@ const firstPerson = (props) => {
 
             orientVector.applyQuaternion(quaternion);
 
-            controls.lookAt(v.y, v.x, v.z);
+            controls.lookAt(orientVector.y, orientVector.x, orientVector.z);
             //controls.update();
 
         }
