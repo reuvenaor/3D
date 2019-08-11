@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 //import * as THREE from 'three';
 import * as THREE from '../lib/three.module';
 import { FirstPersonControls } from '../lib/FirstPersonControls.js';
@@ -14,7 +14,7 @@ const firstPerson = (props) => {
     let renderer = null;
     let con = null;
     let light = null;
-    let sphere = null;
+    const [orientVector, setOrientVector] = useState(null);
 
     useEffect(() => {
         init();
@@ -23,28 +23,22 @@ const firstPerson = (props) => {
 
         animate();
 
-        return () => {
-            stop();
-        }
+        // return () => {
+        //     stop();
+        // }
     }, []);
 
     function handleOrientation(event) {
-        if (event) {
+        if (orientVector && controls) {
             event.preventDefault();
-            let alpha = event.alpha; // > 180 ? event.alpha : 180;
-            let beta = event.beta;
-            let gamma = event.gamma;
-
-            let ar = alpha * Math.PI / 180;
-            let br = beta * Math.PI / 180;
-            let gr = gamma * Math.PI / 180;
+            // to rad:
+            let ar = event.alpha * Math.PI / 180;
+            let br = event.beta * Math.PI / 180;
+            let gr = event.gamma * Math.PI / 180;
 
             let art = ar >= 0 ? ar : ar;
             let brt = br >= 0 ? br : br;
             let grt = gr >= 0 ? gr : gr;
-
-            let radius = window.innerHeight / 2;
-            let radiusW = window.innerWidth / 2;
 
             // WITH EULER:
             let eu = new THREE.Euler(art, brt, grt);
@@ -52,32 +46,34 @@ const firstPerson = (props) => {
             let quaternion = new THREE.Quaternion();
             quaternion.setFromEuler(eu);
 
-            let v = new THREE.Vector3(radiusW, radius, radius);
-            // watching ground: 
-            // let v = new THREE.Vector3(1, 1, 1); 
-            v.applyQuaternion(quaternion);
+            orientVector.applyQuaternion(quaternion);
 
-            console.log('contoler', controls);
-            if (alpha && beta && gamma && controls) {
-                controls.lookAt(v.y, v.x, v.z);
-                 controls.update();
-            }
+            controls.lookAt(v.y, v.x, v.z);
+            //controls.update();
+
         }
     }
 
     function init() {
+        let radius = window.innerHeight / 2;
 
         renderer = new THREE.WebGLRenderer();
         renderer.setPixelRatio(window.devicePixelRatio);
         renderer.setSize(window.innerWidth, window.innerHeight);
         con.appendChild(renderer.domElement);
-        let radius = window.innerHeight / 2;
-        let radiusW = window.innerWidth / 2;
+
+        // watching ground: 
+        // let v = new THREE.Vector3(1, 1, 1); 
+        //also work:
+        //let radiusW = window.innerWidth / 2;
+        // let v = new THREE.Vector3(radiusW, radius, radius);
+        setOrientVector(new THREE.Vector3(1, radius, radius));
         //
         scene = new THREE.Scene();
         //
         camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 1, 20000);
-        camera.position.set(radiusW, radius, 1);
+        // camera.position.set(radiusW, radius, 1);
+        camera.position.set(1, radius, 1);
         //
         light = new THREE.DirectionalLight(0xffffff, 0.8);
         scene.add(light);
@@ -104,14 +100,14 @@ const firstPerson = (props) => {
         // Skybox
         var sky = new Sky();
         var uniforms = sky.material.uniforms;
-        uniforms['turbidity'].value = 10;
+        uniforms['turbidity'].value = 20;
         uniforms['rayleigh'].value = 2;
         uniforms['luminance'].value = 1;
         uniforms['mieCoefficient'].value = 0.005;
         uniforms['mieDirectionalG'].value = 0.8;
         var parameters = {
-            distance: 400,
-            inclination: 0.49,
+            distance: 10000,
+            inclination: 0.48,
             azimuth: 0.205
         };
         var cubeCamera = new THREE.CubeCamera(0.1, 1, 512);
@@ -142,7 +138,7 @@ const firstPerson = (props) => {
         render();
     }
 
-    
+
     function onWindowResize() {
         camera.aspect = window.innerWidth / window.innerHeight;
         camera.updateProjectionMatrix();
@@ -158,12 +154,6 @@ const firstPerson = (props) => {
     }
 
     function render() {
-        var time = performance.now() * 0.001;
-        if (sphere) {
-            sphere.position.y = Math.sin(time) * 20 + 5;
-            sphere.rotation.x = time * 0.5;
-            sphere.rotation.z = time * 0.51;
-        }
         water.material.uniforms['time'].value += 1.0 / 60.0;
         renderer.render(scene, camera);
     }
