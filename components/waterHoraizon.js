@@ -72,11 +72,12 @@ const firstPerson = (props) => {
         renderer.setSize(window.innerWidth, window.innerHeight);
         con.appendChild(renderer.domElement);
         let radius = window.innerHeight / 2;
+        let radiusW = window.innerWidth / 2;
         //
         scene = new THREE.Scene();
         //
         camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 1, 20000);
-        camera.position.set(1, radius, 1);
+        camera.position.set(radiusW, radius, 1);
         //
         light = new THREE.DirectionalLight(0xffffff, 0.8);
         scene.add(light);
