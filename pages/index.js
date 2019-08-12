@@ -79,10 +79,9 @@ function Index() {
       <Head>
         <title>Reuven 3D</title>
       </Head>
-
       <React.Fragment>
         {loader ? <div style={{ width: '100vw', height: '100vh', position: 'absolute', margin: 0, top: 0, left: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#eee', zIndex: 100 }}>
-          <Loader />
+          {/* <Loader /> */}
           <WaterHoraizon />
         </div> : null}
         <Parallax pages={4} style={{ height: '100%', width: '100%', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>

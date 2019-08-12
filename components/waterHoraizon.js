@@ -1,9 +1,13 @@
 import React, { useEffect } from 'react';
+import Head from 'next/head';
 //import * as THREE from 'three';
 import * as THREE from '../lib/three.module';
 import { FirstPersonControls } from '../lib/FirstPersonControls.js';
 import { Water } from '../lib/Water.js';
 import { Sky } from '../lib/Sky.js';
+//import { TweenMax } from '../lib/TweenMax';
+
+
 
 const firstPerson = (props) => {
 
@@ -222,20 +226,23 @@ const firstPerson = (props) => {
     }
 
     return (
-        <div style={{
-            width: '100vw',
-            height: '100vh',
-            display: 'block',
-            margin: 0,
-            padding: 0,
-            overflow: 'hidden'
-        }}
-        >
+        // <div style={{
+        //     width: '100vw',
+        //     height: '100vh',
+        //     display: 'block',
+        //     margin: 0,
+        //     padding: 0,
+        //     overflow: 'hidden'
+        // }}
+        <>
+            <Head>
+                <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js"></script>
+            </Head>
             <div
                 style={{ width: '100%', height: '100%', margin: 0, padding: 0 }}
                 ref={(ref) => { con = ref }}
             ></div>
-        </div>
+        </>
     )
 
 
