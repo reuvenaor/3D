@@ -78,6 +78,7 @@ function Index() {
     <main>
       <Head>
         <title>Reuven 3D</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.1/TimelineMax.min.js"></script>
       </Head>
 
       <React.Fragment>
@@ -104,12 +105,12 @@ function Index() {
           </ParallaxLayer>
 
           <ParallaxLayer offset={0} speed={-5} >
-            <h1 style={{ color: 'black', }}>
+            <h1 style={{position:'absolute', color: 'black', left: 50, top: 50 }}>
               {'Hi,'}
             </h1>
-            <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}} onClick={onActiveView}>
+            {/* <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}} onClick={onActiveView}>
               <Spinner /><span>{'Active View'}</span>
-            </div>
+            </div> */}
           </ParallaxLayer>
 
           <ParallaxLayer offset={3.1} speed={-2} style={{ opacity: 1 }}>
