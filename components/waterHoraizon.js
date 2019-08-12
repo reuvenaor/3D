@@ -1,12 +1,10 @@
 import React, { useEffect } from 'react';
-import Head from 'next/head';
 //import * as THREE from 'three';
 import * as THREE from '../lib/three.module';
 import { FirstPersonControls } from '../lib/FirstPersonControls.js';
 import { Water } from '../lib/Water.js';
 import { Sky } from '../lib/Sky.js';
-//import { TweenMax } from '../lib/TweenMax';
-
+import { TimelineMax } from 'gsap';
 
 
 const firstPerson = (props) => {
@@ -235,9 +233,6 @@ const firstPerson = (props) => {
         //     overflow: 'hidden'
         // }}
         <>
-            <Head>
-                <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js"></script>
-            </Head>
             <div
                 style={{ width: '100%', height: '100%', margin: 0, padding: 0 }}
                 ref={(ref) => { con = ref }}
