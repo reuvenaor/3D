@@ -21,7 +21,6 @@ var mouse = new THREE.Vector2();
 
 var geometry = new THREE.BoxGeometry(1, 1, 1);
 var material = new THREE.MeshLambertMaterial({color: 0xF7F7F7});
-scene.add(mesh);
 //var mesh = new THREE.Mesh(geometry, material);
 
 //scene.add(mesh);

@@ -17,6 +17,7 @@ const firstPerson = (props) => {
     let raycaster = null;
     let mouse = null;
     let box = null;
+    let isBoxScaled = true;
 
     useEffect(() => {
         init();
@@ -74,17 +75,7 @@ const firstPerson = (props) => {
         // let radiusW = window.innerWidth / 2;
         //
         scene = new THREE.Scene();
-        //
-        raycaster = new THREE.Raycaster();
-        mouse = new THREE.Vector2();
-        let boxGeometry = new THREE.BoxGeometry(200, 200, 200);
-        let boxMaterial = new THREE.MeshLambertMaterial({ color: 0xF7F7F7 });
-        box = new THREE.Mesh(boxGeometry, boxMaterial);
 
-        box.position.x = window.innerWidth / 2 //300;
-        box.position.y = window.innerHeight * 0.9;
-        box.position.z = -2000;
-        scene.add(box);
         //
         camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 1, 20000);
         // camera.position.set(radiusW, radius, 1);
@@ -112,6 +103,23 @@ const firstPerson = (props) => {
         );
         water.rotation.x = - Math.PI / 2;
         scene.add(water);
+
+        // box
+        raycaster = new THREE.Raycaster();
+        mouse = new THREE.Vector2();
+        let boxGeometry = new THREE.SphereGeometry(150, 150, 150);
+        let boxMaterial = new THREE.MeshPhongMaterial({ color: 0xFFFFFF });
+        box = new THREE.Mesh(boxGeometry, boxMaterial);
+
+        box.position.x = window.innerWidth / 2 //300;
+        box.position.y = window.innerHeight * 0.9;
+        box.position.z = -2000;
+        //box.material.color = {r: 0.3, g: 0.4, b: 0.4};
+        box.material.emissive = { r: 0.3, g: 0.38, b: 0.3 };
+        //box.material.shininess = 100
+        //box.material.premultipliedAlpha = true
+        console.log('box', box);
+        scene.add(box);
         // Skybox
         var sky = new Sky();
         var uniforms = sky.material.uniforms;
@@ -177,20 +185,40 @@ const firstPerson = (props) => {
 
     function onMouseMove(event) {
         event.preventDefault();
-    
-        mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
-        mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
-    
+
+        mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+        mouse.y = - (event.clientY / window.innerHeight) * 2 + 1;
+
         raycaster.setFromCamera(mouse, camera);
-    
-        var intersects = raycaster.intersectObjects(scene.children, true);
-        for (var i = 0; i < intersects.length; i++) {
+
+        var intersects = raycaster.intersectObject(box, false);
+        if (intersects[0] && intersects[0].object.geometry.type === "SphereGeometry" && isBoxScaled) {
+            console.log('intersects[0].object', intersects[0].object);
             this.tl = new TimelineMax();
-            this.tl.to(intersects[i].object.scale, 1, {x: 2, ease: Expo.easeOut})
-            this.tl.to(intersects[i].object.scale, .5, {x: .5, ease: Expo.easeOut})
-            this.tl.to(intersects[i].object.position, .5, {x: 2, ease: Expo.easeOut})
-            this.tl.to(intersects[i].object.rotation, .5, {y: Math.PI*.5, ease: Expo.easeOut}, "=-1.5")
+            this.tl.to(intersects[0].object.scale, 1, { x: 0.3, y: 0.3, z: 0.3, ease: Expo.easeOut })
+            this.tl.to(intersects[0].object.position, .5, { x: 20, ease: Expo.easeIn })
+            this.tl.to(intersects[0].object.rotation, .5, { y: Math.PI * .5, ease: Expo.easeOut }, "=-1.5")
+            this.tl.to(intersects[0].object.scale, .5, { x: 3, y: 0.5, z: 10, ease: Expo.easeOut })
+            this.tl.to(intersects[0].object.position, .5, { y: 10, ease: Expo.easeIn })
+            this.tl.to(intersects[0].object.scale, .5, { x: 3, ease: Expo.easeOut })
+            // this.tl.to(intersects[0].object.position, .5, { x: 20, ease: Expo.easeIn })
+            isBoxScaled = false;
         }
+
+
+        // var intersects = raycaster.intersectObjects(scene.children, true);
+
+        // if (intersects[0] && intersects[0].object.geometry.type === "BoxGeometry") {
+        //     console.log('intersects', intersects);
+        //     for (var i = 0; i < intersects.length; i++) {
+        //         this.tl = new TimelineMax();
+        //         this.tl.to(intersects[i].object.scale, 1, { x: 2, ease: Expo.easeOut })
+        //         this.tl.to(intersects[i].object.scale, .5, { x: .5, ease: Expo.easeOut })
+        //         this.tl.to(intersects[i].object.position, .5, { x: 2, ease: Expo.easeOut })
+        //         this.tl.to(intersects[i].object.rotation, .5, { y: Math.PI * .5, ease: Expo.easeOut }, "=-1.5")
+        //     }
+        // }
+
     }
 
     return (

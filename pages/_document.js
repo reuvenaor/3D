@@ -14,6 +14,7 @@ class MyDocument extends Document {
                     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"></meta>
                 </Head>
                 <body>
+                <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js"></script>
                     <Main />
                     <NextScript />
                 </body>

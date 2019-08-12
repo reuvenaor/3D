@@ -78,7 +78,6 @@ function Index() {
     <main>
       <Head>
         <title>Reuven 3D</title>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.1/TimelineMax.min.js"></script>
       </Head>
 
       <React.Fragment>
