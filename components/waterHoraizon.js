@@ -4,7 +4,7 @@ import * as THREE from '../lib/three.module';
 import { FirstPersonControls } from '../lib/FirstPersonControls.js';
 import { Water } from '../lib/Water.js';
 import { Sky } from '../lib/Sky.js';
-import { TimelineMax } from 'gsap';
+import { TimelineMax, Expo } from 'gsap';
 
 
 const firstPerson = (props) => {
@@ -234,7 +234,7 @@ const firstPerson = (props) => {
         // }}
         <>
             <div
-                style={{ width: '100%', height: '100%', margin: 0, padding: 0 }}
+                style={{ width: '100%', height: '100vh', margin: 0, padding: 0 }}
                 ref={(ref) => { con = ref }}
             ></div>
         </>
