@@ -71,8 +71,8 @@ function Index() {
         <title>Reuven 3D</title>
       </Head>
       <>
-        <h1 style={{ position: 'absolute', color: 'black', left: 50, top: 50 }}>
-          {'New Site Soon...'}
+        <h1 style={{ position: 'absolute', color: 'black', left: 50, top: 50, zIndex: 10 }}>
+          {'Coming soon..'}
         </h1>
         <WaterHoraizon />
       </>

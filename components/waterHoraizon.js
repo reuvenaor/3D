@@ -74,14 +74,14 @@ const firstPerson = (props) => {
         renderer.setSize(window.innerWidth, window.innerHeight);
         con.appendChild(renderer.domElement);
         let radius = window.innerHeight / 2;
-        // let radiusW = window.innerWidth / 2;
+        let radiusW = window.innerWidth;
         //
         scene = new THREE.Scene();
 
         //
         camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 1, 20000);
         // camera.position.set(radiusW, radius, 1);
-        camera.position.set(1, radius, 1);
+        camera.position.set(0, radius, 0);
         //
         light = new THREE.DirectionalLight(0xffffff, 0.8);
         scene.add(light);
@@ -234,7 +234,7 @@ const firstPerson = (props) => {
         // }}
         <>
             <div
-                style={{ width: '100%', height: '100vh', margin: 0, padding: 0 }}
+                style={{ width: '100%', height: 1440, margin: 0, padding: 0, position: 'absolute', top: 0, left: 0,  overflow: 'hidden'  }}
                 ref={(ref) => { con = ref }}
             ></div>
         </>
