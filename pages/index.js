@@ -68,44 +68,19 @@ function Index() {
   return (
     <main>
       <Head>
-        <title>Reuven 3D</title>
+        <title>Reuven Naor 3D</title>
+        <meta charSet="utf-8"></meta>
+        <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"></meta>
+        <link href="static/normalize.css" rel="stylesheet" type="text/css"></link>
+        <link href="static/baseStyle.scss" rel="stylesheet" type="text/css"></link>
       </Head>
-      <>
-        <h1 style={{ position: 'absolute', color: 'black', left: 50, top: 50, zIndex: 10 }}>
-          {'Coming soon..'}
-        </h1>
-        <WaterHoraizon />
-      </>
-
-
-
-
-      <style jsx>{`
-      * {
-        text-align: center
-      }
-          ::-webkit-scrollbar {
-            display: none;
-        }
-        main {
-          align-content: center;
-          left: 0;
-          top: 0;
-          width: '100vw';
-          margin: 0;
-          padding: 0;
-          overflow: hidden;
-          font-family: 'SF Pro Text', 'SF Pro Icons', 'Helvetica Neue',
-           'Helvetica', 'Arial', sans-serif;
-          text-align: center;
-          align-items: center;
-        }
-        p {
-          font-size: 16px;
-        }
-      }
-        
-      `}</style>
+          <>
+            <h1 style={{ position: 'absolute', color: 'black', left: 50, top: 50, zIndex: 10 }}>
+              {'Coming soon..'}
+            </h1>
+            <WaterHoraizon />
+          </>
     </main>
   );
 }
