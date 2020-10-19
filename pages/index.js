@@ -74,12 +74,9 @@ function Index() {
         <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"></meta>
         <link href="static/normalize.css" rel="stylesheet" type="text/css"></link>
       </Head>
-          <>
-            <h1 style={{ position: 'absolute', color: 'black', left: 50, top: 50, zIndex: 10 }}>
-              {'Coming soon..'}
-            </h1>
-            <WaterHoraizon />
-          </>
+
+      <WaterHoraizon />
+
     </main>
   );
 }
