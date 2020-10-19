@@ -73,7 +73,6 @@ function Index() {
         <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"></meta>
         <link href="static/normalize.css" rel="stylesheet" type="text/css"></link>
-        <link href="static/baseStyle.scss" rel="stylesheet" type="text/css"></link>
       </Head>
           <>
             <h1 style={{ position: 'absolute', color: 'black', left: 50, top: 50, zIndex: 10 }}>
