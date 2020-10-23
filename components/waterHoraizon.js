@@ -61,7 +61,7 @@ const firstPerson = (props) => {
             v.applyQuaternion(quaternion);
 
 
-            controls.lookAt(v.y, v.x, v.z);
+            controls.lookAt(-v.y, v.x, -v.z);
             controls.update();
 
         }
@@ -81,7 +81,7 @@ const firstPerson = (props) => {
         //
         camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 1, 20000);
         // camera.position.set(radiusW, radius, 1);
-        camera.position.set(0, radius, 0);
+        camera.position.set(1, radius, 1);
         //
         light = new THREE.DirectionalLight(0xffffff, 0.8);
         scene.add(light);
